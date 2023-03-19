@@ -2,28 +2,24 @@
 
 Pet project which aim is to create movies and ts-series related angular app using [themoviedb API](https://developers.themoviedb.org/3).
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+`npm i` => `ng serve` - run project locally.
 
-## Development server
+Project feature branch deployed on [Github Pages](https://heliken.github.io/themoviedb/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## To Do:
+### Must have: 
+1. Main page:
+    - [ ] trending, popular and upcoming moves or tv-series
+    - [ ] live search
+- [ ] 2. Movie/tv-series details page
+- [ ] 3. Person details page
+---
+### Nice to have
+- [ ] Live search sholud search movies, tv-series and people simultaneously.
+- [ ] Movie list page with sorting and filtering.
+- [ ] Movies by genre page - list of movies + pagination + sorting
+- [ ] subpage of a movie details page with a list of cast and crew members
+---
+### Extra hard level
+- [ ] authentification feature similar to oAuth
+- [ ] Favourites feature that allows users to add or remove movies form their favourites list. If user has at least 1 movie - list should be shown on mainpage. Users sholud be able to add movie to list from the movie details page.
