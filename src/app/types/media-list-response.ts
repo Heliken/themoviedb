@@ -1,6 +1,6 @@
 export interface MediaListResponse<ResponseType> {
-    page: number;
-    results:  ResponseType[];
-    totalPages: number;
-    totalResults: number;
+  page: number;
+  results: ResponseType[];
+  total_pages: number;
+  total_results: number;
 }
