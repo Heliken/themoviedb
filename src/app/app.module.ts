@@ -1,15 +1,17 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MainpageModule } from './pages/mainpage/mainpage.module';
+import { ApiConfigurationService } from './services/api-configuration-service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     MainpageModule,
     BrowserModule,
@@ -17,12 +19,21 @@ import { MainpageModule } from './pages/mainpage/mainpage.module';
     HttpClientModule,
   ],
   providers: [
+    ApiConfigurationService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory:
+        (apiConfigService: ApiConfigurationService) => () =>
+          apiConfigService.loadConfig(),
+      deps: [ApiConfigurationService],
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
