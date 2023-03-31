@@ -7,9 +7,7 @@ import { MainpageSection } from './types/mainpage-section';
   styleUrls: ['./mainpage.component.scss'],
 })
 export class MainpageComponent {
-  constructor(
-    private readonly api: MainpageRequestsService
-  ) {}
+  constructor(private readonly api: MainpageRequestsService) {}
 
   public sections: MainpageSection[] = [
     {

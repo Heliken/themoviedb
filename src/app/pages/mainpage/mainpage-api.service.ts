@@ -1,45 +1,97 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
-import {
-  TrendingTimeWindow,
-  TrendingType,
-} from '../../types/trending-request';
+import { forkJoin, map, Observable } from 'rxjs';
+import { TrendingTimeWindow, TrendingType } from '../../types/trending-request';
 import { MediaListResponse } from 'src/app/types/media-list-response';
+import { MediaItemDTO } from 'src/app/types/DTO/media-item-dto';
+import { GridMediaItem } from 'src/app/types/grid-media-item';
+import { MovieDTO } from 'src/app/types/DTO/movie-dto';
+import { TvShowDTO } from 'src/app/types/DTO/tv-show-dto';
 import { MediaItem } from 'src/app/types/media-item';
+import { DtoTransformService } from 'src/app/services/dto-transform.service';
+import { Movie } from 'src/app/types/movie';
+import { TvShow } from 'src/app/types/tv-show';
+import { MediaToGridMediaService } from 'src/app/services/media-to-grid-media.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MainpageRequestsService {
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    private readonly dtoTranform: DtoTransformService,
+    private readonly mediaToGridMedia: MediaToGridMediaService
+  ) {}
 
   requestTrending(
-    timeWindow: TrendingTimeWindow = TrendingTimeWindow.day,
-    type: TrendingType = TrendingType.all
-  ) {
-    /* TODO: MediaItem isnt correct interface as this request can
-     possibly return Person if TrendingType === 'person'. Update logic later */
-    return this.http
-      .get<MediaListResponse<MediaItem>>(
-        `/api/trending/${type}/${timeWindow}`
-      )
-      .pipe(map(({ results }) => results));
+    timeWindow: TrendingTimeWindow = TrendingTimeWindow.day
+  ): Observable<GridMediaItem[]> {
+    const trendingMoviesRequest$ = this.http.get<MediaListResponse<MovieDTO>>(
+      `/api/trending/${TrendingType.movie}/${timeWindow}`
+    );
+    const trendingTvShowsRequest$ = this.http.get<MediaListResponse<TvShowDTO>>(
+      `/api/trending/${TrendingType.tv}/${timeWindow}`
+    );
+
+    const joinedMoviesAndTvShows = this.joinMoviesAndTvShows(
+      trendingTvShowsRequest$,
+      trendingMoviesRequest$
+    );
+
+    return this.convertToGridMediaItem(joinedMoviesAndTvShows);
   }
 
-  requestPopular() {
-    return this.http
-      .get<MediaListResponse<MediaItem>>(
-        '/api/movie/popular'
-      )
-      .pipe(map(({ results }) => results));
+  requestPopular(): Observable<GridMediaItem[]> {
+    const popularMoviesRequest$ =
+      this.http.get<MediaListResponse<MovieDTO>>('/api/movie/popular');
+    const popularTvShowsRequest$ =
+      this.http.get<MediaListResponse<TvShowDTO>>('/api/tv/popular');
+
+    const joinedMoviesAndTvShows = this.joinMoviesAndTvShows(
+      popularTvShowsRequest$,
+      popularMoviesRequest$
+    );
+
+    return this.convertToGridMediaItem(joinedMoviesAndTvShows);
   }
 
-  requestUpcoming() {
-    return this.http
-      .get<MediaListResponse<MediaItem>>(
-        '/api/movie/upcoming'
+  joinMoviesAndTvShows(
+    tvShowsRequest$: Observable<MediaListResponse<TvShowDTO>>,
+    moviesRequest$: Observable<MediaListResponse<MovieDTO>>,
+    itemsPerType = 10
+  ): Observable<(Movie | TvShow)[]> {
+    return forkJoin([tvShowsRequest$, moviesRequest$]).pipe(
+      map(([tvShowsResponse, moviesResponse]) => {
+        const movies = moviesResponse.results
+          .slice(0, itemsPerType)
+          .map(movie => this.dtoTranform.transformMovie(movie));
+        const tvShows = tvShowsResponse.results
+          .slice(0, itemsPerType)
+          .map(tvShow => this.dtoTranform.transformTVShow(tvShow));
+
+        return [...movies, ...tvShows];
+      })
+    );
+  }
+
+  convertToGridMediaItem(
+    data: Observable<MediaItem[]>
+  ): Observable<GridMediaItem[]> {
+    return data.pipe(
+      map(mediaList =>
+        mediaList.map(mediaItem => this.mediaToGridMedia.convert(mediaItem))
       )
-      .pipe(map(({ results }) => results));
+    );
+  }
+
+  requestUpcoming(): Observable<GridMediaItem[]> {
+    const upcomingMovies = this.http
+      .get<MediaListResponse<MovieDTO>>('/api/movie/upcoming')
+      .pipe(
+        map(({ results }) =>
+          results.map(movie => this.dtoTranform.transformMovie(movie))
+        )
+      );
+    return this.convertToGridMediaItem(upcomingMovies);
   }
 }
