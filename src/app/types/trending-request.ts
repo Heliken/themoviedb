@@ -1,3 +1,5 @@
+import { MediaItemDTO } from './DTO/media-item-dto';
+
 export enum TrendingTimeWindow {
   day = 'day',
   week = 'week',
@@ -9,3 +11,7 @@ export enum TrendingType {
   tv = 'tv',
   person = 'person',
 }
+
+export type TrendingMediaItemDTO = MediaItemDTO & {
+  media_type: TrendingType;
+};
