@@ -56,5 +56,8 @@
         "prettier/prettier": ["error", { "parser": "angular" }]
       }
     }
-  ]
+  ],
+  "rules": {
+    "linebreak-style": 0   // <----------
+  }
 }
