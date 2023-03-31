@@ -1,0 +1,8 @@
+<div class="ui-card" *ngIf="dataItem">
+  <img
+    *ngIf="dataItem.image"
+    [src]="dataItem.image | imgSrc"
+    [alt]="dataItem.title"
+  />
+  {{ dataItem.title }}
+</div>
