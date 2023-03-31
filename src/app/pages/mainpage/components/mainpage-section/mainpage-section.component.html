@@ -1,0 +1,4 @@
+<section class="mainpage-section" *ngIf="section?.list$ | async as list">
+  <h3>{{ section?.title }}</h3>
+  <mdb-ui-cards-grid [dataList]="list"></mdb-ui-cards-grid>
+</section>
