@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MainpageModule } from './pages/mainpage/mainpage.module';
-import { ApiConfigurationService } from './services/api-configuration-service';
+import { ApiConfigurationService } from './services/api-configuration.service';
 
 @NgModule({
   declarations: [AppComponent],
