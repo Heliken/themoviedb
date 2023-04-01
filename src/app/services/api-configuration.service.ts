@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CONFIG_CACHE_KEY, CONFIG_EXPIRATION_TIME } from 'src/api-info';
+import { CONFIG_CACHE_KEY } from 'src/api-info';
 import { ConfigurationResponse } from '../types/api-configuration';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiConfigurationService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
+  ) {}
 
   public getConfig(): ConfigurationResponse | undefined {
     return this.config;
@@ -15,24 +19,15 @@ export class ApiConfigurationService {
 
   public loadConfig(): void {
     if (this.cachedConfig) {
-      const { timestamp, config } = JSON.parse(this.cachedConfig);
-      const configExpired =
-        this.currentTime - timestamp > CONFIG_EXPIRATION_TIME;
-
-      if (configExpired) {
-        this.requestConfig();
-      } else {
-        this.config = config;
-      }
+      this.config = this.cachedConfig;
     } else {
       this.requestConfig();
     }
   }
 
   private cacheKey = CONFIG_CACHE_KEY;
-  private cachedConfig = localStorage.getItem(this.cacheKey);
+  private cachedConfig = this.localStorageService.getItem(this.cacheKey);
   private config?: ConfigurationResponse;
-  private currentTime = Date.now();
 
   private requestConfig(): void {
     this.http
@@ -45,12 +40,9 @@ export class ApiConfigurationService {
   private saveConfig(newConfig: ConfigurationResponse): void {
     this.config = newConfig;
 
-    localStorage.setItem(
-      this.cacheKey,
-      JSON.stringify({
-        config: newConfig,
-        timestamp: Date.now(),
-      })
-    );
+    this.localStorageService.setItem(this.cacheKey, {
+      data: newConfig,
+      timestamp: Date.now().toString(),
+    });
   }
 }
