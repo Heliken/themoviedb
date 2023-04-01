@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ApiConfigurationService } from 'src/app/services/api-configuration-service';
+import { ApiConfigurationService } from 'src/app/services/api-configuration.service';
 
 @Pipe({
   name: 'imgSrc',
