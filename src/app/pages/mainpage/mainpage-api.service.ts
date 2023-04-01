@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
 import { TrendingTimeWindow, TrendingType } from '../../types/trending-request';
 import { MediaListResponse } from 'src/app/types/media-list-response';
-import { MediaItemDTO } from 'src/app/types/DTO/media-item-dto';
 import { GridMediaItem } from 'src/app/types/grid-media-item';
 import { MovieDTO } from 'src/app/types/DTO/movie-dto';
 import { TvShowDTO } from 'src/app/types/DTO/tv-show-dto';
@@ -12,6 +11,7 @@ import { DtoTransformService } from 'src/app/services/dto-transform.service';
 import { Movie } from 'src/app/types/movie';
 import { TvShow } from 'src/app/types/tv-show';
 import { MediaToGridMediaService } from 'src/app/services/media-to-grid-media.service';
+import { RESPONSE_PER_PAGE } from 'src/api-info';
 
 @Injectable({
   providedIn: 'root',
@@ -58,7 +58,7 @@ export class MainpageRequestsService {
   joinMoviesAndTvShows(
     tvShowsRequest$: Observable<MediaListResponse<TvShowDTO>>,
     moviesRequest$: Observable<MediaListResponse<MovieDTO>>,
-    itemsPerType = 10
+    itemsPerType = Math.round(RESPONSE_PER_PAGE / 2)
   ): Observable<(Movie | TvShow)[]> {
     return forkJoin([tvShowsRequest$, moviesRequest$]).pipe(
       map(([tvShowsResponse, moviesResponse]) => {
