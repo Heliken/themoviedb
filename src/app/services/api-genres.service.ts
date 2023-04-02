@@ -32,8 +32,8 @@ export class ApiGenresService {
   private genres?: Genres;
 
   private requestGenres(): void {
-    const movieGenres$ = this.http.get<GenresResponse>('/api/genre/movie/list');
-    const tvShowsGenres$ = this.http.get<GenresResponse>('/api/genre/tv/list');
+    const movieGenres$ = this.http.get<GenresResponse>('genre/movie/list');
+    const tvShowsGenres$ = this.http.get<GenresResponse>('genre/tv/list');
 
     forkJoin([movieGenres$, tvShowsGenres$])
       .pipe(

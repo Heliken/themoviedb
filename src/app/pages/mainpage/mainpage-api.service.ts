@@ -27,10 +27,10 @@ export class MainpageRequestsService {
     timeWindow: TrendingTimeWindow = TrendingTimeWindow.day
   ): Observable<GridMediaItem[]> {
     const trendingMoviesRequest$ = this.http.get<MediaListResponse<MovieDTO>>(
-      `/api/trending/${TrendingType.movie}/${timeWindow}`
+      `trending/${TrendingType.movie}/${timeWindow}`
     );
     const trendingTvShowsRequest$ = this.http.get<MediaListResponse<TvShowDTO>>(
-      `/api/trending/${TrendingType.tv}/${timeWindow}`
+      `trending/${TrendingType.tv}/${timeWindow}`
     );
 
     const joinedMoviesAndTvShows = this.joinMoviesAndTvShows(
@@ -43,9 +43,9 @@ export class MainpageRequestsService {
 
   requestPopular(): Observable<GridMediaItem[]> {
     const popularMoviesRequest$ =
-      this.http.get<MediaListResponse<MovieDTO>>('/api/movie/popular');
+      this.http.get<MediaListResponse<MovieDTO>>('movie/popular');
     const popularTvShowsRequest$ =
-      this.http.get<MediaListResponse<TvShowDTO>>('/api/tv/popular');
+      this.http.get<MediaListResponse<TvShowDTO>>('tv/popular');
 
     const joinedMoviesAndTvShows = this.joinMoviesAndTvShows(
       popularTvShowsRequest$,
@@ -86,7 +86,7 @@ export class MainpageRequestsService {
 
   requestUpcoming(): Observable<GridMediaItem[]> {
     const upcomingMovies = this.http
-      .get<MediaListResponse<MovieDTO>>('/api/movie/upcoming')
+      .get<MediaListResponse<MovieDTO>>('movie/upcoming')
       .pipe(
         map(({ results }) =>
           results.map(movie => this.dtoTranform.transformMovie(movie))

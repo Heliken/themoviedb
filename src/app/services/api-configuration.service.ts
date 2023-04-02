@@ -30,11 +30,9 @@ export class ApiConfigurationService {
   private config?: ConfigurationResponse;
 
   private requestConfig(): void {
-    this.http
-      .get<ConfigurationResponse>('/api/configuration')
-      .subscribe(data => {
-        this.saveConfig(data);
-      });
+    this.http.get<ConfigurationResponse>('configuration').subscribe(data => {
+      this.saveConfig(data);
+    });
   }
 
   private saveConfig(newConfig: ConfigurationResponse): void {

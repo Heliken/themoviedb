@@ -5,7 +5,7 @@ import {
   HttpRequest,
   HttpEvent,
 } from '@angular/common/http';
-import { API_KEY } from '../../api-info';
+import { API_KEY, API_URL } from '../../api-info';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -15,9 +15,10 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<T>> {
     return next.handle(
-      req.clone({
+      (req = req.clone({
+        url: API_URL + req.url,
         params: req.params.append('api_key', API_KEY),
-      })
+      }))
     );
   }
 }
