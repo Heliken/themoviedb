@@ -3,13 +3,17 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
+  HttpEvent,
 } from '@angular/common/http';
 import { API_KEY } from '../../api-info';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept<T>(
+    req: HttpRequest<T>,
+    next: HttpHandler
+  ): Observable<HttpEvent<T>> {
     return next.handle(
       req.clone({
         params: req.params.append('api_key', API_KEY),

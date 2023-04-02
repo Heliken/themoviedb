@@ -20,9 +20,7 @@ export class ApiGenresService {
   }
 
   public loadGenres(): void {
-    console.log('load genres');
     if (this.cachedGenres) {
-      console.log(this.cachedGenres);
       this.genres = this.cachedGenres;
     } else {
       this.requestGenres();
