@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { LOCAL_STORAGE_EXPIRATION_TIME } from 'src/api-info';
 
-// todo: find a solution to remove any, probably with generics
-interface LocalStorageData {
+interface LocalStorageData<T> {
   timestamp: string;
-  data: any;
+  data: T;
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalStorageService {
-  public getItem(key: string): LocalStorageData['data'] {
+export class LocalStorageService<T> {
+  public getItem(key: string): T | undefined {
     const stringValue = localStorage.getItem(key);
 
     if (stringValue) {
@@ -29,7 +28,7 @@ export class LocalStorageService {
     }
   }
 
-  public setItem(key: string, value: LocalStorageData): void {
+  public setItem(key: string, value: LocalStorageData<T>): void {
     const stringValue = JSON.stringify(value);
     localStorage.setItem(key, stringValue);
   }
