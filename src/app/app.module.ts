@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MainpageModule } from './pages/mainpage/mainpage.module';
 import { ApiConfigurationService } from './services/api-configuration.service';
+import { ApiGenresService } from './services/api-genres.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,14 @@ import { ApiConfigurationService } from './services/api-configuration.service';
       useFactory: (apiConfigService: ApiConfigurationService) => () =>
         apiConfigService.loadConfig(),
       deps: [ApiConfigurationService],
+      multi: true,
+    },
+    ApiGenresService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (apiGenresService: ApiGenresService) => () =>
+        apiGenresService.loadGenres(),
+      deps: [ApiGenresService],
       multi: true,
     },
     {
