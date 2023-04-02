@@ -1,3 +1,4 @@
+import { Genre } from './genres';
 import { MediaType } from './media-type';
 
 export interface TvShow {
@@ -5,6 +6,7 @@ export interface TvShow {
   poster: string | null;
   title: string;
   mediaType: MediaType.Tv;
+  genres: Genre[];
   releaseDate?: Date;
   rating?: number;
 }
