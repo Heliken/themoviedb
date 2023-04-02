@@ -10,7 +10,7 @@ import { LocalStorageService } from './local-storage.service';
 export class ApiConfigurationService {
   constructor(
     private http: HttpClient,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService<ConfigurationResponse>
   ) {}
 
   public getConfig(): ConfigurationResponse | undefined {

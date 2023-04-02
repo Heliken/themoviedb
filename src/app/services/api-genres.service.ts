@@ -12,7 +12,7 @@ import { Genres } from '../types/genres';
 export class ApiGenresService {
   constructor(
     private http: HttpClient,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService<Genres>
   ) {}
 
   public getGenres(): Genres | undefined {
