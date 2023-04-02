@@ -42,7 +42,7 @@ export class MediaToGridMediaService {
   }
 
   private movieMapper(movie: Movie): GridMediaItem {
-    const { id, poster, title, mediaType, releaseDate, rating } = movie;
+    const { id, poster, title, mediaType, releaseDate, rating, genres } = movie;
     return {
       id,
       title,
@@ -50,11 +50,13 @@ export class MediaToGridMediaService {
       releaseDate,
       rating,
       image: poster,
+      genres,
     };
   }
 
   private tvShowMapper(tvShow: TvShow): GridMediaItem {
-    const { id, poster, title, mediaType, releaseDate, rating } = tvShow;
+    const { id, poster, title, mediaType, releaseDate, rating, genres } =
+      tvShow;
     return {
       id,
       title,
@@ -62,6 +64,7 @@ export class MediaToGridMediaService {
       releaseDate,
       rating,
       image: poster,
+      genres,
     };
   }
 }
