@@ -33,15 +33,11 @@ export class LocalStorageService<T> {
     localStorage.setItem(key, stringValue);
   }
 
-  private currentTime = Date.now();
-
   private removeItem(key: string): void {
     localStorage.removeItem(key);
   }
 
   private checkExpiration(timestamp: string): boolean {
-    return (
-      this.currentTime - parseInt(timestamp) > LOCAL_STORAGE_EXPIRATION_TIME
-    );
+    return Date.now() - parseInt(timestamp) > LOCAL_STORAGE_EXPIRATION_TIME;
   }
 }

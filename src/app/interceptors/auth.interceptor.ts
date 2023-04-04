@@ -15,10 +15,10 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<T>> {
     return next.handle(
-      (req = req.clone({
+      req.clone({
         url: API_URL + req.url,
         params: req.params.append('api_key', API_KEY),
-      }))
+      })
     );
   }
 }

@@ -12,7 +12,6 @@ import { ApiGenresService } from './services/api-genres.service';
   declarations: [AppComponent],
   imports: [MainpageModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
-    ApiConfigurationService,
     {
       provide: APP_INITIALIZER,
       useFactory: (apiConfigService: ApiConfigurationService) => () =>
@@ -20,7 +19,6 @@ import { ApiGenresService } from './services/api-genres.service';
       deps: [ApiConfigurationService],
       multi: true,
     },
-    ApiGenresService,
     {
       provide: APP_INITIALIZER,
       useFactory: (apiGenresService: ApiGenresService) => () =>

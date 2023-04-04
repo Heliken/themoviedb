@@ -1,5 +1,6 @@
 <div class="ui-cards-grid container">
-  <ng-container *ngFor="let item of dataList; index as i">
-    <mdb-ui-card class="ui-cards-grid--item" [dataItem]="item"></mdb-ui-card>
-  </ng-container>
+  <mdb-ui-card
+    *ngFor="let item of dataList"
+    class="ui-cards-grid--item"
+    [dataItem]="item"></mdb-ui-card>
 </div>

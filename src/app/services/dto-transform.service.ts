@@ -14,9 +14,7 @@ import { Genre } from '../types/genres';
 })
 export class DtoTransformService {
   constructor(private apiGenresService: ApiGenresService) {}
-  transformPerson(dtoPerson: PersonDTO): Person {
-    const { id, profile_path, name } = dtoPerson;
-
+  transformPerson({ id, profile_path, name }: PersonDTO): Person {
     return {
       name,
       id,
@@ -25,10 +23,14 @@ export class DtoTransformService {
     };
   }
 
-  transformMovie(dtoMovie: MovieDTO): Movie {
-    const { id, title, poster_path, vote_average, release_date, genre_ids } =
-      dtoMovie;
-
+  transformMovie({
+    id,
+    title,
+    poster_path,
+    vote_average,
+    release_date,
+    genre_ids,
+  }: MovieDTO): Movie {
     return {
       id,
       title,
@@ -40,10 +42,14 @@ export class DtoTransformService {
     };
   }
 
-  transformTVShow(dtoMovie: TvShowDTO): TvShow {
-    const { id, name, poster_path, vote_average, first_air_date, genre_ids } =
-      dtoMovie;
-
+  transformTVShow({
+    id,
+    name,
+    poster_path,
+    vote_average,
+    first_air_date,
+    genre_ids,
+  }: TvShowDTO): TvShow {
     return {
       id,
       title: name,
