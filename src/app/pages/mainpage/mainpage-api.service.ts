@@ -3,14 +3,12 @@ import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable } from 'rxjs';
 import { TrendingTimeWindow, TrendingType } from '../../types/trending-request';
 import { MediaListResponse } from 'src/app/types/media-list-response';
-import { GridMediaItem } from 'src/app/types/grid-media-item';
 import { MovieDTO } from 'src/app/types/DTO/movie-dto';
 import { TvShowDTO } from 'src/app/types/DTO/tv-show-dto';
 import { MediaItem } from 'src/app/types/media-item';
 import { DtoTransformService } from 'src/app/services/dto-transform.service';
 import { Movie } from 'src/app/types/movie';
 import { TvShow } from 'src/app/types/tv-show';
-import { MediaToGridMediaService } from 'src/app/services/media-to-grid-media.service';
 import { RESPONSE_PER_PAGE } from 'src/api-info';
 
 @Injectable({
@@ -19,13 +17,12 @@ import { RESPONSE_PER_PAGE } from 'src/api-info';
 export class MainpageRequestsService {
   constructor(
     private readonly http: HttpClient,
-    private readonly dtoTranform: DtoTransformService,
-    private readonly mediaToGridMedia: MediaToGridMediaService
+    private readonly dtoTranform: DtoTransformService
   ) {}
 
   requestTrending(
     timeWindow: TrendingTimeWindow = TrendingTimeWindow.day
-  ): Observable<GridMediaItem[]> {
+  ): Observable<MediaItem[]> {
     const trendingMoviesRequest$ = this.http.get<MediaListResponse<MovieDTO>>(
       `trending/${TrendingType.movie}/${timeWindow}`
     );
@@ -33,26 +30,22 @@ export class MainpageRequestsService {
       `trending/${TrendingType.tv}/${timeWindow}`
     );
 
-    const joinedMoviesAndTvShows = this.joinMoviesAndTvShows(
+    return this.joinMoviesAndTvShows(
       trendingTvShowsRequest$,
       trendingMoviesRequest$
     );
-
-    return this.convertToGridMediaItem(joinedMoviesAndTvShows);
   }
 
-  requestPopular(): Observable<GridMediaItem[]> {
+  requestPopular(): Observable<MediaItem[]> {
     const popularMoviesRequest$ =
       this.http.get<MediaListResponse<MovieDTO>>('movie/popular');
     const popularTvShowsRequest$ =
       this.http.get<MediaListResponse<TvShowDTO>>('tv/popular');
 
-    const joinedMoviesAndTvShows = this.joinMoviesAndTvShows(
+    return this.joinMoviesAndTvShows(
       popularTvShowsRequest$,
       popularMoviesRequest$
     );
-
-    return this.convertToGridMediaItem(joinedMoviesAndTvShows);
   }
 
   joinMoviesAndTvShows(
@@ -74,24 +67,13 @@ export class MainpageRequestsService {
     );
   }
 
-  convertToGridMediaItem(
-    data: Observable<MediaItem[]>
-  ): Observable<GridMediaItem[]> {
-    return data.pipe(
-      map(mediaList =>
-        mediaList.map(mediaItem => this.mediaToGridMedia.convert(mediaItem))
-      )
-    );
-  }
-
-  requestUpcoming(): Observable<GridMediaItem[]> {
-    const upcomingMovies = this.http
+  requestUpcoming(): Observable<MediaItem[]> {
+    return this.http
       .get<MediaListResponse<MovieDTO>>('movie/upcoming')
       .pipe(
         map(({ results }) =>
           results.map(movie => this.dtoTranform.transformMovie(movie))
         )
       );
-    return this.convertToGridMediaItem(upcomingMovies);
   }
 }

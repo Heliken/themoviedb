@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { GridMediaItem } from 'src/app/types/grid-media-item';
+import { MediaItem } from 'src/app/types/media-item';
 
 export interface MainpageSection {
   title: string;
-  list$: Observable<GridMediaItem[]>;
+  list$: Observable<MediaItem[]>;
 }
