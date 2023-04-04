@@ -1,4 +1,3 @@
-import { Genre } from './genres';
 import { MediaType } from './media-type';
 export interface GridMediaItem {
   id: number;
@@ -7,5 +6,4 @@ export interface GridMediaItem {
   title: string;
   releaseDate?: Date;
   rating?: number;
-  genres?: Genre[];
 }
