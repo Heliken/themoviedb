@@ -12,3 +12,11 @@ export interface ConfigurationImages {
   profile_sizes: string[];
   still_sizes: string[];
 }
+
+export enum ImageTypeSize {
+  poster = 'poster_sizes',
+  backdrop = 'backdrop_sizes',
+  logo = 'logo_sizes',
+  profile = 'profile_sizes',
+  still = 'still_sizes',
+}
