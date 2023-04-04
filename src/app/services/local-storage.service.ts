@@ -14,14 +14,22 @@ export class LocalStorageService<T> {
     const stringValue = localStorage.getItem(key);
 
     if (stringValue) {
-      const { timestamp, data } = JSON.parse(stringValue);
-      const isExpired = this.checkExpiration(timestamp);
+      try {
+        const { timestamp, data } = JSON.parse(stringValue);
+        const isExpired = this.checkExpiration(timestamp);
 
-      if (isExpired) {
-        this.removeItem(key);
+        if (isExpired) {
+          this.removeItem(key);
+          return undefined;
+        } else {
+          return data;
+        }
+      } catch (error) {
+        console.log(
+          'Error parsing stored data, requesting new from API:',
+          error
+        );
         return undefined;
-      } else {
-        return data;
       }
     } else {
       return undefined;
