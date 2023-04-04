@@ -23,16 +23,25 @@ export class MainpageRequestsService {
   requestTrending(
     timeWindow: TrendingTimeWindow = TrendingTimeWindow.day
   ): Observable<MediaItem[]> {
-    const trendingMoviesRequest$ = this.http.get<MediaListResponse<MovieDTO>>(
+    return this.joinMoviesAndTvShows(
+      this.getTrendingTvShows(timeWindow),
+      this.getTrendingMovies(timeWindow)
+    );
+  }
+
+  getTrendingMovies(
+    timeWindow: TrendingTimeWindow = TrendingTimeWindow.day
+  ): Observable<MediaListResponse<MovieDTO>> {
+    return this.http.get<MediaListResponse<MovieDTO>>(
       `trending/${TrendingType.movie}/${timeWindow}`
     );
-    const trendingTvShowsRequest$ = this.http.get<MediaListResponse<TvShowDTO>>(
-      `trending/${TrendingType.tv}/${timeWindow}`
-    );
+  }
 
-    return this.joinMoviesAndTvShows(
-      trendingTvShowsRequest$,
-      trendingMoviesRequest$
+  getTrendingTvShows(
+    timeWindow: TrendingTimeWindow = TrendingTimeWindow.day
+  ): Observable<MediaListResponse<TvShowDTO>> {
+    return this.http.get<MediaListResponse<TvShowDTO>>(
+      `trending/${TrendingType.tv}/${timeWindow}`
     );
   }
 
