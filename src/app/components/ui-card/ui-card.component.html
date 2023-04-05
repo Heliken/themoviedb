@@ -1,0 +1,14 @@
+<div class="ui-card" *ngIf="dataItem">
+  <mdb-rating-badge
+    *ngIf="dataItem.rating"
+    class="ui-card--rating-badge"
+    [value]="dataItem.rating"></mdb-rating-badge>
+  <div class="ui-card--img-wrap">
+    <img
+      *ngIf="dataItem.image"
+      [src]="dataItem.image | imgSrc"
+      [alt]="dataItem.title"
+      class="ui-card--img" />
+  </div>
+  <div class="ui-card--title">{{ dataItem.title }}</div>
+</div>

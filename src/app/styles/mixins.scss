@@ -1,0 +1,30 @@
+@import "./breakpoints.scss";
+
+@mixin bp($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        $size: map-get($breakpoints, $breakpoint);
+        @media screen and (min-width: $size) {
+            @content;
+        }
+    } @else {
+        @error "Invalid breakpoint: #{$breakpoint}.";
+    }
+}
+
+@mixin font-style($size: null, $line-height: null, $weight: null, $color: null) {
+    @if $size {
+        font-size: $size;
+    }
+    
+    @if $line-height {
+        line-height: $line-height;
+    }
+    
+    @if $weight {
+        font-weight: $weight;
+    }
+    
+    @if $color {
+        color: $color;
+    }
+  }

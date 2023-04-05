@@ -1,0 +1,20 @@
+@import "./mixins.scss";
+
+$base-h1-size: 28px;
+$min-size: 14px;
+
+@for $i from 1 through 6 {
+    .h#{$i} {
+        $mobileSize: max($base-h1-size - ($i * 4), 14px);
+
+        @include font-style($mobileSize, 1.4, 900);
+
+        @include bp('768') {
+            font-size: $mobileSize + 4px;
+        }
+
+        @include bp('1280') {
+            font-size: $mobileSize + 8px;
+        }
+    }
+}

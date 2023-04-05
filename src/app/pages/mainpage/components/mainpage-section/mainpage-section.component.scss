@@ -1,0 +1,11 @@
+@import "src/app/styles/mixins.scss";
+
+.mainpage-section {
+    margin-bottom: 20px;
+
+    &--title {
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        color: rgb(var(--accent));
+    }
+}
