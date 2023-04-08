@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MainpageModule } from './pages/mainpage/mainpage.module';
 import { ApiConfigurationService } from './services/api-configuration.service';
+import { HeaderModule } from './components/header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [MainpageModule, BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -25,5 +25,12 @@ import { ApiConfigurationService } from './services/api-configuration.service';
     },
   ],
   bootstrap: [AppComponent],
+  imports: [
+    MainpageModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HeaderModule,
+  ],
 })
 export class AppModule {}
