@@ -1,0 +1,11 @@
+<ng-container *ngIf="searchResultSection">
+  <div class="container">
+    <h4 class="h2 search-result-section--title">
+      {{ searchResultSection.title }}
+    </h4>
+  </div>
+  <mdb-ui-cards-grid
+    class="search-result-section--grid"
+    [dataList]="searchResultSection.result | toGridItems">
+  </mdb-ui-cards-grid>
+</ng-container>
