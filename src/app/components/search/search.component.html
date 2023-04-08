@@ -3,14 +3,20 @@
     type="text"
     placeholder="Search"
     class="input search--input"
-    (focus)="onFocus($event)"
-    (input)="onInput($event)" />
-  <div *ngIf="hasMinInput" class="search--clear" (click)="clear()">Clear</div>
+    [formControl]="searchInput" />
+  <div
+    *ngIf="searchInput.value?.length >= minSearchLength"
+    class="search--clear"
+    (click)="clear()">
+    Clear
+  </div>
 </div>
-<div class="search--result" *ngIf="hasMinInput">
-  <ng-container *ngIf="results$ | async as searchResults">
-    <ng-container *ngIf="searchResults.total; else noResults">
-      <ng-container *ngFor="let section of searchResults.response">
+<div
+  class="search--result"
+  *ngIf="searchInput.value?.length >= minSearchLength">
+  <ng-container *ngIf="searchResult; else preloader">
+    <ng-container *ngIf="searchResult.total; else noResults">
+      <ng-container *ngFor="let section of searchResult.response">
         <mdb-search-result-section
           class="search--result-section"
           *ngIf="section.result.length > 0"
@@ -23,4 +29,7 @@
       </p>
     </ng-template>
   </ng-container>
+  <ng-template #preloader>
+    <mdb-preloader></mdb-preloader>
+  </ng-template>
 </div>
