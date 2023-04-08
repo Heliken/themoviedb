@@ -1,14 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, from, map, mergeMap, reduce } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { DtoTransformService } from 'src/app/services/dto-transform.service';
 import { MediaItemDTOWithType } from 'src/app/types/DTO/media-item-dto';
 import { MediaListResponse } from 'src/app/types/media-list-response';
 import { MediaType } from 'src/app/types/media-type';
 import { MediaTypeDTO } from 'src/app/types/DTO/media-item-dto';
 import { MediaItem } from 'src/app/types/media-item';
-import { SearchResponse } from './types/search-response';
-
+import {
+  SearchResponse,
+  SearchResponseSectionTitle,
+} from './types/search-response';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +19,12 @@ export class SearchApiService {
     private readonly http: HttpClient,
     private readonly dtoTranform: DtoTransformService
   ) {}
+
+  private sectionTitles: SearchResponseSectionTitle = {
+    [MediaType.Movie]: 'Movies',
+    [MediaType.Tv]: 'TV Shows',
+    [MediaType.Person]: 'People',
+  };
 
   requestSearchResult(searchString: string): Observable<SearchResponse> {
     const params = new HttpParams({
@@ -54,28 +62,41 @@ export class SearchApiService {
   }
 
   private groupByType(transformedSearchResult: Observable<MediaItem[]>) {
-    const mappedSearch: SearchResponse = {
-      [MediaType.Movie]: [],
-      [MediaType.Tv]: [],
-      [MediaType.Person]: [],
-    };
-
     return transformedSearchResult.pipe(
-      mergeMap((mediaItems: MediaItem[]) => from(mediaItems)),
-      reduce((acc, item) => {
-        switch (item.mediaType) {
-          case MediaType.Movie:
-            acc[MediaType.Movie].push(item);
-            break;
-          case MediaType.Tv:
-            acc[MediaType.Tv].push(item);
-            break;
-          case MediaType.Person:
-            acc[MediaType.Person].push(item);
-            break;
-        }
-        return acc;
-      }, mappedSearch)
+      map(mediaItems => {
+        const mappedSearch: SearchResponse = {
+          response: [
+            {
+              type: MediaType.Movie,
+              result: [],
+              title: this.sectionTitles[MediaType.Movie],
+            },
+            {
+              type: MediaType.Tv,
+              result: [],
+              title: this.sectionTitles[MediaType.Tv],
+            },
+            {
+              type: MediaType.Person,
+              result: [],
+              title: this.sectionTitles[MediaType.Person],
+            },
+          ],
+          total: mediaItems.length,
+        };
+
+        mediaItems.forEach(mediaItem => {
+          const relatedSection = mappedSearch.response.find(
+            ({ type }) => type === mediaItem.mediaType
+          );
+
+          if (relatedSection) {
+            relatedSection.result.push(mediaItem);
+          }
+        });
+
+        return mappedSearch;
+      })
     );
   }
 }
