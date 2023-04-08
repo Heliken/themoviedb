@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, debounceTime, filter, tap } from 'rxjs';
+import { debounceTime, filter, tap } from 'rxjs';
 import { SearchApiService } from './search-api.service';
 import { SearchResponse } from './types/search-response';
 import { FormControl } from '@angular/forms';

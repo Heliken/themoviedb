@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CONFIG_CACHE_KEY } from 'src/api-info';
 import { ConfigurationResponse } from '../types/api-configuration';
 import { LocalStorageService } from './local-storage.service';
-import { Observable, catchError, of, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

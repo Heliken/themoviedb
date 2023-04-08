@@ -31,7 +31,7 @@
         grid-gap: 12px;
         max-width: 100%;
 
-        grid-template-columns: repeat(auto-fill, minmax(106px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
 
         @include bp('1280') {
             max-width: var(--containerMaxWidth);
