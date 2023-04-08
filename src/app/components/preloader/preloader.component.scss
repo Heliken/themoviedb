@@ -1,0 +1,57 @@
+:host {
+    display: contents;
+}
+
+.preloader {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    &--icon {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.preloader-icon {
+    &--tape {
+        animation: 1s linear -0.7s infinite spin;
+        stroke: rgb(var(--accent));
+        fill: none;
+    }
+
+    &--main {
+        animation: 1s linear -1s infinite spin;
+        stroke: rgb(var(--accent));
+        fill: rgb(var(--primary));
+    }
+
+    &--center {
+        animation: 1s linear -0.9s infinite spin;
+        fill: rgb(var(--secondary));
+    }
+
+    &--main, 
+    &--tape,
+    &--center {
+        stroke-width: 3;
+        transform-origin: 50% 50%;
+        animation-timing-function: cubic-bezier(
+            0.58,
+            0.07,
+            0.4,
+            0.9
+          );
+    }
+
+    @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+    }
+}
