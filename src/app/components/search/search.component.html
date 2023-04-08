@@ -1,0 +1,26 @@
+<div class="search">
+  <input
+    type="text"
+    placeholder="Search"
+    class="input search--input"
+    (focus)="onFocus($event)"
+    (input)="onInput($event)" />
+  <div *ngIf="hasMinInput" class="search--clear" (click)="clear()">Clear</div>
+</div>
+<div class="search--result" *ngIf="hasMinInput">
+  <ng-container *ngIf="results$ | async as searchResults">
+    <ng-container *ngIf="searchResults.total; else noResults">
+      <ng-container *ngFor="let section of searchResults.response">
+        <mdb-search-result-section
+          class="search--result-section"
+          *ngIf="section.result.length > 0"
+          [searchResultSection]="section"></mdb-search-result-section>
+      </ng-container>
+    </ng-container>
+    <ng-template #noResults>
+      <p class="search--no-results container">
+        Sorry, no results were found based on your search, try again.
+      </p>
+    </ng-template>
+  </ng-container>
+</div>
