@@ -36,6 +36,7 @@
     scroll-padding-left: var(--containerPadding);
 
     &--item {
+        cursor: pointer;
         scroll-snap-align: start;
     }
 }

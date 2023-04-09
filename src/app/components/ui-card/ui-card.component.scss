@@ -42,8 +42,13 @@
 
     @include bp("1280") {
         &:hover {
-            .ui-card--img {
-                transform: scale(1.1);
+            .ui-card {
+                &--img {
+                    transform: scale(1.1);
+                }
+                &--title {
+                    color: rgb(var(--accent));
+                }
             }
         }
     }
