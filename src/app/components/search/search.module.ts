@@ -6,6 +6,7 @@ import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.modul
 import { UiCardsGridModule } from '../ui-cards-grid/ui-cards-grid.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PreloaderModule } from '../preloader/preloader.module';
+import { FilterModule } from '../../pipes/filter/filter.module';
 
 @NgModule({
   declarations: [SearchComponent, SearchResultSectionComponent],
@@ -16,6 +17,7 @@ import { PreloaderModule } from '../preloader/preloader.module';
     ToGridItemsModule,
     UiCardsGridModule,
     PreloaderModule,
+    FilterModule,
   ],
 })
 export class SearchModule {}

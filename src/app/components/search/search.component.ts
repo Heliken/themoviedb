@@ -10,8 +10,11 @@ import {
   tap,
 } from 'rxjs';
 import { SearchApiService } from './search-api.service';
-import { SearchResponse } from './types/search-response';
+import { SearchSection } from './types/search-section';
 import { FormControl } from '@angular/forms';
+import { MediaItem } from 'src/app/types/media-item';
+import { MediaType } from 'src/app/types/media-type';
+import { FilterFunc } from 'src/app/pipes/filter/filter.pipe';
 
 @Component({
   selector: 'mdb-search',
@@ -22,41 +25,35 @@ export class SearchComponent {
   constructor(private searchApi: SearchApiService) {}
 
   public searchInput = new FormControl();
-  public searchResult?: SearchResponse;
   public debounceTime = 1000;
   public minSearchLength = 3;
   public isLoading$ = new BehaviorSubject<boolean>(true);
+
+  public searchSections: SearchSection[] = [
+    { type: MediaType.Movie, title: 'Movies' },
+    { type: MediaType.Tv, title: 'TV Shows' },
+    { type: MediaType.Person, title: 'Persons' },
+  ];
+
+  public filterFunc(mediaType: MediaType): FilterFunc<MediaItem> {
+    return (item: MediaItem) => item.mediaType === mediaType;
+  }
 
   public showSearch$: Observable<boolean> = this.searchInput.valueChanges.pipe(
     map(value => (value ?? '').length >= this.minSearchLength)
   );
 
-  public searchResults$: Observable<SearchResponse> =
+  public searchResults$: Observable<MediaItem[]> =
     this.searchInput.valueChanges.pipe(
       tap(value => console.log(value)),
       filter(Boolean),
       filter(value => value.length >= this.minSearchLength),
       debounceTime(this.debounceTime),
       distinctUntilChanged(),
-
       switchMap(value => this.searchApi.requestSearchResult(value))
     );
 
   public clear() {
     this.searchInput.setValue('');
   }
-
-  // public ngOnInit(): void {
-  //   this.searchInput.valueChanges
-  //     .pipe(
-  //       tap(() => (this.searchResult = undefined)),
-  //       debounceTime(this.debounceTime),
-  //       filter(val => val.length >= this.minSearchLength)
-  //     )
-  //     .subscribe(searchString => {
-  //       this.searchApi
-  //         .requestSearchResult(searchString)
-  //         .subscribe(result => (this.searchResult = result));
-  //     });
-  // }
 }

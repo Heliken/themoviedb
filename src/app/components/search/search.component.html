@@ -10,12 +10,18 @@
 </div>
 <div class="search--result" *ngIf="showSearch$ | async">
   <ng-container *ngIf="searchResults$ | async as searchResults">
-    <ng-container *ngIf="searchResults.total; else noResults">
-      <ng-container *ngFor="let section of searchResults.response">
-        <mdb-search-result-section
-          class="search--result-section"
-          *ngIf="section.result.length > 0"
-          [searchResultSection]="section"></mdb-search-result-section>
+    <ng-container *ngIf="searchResults.length; else noResults">
+      <ng-container *ngFor="let section of searchSections">
+        <ng-container
+          *ngIf="
+            searchResults | filter : filterFunc(section.type) as sectionResults
+          ">
+          <mdb-search-result-section
+            *ngIf="sectionResults.length"
+            class="search--result-section"
+            [title]="section.title"
+            [results]="sectionResults"></mdb-search-result-section>
+        </ng-container>
       </ng-container>
     </ng-container>
   </ng-container>
@@ -24,6 +30,7 @@
       Sorry, no results were found based on your search, try again.
     </p>
   </ng-template>
+  <!-- todo: how to show preloader inbetween search request been sent and api repsonded with new data -->
   <ng-template #preloader>
     <mdb-preloader></mdb-preloader>
   </ng-template>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SearchResponseSection } from '../../types/search-response';
+import { MediaItem } from 'src/app/types/media-item';
 
 @Component({
   selector: 'mdb-search-result-section',
@@ -7,5 +7,6 @@ import { SearchResponseSection } from '../../types/search-response';
   styleUrls: ['./search-result-section.component.scss'],
 })
 export class SearchResultSectionComponent {
-  @Input() public searchResultSection?: SearchResponseSection;
+  @Input() public results?: MediaItem[];
+  @Input() public title = '';
 }
