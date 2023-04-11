@@ -25,7 +25,7 @@ export class SearchComponent {
   constructor(private searchApi: SearchApiService) {}
 
   public searchInput = new FormControl();
-  public debounceTime = 1000;
+  public debounceTime = 200;
   public minSearchLength = 3;
   public isLoading$ = new BehaviorSubject<boolean>(true);
 
@@ -45,12 +45,12 @@ export class SearchComponent {
 
   public searchResults$: Observable<MediaItem[]> =
     this.searchInput.valueChanges.pipe(
-      tap(value => console.log(value)),
       filter(Boolean),
       filter(value => value.length >= this.minSearchLength),
+      tap(() => this.isLoading$.next(true)),
       debounceTime(this.debounceTime),
-      distinctUntilChanged(),
-      switchMap(value => this.searchApi.requestSearchResult(value))
+      switchMap(value => this.searchApi.requestSearchResult(value)),
+      tap(() => this.isLoading$.next(false))
     );
 
   public clear() {
