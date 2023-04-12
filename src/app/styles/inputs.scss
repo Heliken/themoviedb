@@ -1,0 +1,31 @@
+@import "./mixins.scss";
+
+.input {
+    @include font-style(14px, 120%, 500, rgb(var(--primary)));
+
+    width: 100%;
+    border-radius: 4px;
+    font-family: inherit;
+    height: 34px;
+    padding: 6px 12px;
+    background-color: rgb(var(--neutral));
+    border: 1px solid rgb(var(--primary));
+    transition: border-color var(--transitionTime);
+
+    &:focus {
+        border-color: rgb(var(--accent));
+    }
+
+    @include bp("1280") {
+        cursor: pointer;
+        &:hover {
+            border-color: rgb(var(--accent));
+        }
+    }
+}
+
+.link {
+    border: none;
+    outline: none;
+    background-color: transparent;
+}

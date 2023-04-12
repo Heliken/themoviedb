@@ -9,7 +9,6 @@ import { TvShow } from '../types/tv-show';
   providedIn: 'root',
 })
 export class MediaToGridMediaService {
-  // TODO: Ask how to get rid of switch and use factory
   public convert(media: Person | TvShow | Movie): GridMediaItem {
     switch (media.mediaType) {
       case MediaType.Person:
@@ -20,16 +19,6 @@ export class MediaToGridMediaService {
         return this.tvShowMapper(media);
     }
   }
-
-  // public convert(media: Person | Movie | TvShow): GridMediaItem {
-  //   return this.convertFactory[media.mediaType](media);
-  // }
-
-  // private convertFactory = {
-  //   [MediaType.Person]: this.personMapper,
-  //   [MediaType.Movie]: this.movieMapper,
-  //   [MediaType.Tv]: this.tvShowMapper,
-  // };
 
   private personMapper(person: Person): GridMediaItem {
     const { id, name, photo, mediaType } = person;

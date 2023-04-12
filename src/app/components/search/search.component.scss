@@ -1,0 +1,49 @@
+@import "src/app/styles/mixins.scss";
+
+.search {
+    position: relative;
+
+    &--clear {
+        @include font-style(10px, 100%, 900, rgb(var(--secondary)));
+
+        position: absolute;
+        text-transform: uppercase;
+        right: 0px;
+        top: 50%;
+        transform:translateY(-50%);
+        z-index: 1;
+        cursor: pointer;
+        padding: 10px;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &--input {
+        padding-right: 52px;
+    }
+
+    &--result {
+        padding: 20px 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        left: 0;
+        height: calc(100% - var(--headerHeight));
+        backdrop-filter: sepia(100%) blur(10px);
+        width: 100%;
+        position: fixed;
+        top: var(--headerHeight);
+        background-color: rgb(var(--primary), 0.8);
+    }
+
+    &--result-section {
+        display: block;
+
+        &:not(:last-child) {
+            margin-bottom: 20px;
+        }
+    }
+}
