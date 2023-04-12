@@ -1,8 +1,6 @@
 @import "src/app/styles/mixins.scss";
 
 .rating-badge {
-    @include font-style(14px, 1, 700);
-
     padding: 2px 4px;
     text-shadow: 0 0 3px rgb(var(--primary));
 }

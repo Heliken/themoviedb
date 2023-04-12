@@ -30,6 +30,8 @@
     }
 
     &--rating-badge {
+        @include font-style(14px, 1, 700);
+        
         position: absolute;
         top:0;
         right: 0;
