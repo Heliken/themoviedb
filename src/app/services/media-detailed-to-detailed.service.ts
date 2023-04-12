@@ -24,7 +24,6 @@ export class MediaDetailedToDetailedService {
     poster,
     background,
   }: TvShowDetailed | MovieDetailed): DetailedHero {
-    console.log(rating);
     return {
       img: poster,
       title,
