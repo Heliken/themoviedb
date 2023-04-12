@@ -56,6 +56,7 @@ export class DtoTransformService {
     vote_average,
     release_date,
     overview,
+    backdrop_path,
   }: MovieDTO): Movie {
     return {
       id,
@@ -65,6 +66,7 @@ export class DtoTransformService {
       releaseDate: release_date,
       mediaType: MediaType.Movie,
       description: overview,
+      background: backdrop_path,
     };
   }
 
@@ -82,6 +84,7 @@ export class DtoTransformService {
     vote_average,
     first_air_date,
     overview,
+    backdrop_path,
   }: TvShowDTO): TvShow {
     return {
       id,
@@ -91,6 +94,7 @@ export class DtoTransformService {
       releaseDate: new Date(first_air_date),
       mediaType: MediaType.Tv,
       description: overview,
+      background: backdrop_path,
     };
   }
 

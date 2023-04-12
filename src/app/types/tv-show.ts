@@ -9,6 +9,7 @@ export interface TvShow {
   releaseDate?: Date;
   rating?: number;
   description: string;
+  background: string | null;
 }
 
 export type TvShowDetailed = TvShow & MovieTVDetails;

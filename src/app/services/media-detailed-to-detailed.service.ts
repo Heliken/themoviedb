@@ -22,7 +22,9 @@ export class MediaDetailedToDetailedService {
     rating,
     genres,
     poster,
+    background,
   }: TvShowDetailed | MovieDetailed): DetailedHero {
+    console.log(rating);
     return {
       img: poster,
       title,
@@ -31,6 +33,7 @@ export class MediaDetailedToDetailedService {
       description,
       rating,
       genres,
+      background,
     };
   }
 }

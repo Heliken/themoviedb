@@ -9,5 +9,5 @@ export interface DetailedHero {
   date?: Date;
   genres?: Genre[];
   rating?: number;
-  background?: string;
+  background: string | null;
 }
