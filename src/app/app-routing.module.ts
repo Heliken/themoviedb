@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainpageComponent } from './pages/mainpage/mainpage.component';
 import { MovieTvDetailsComponent } from './pages/movie-tv-details/movie-tv-details.component';
+import { detailedPageTypeGuard } from './guards/detailed-page-type.guard';
 
 const routes: Routes = [
   {
@@ -10,16 +11,8 @@ const routes: Routes = [
     component: MainpageComponent,
   },
   {
-    path: 'movie',
-    children: [
-      {
-        path: ':id',
-        component: MovieTvDetailsComponent,
-      },
-    ],
-  },
-  {
-    path: 'tv',
+    path: ':detailedPageType',
+    canActivate: [detailedPageTypeGuard],
     children: [
       {
         path: ':id',
