@@ -7,7 +7,7 @@ export interface PersonDTO {
   original_name: string;
   popularity: number;
   gender: number;
-  known_for_department: KnownForDepartmentDTO;
+  known_for_department: string;
   profile_path: null | string;
   known_for: KnownForDTO[];
   media_type?: MediaTypeDTO.Person;
@@ -33,9 +33,4 @@ export interface KnownForDTO {
   original_name?: string;
   first_air_date?: Date;
   origin_country?: string[];
-}
-
-export enum KnownForDepartmentDTO {
-  Acting = 'Acting',
-  Directing = 'Directing',
 }

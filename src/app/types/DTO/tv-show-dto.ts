@@ -1,4 +1,5 @@
 import { MediaTypeDTO } from './media-item-dto';
+import { MovieTVDetailsDTO } from './movie-tv-details-dto';
 
 export interface TvShowDTO {
   backdrop_path: null | string;
@@ -16,3 +17,5 @@ export interface TvShowDTO {
   vote_count: number;
   media_type?: MediaTypeDTO.Tv;
 }
+
+export type TvShowDTODetailed = TvShowDTO & MovieTVDetailsDTO;
