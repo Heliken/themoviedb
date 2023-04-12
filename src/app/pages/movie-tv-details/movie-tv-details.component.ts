@@ -1,7 +1,16 @@
 import { Component } from '@angular/core';
 import { MovieTvDetailsAPIService } from './movie-tv-details.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, combineLatest, map, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  combineLatest,
+  distinctUntilChanged,
+  map,
+  shareReplay,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { MediaItemDetailed } from 'src/app/types/media-item';
 import { MediaType } from 'src/app/types/media-type';
 import { DetailedPageType } from 'src/app/types/detailed-page';
@@ -16,17 +25,20 @@ export class MovieTvDetailsComponent {
     private movieTvDetailsService: MovieTvDetailsAPIService
   ) {}
 
-  details$: Observable<MediaItemDetailed> = combineLatest([
-    this.route.params.pipe(map(params => params['detailedPageType'])),
-    this.route.params.pipe(map(params => params['id'])),
-  ]).pipe(
-    switchMap(([type, id]: [DetailedPageType, number]) => {
+  public isLoading$ = new BehaviorSubject<boolean>(true);
+
+  details$ = this.route.params.pipe(
+    tap(() => this.isLoading$.next(true)),
+    switchMap(params => {
+      const type: DetailedPageType = params['detailedPageType'];
+      const id = params['id'];
       switch (type) {
         case MediaType.Movie:
           return this.movieTvDetailsService.requestMovieDetailedData(id);
         case MediaType.Tv:
           return this.movieTvDetailsService.requestTvShowDetailedData(id);
       }
-    })
+    }),
+    tap(() => this.isLoading$.next(false))
   );
 }
