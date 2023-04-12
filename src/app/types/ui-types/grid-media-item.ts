@@ -1,4 +1,4 @@
-import { MediaType } from './media-type';
+import { MediaType } from '../media-type';
 export interface GridMediaItem {
   id: number;
   type: MediaType;

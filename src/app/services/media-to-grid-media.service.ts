@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GridMediaItem } from '../types/grid-media-item';
+import { GridMediaItem } from '../types/ui-types/grid-media-item';
 import { MediaType } from '../types/media-type';
 import { Movie } from '../types/movie';
 import { Person } from '../types/person';
