@@ -1,0 +1,22 @@
+<section class="detailed-hero" *ngIf="data">
+  <div
+    *ngIf="data.background"
+    class="detailed-hero--bg"
+    [ngStyle]="{ 'background-image': 'url(' + data.background + ')' }"></div>
+  <div class="container">
+    <img class="detailed-hero--poster" [src]="data.img" [alt]="data.title" />
+    <div class="detailed-hero--info">
+      <h3 class="h2 detailed-hero--title">{{ data.title }}</h3>
+      <p class="detailed-hero--description">{{ data.description }}</p>
+      <p *ngIf="data.date" class="detailed-hero--info">
+        {{ data.mediaType === personType ? 'Date of birth:' : 'Release date:' }}
+        {{ data.date }}
+      </p>
+      <ul *ngIf="data.genres" class="detailed-hero--genres">
+        <li *ngFor="let genre of data.genres" class="detailed-hero--genre">
+          {{ genre }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
