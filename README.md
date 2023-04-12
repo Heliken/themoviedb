@@ -9,13 +9,13 @@ Project feature branch deployed on [Github Pages](https://heliken.github.io/them
 ## To Do:
 ### Must have: 
 1. Main page:
-    - [ ] trending, popular and upcoming moves or tv-series
-    - [ ] live search
+    - [x] trending, popular and upcoming moves or tv-series
+    - [x] live search
 - [ ] 2. Movie/tv-series details page
 - [ ] 3. Person details page
 ---
 ### Nice to have
-- [ ] Live search sholud search movies, tv-series and people simultaneously.
+- [x] Live search sholud search movies, tv-series and people simultaneously.
 - [ ] Movie list page with sorting and filtering.
 - [ ] Movies by genre page - list of movies + pagination + sorting
 - [ ] subpage of a movie details page with a list of cast and crew members
