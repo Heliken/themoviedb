@@ -7,7 +7,7 @@ $min-size: 14px;
     .h#{$i} {
         $mobileSize: max($base-h1-size - ($i * 4), 14px);
 
-        @include font-style($mobileSize, 1.4, 900);
+        @include font-style($mobileSize, 1.2, 900);
 
         @include bp('768') {
             font-size: $mobileSize + 4px;

@@ -1,4 +1,6 @@
-<ng-container *ngIf="details$ | async as details">
-  <mdb-detailed-page-hero
-    [data]="details | toDetailedHero"></mdb-detailed-page-hero>
-</ng-container>
+<div class="detailed-page">
+  <ng-container *ngIf="details$ | async as details">
+    <mdb-detailed-page-hero
+      [data]="details | toDetailedHero"></mdb-detailed-page-hero>
+  </ng-container>
+</div>
