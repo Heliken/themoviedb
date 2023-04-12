@@ -3,7 +3,7 @@
   [class.ui-cards-grid_mobile-scroll]="withMobileScroll">
   <div class="ui-cards-grid--wrap container">
     <mdb-ui-card
-      *ngFor="let item of dataList"
+      *ngFor="let item of dataList; trackBy: trackById"
       class="ui-cards-grid--item"
       [routerLink]="['/', item.type, item.id]"
       [dataItem]="item"></mdb-ui-card>
