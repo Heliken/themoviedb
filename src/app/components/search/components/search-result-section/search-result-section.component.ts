@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MediaItem } from 'src/app/types/media-item';
 
 @Component({
@@ -9,4 +9,6 @@ import { MediaItem } from 'src/app/types/media-item';
 export class SearchResultSectionComponent {
   @Input() public results?: MediaItem[];
   @Input() public title = '';
+
+  @Output() public resultClick = new EventEmitter();
 }

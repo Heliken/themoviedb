@@ -6,6 +6,7 @@
       *ngFor="let item of dataList; trackBy: trackById"
       class="ui-cards-grid--item"
       [routerLink]="['/', item.type, item.id]"
+      (click)="resultClick.emit()"
       [dataItem]="item"></mdb-ui-card>
   </div>
 </div>
