@@ -8,6 +8,7 @@
     <mdb-detailed-page-hero
       *ngIf="isLoading.state; else preloader"
       [data]="details | toDetailedHero"></mdb-detailed-page-hero>
+    <mdb-detailed-page-body [data]=""></mdb-detailed-page-body>
   </ng-container>
 </div>
 <ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>

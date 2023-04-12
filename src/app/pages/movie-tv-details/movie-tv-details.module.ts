@@ -4,6 +4,7 @@ import { MovieTvDetailsComponent } from './movie-tv-details.component';
 import { DetailedPageHeroModule } from '../../components/detailed-page-hero/detailed-page-hero.module';
 import { ToDetailedHeroModule } from '../../pipes/to-detailed-hero/to-detailed-hero.module';
 import { PreloaderModule } from '../../components/preloader/preloader.module';
+import { DetailedPageBodyModule } from '../../components/detailed-page-body/detailed-page-body.module';
 
 @NgModule({
   declarations: [MovieTvDetailsComponent],
@@ -12,6 +13,7 @@ import { PreloaderModule } from '../../components/preloader/preloader.module';
     DetailedPageHeroModule,
     ToDetailedHeroModule,
     PreloaderModule,
+    DetailedPageBodyModule,
   ],
 })
 export class MovieTvDetailsModule {}
