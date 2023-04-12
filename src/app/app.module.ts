@@ -7,16 +7,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MainpageModule } from './pages/mainpage/mainpage.module';
 import { ApiConfigurationService } from './services/api-configuration.service';
 import { MovieTvDetailsModule } from './pages/movie-tv-details/movie-tv-details.module';
+import { HeaderModule } from './components/header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    MainpageModule,
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MovieTvDetailsModule,
-  ],
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -32,5 +26,13 @@ import { MovieTvDetailsModule } from './pages/movie-tv-details/movie-tv-details.
     },
   ],
   bootstrap: [AppComponent],
+  imports: [
+    MainpageModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    HeaderModule,
+    MovieTvDetailsModule,
+  ],
 })
 export class AppModule {}

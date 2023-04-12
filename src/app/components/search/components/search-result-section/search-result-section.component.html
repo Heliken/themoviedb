@@ -1,0 +1,10 @@
+<div class="container">
+  <h4 class="h2 search-result-section--title">
+    {{ title }}
+  </h4>
+</div>
+<mdb-ui-cards-grid
+  *ngIf="results"
+  class="search-result-section--grid"
+  [dataList]="results | toGridItems">
+</mdb-ui-cards-grid>

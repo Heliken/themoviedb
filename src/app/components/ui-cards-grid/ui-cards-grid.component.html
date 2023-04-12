@@ -1,7 +1,11 @@
-<div class="ui-cards-grid container">
-  <mdb-ui-card
-    *ngFor="let item of dataList"
-    class="ui-cards-grid--item"
-    [routerLink]="['/', item.type, item.id]"
-    [dataItem]="item"></mdb-ui-card>
+<div
+  class="ui-cards-grid"
+  [class.ui-cards-grid_mobile-scroll]="withMobileScroll">
+  <div class="ui-cards-grid--wrap container">
+    <mdb-ui-card
+      *ngFor="let item of dataList"
+      class="ui-cards-grid--item"
+      [routerLink]="['/', item.type, item.id]"
+      [dataItem]="item"></mdb-ui-card>
+  </div>
 </div>

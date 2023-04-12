@@ -1,6 +1,8 @@
 :root {
     --containerPadding: 16px;
     --transitionTime: 0.3s;
+    --headerHeight: 62px;
+    --containerMaxWidth: 1280px;
 }
 
 body {
@@ -9,10 +11,14 @@ body {
     color: rgb(var(--neutral));
 }
 
+.main {
+    padding-top: var(--headerHeight);
+}
+
 
 .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: var(--containerMaxWidth);
     margin: 0 auto;
     padding: 0 var(--containerPadding);
 }

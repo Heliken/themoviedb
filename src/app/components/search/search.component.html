@@ -1,0 +1,41 @@
+<div class="search">
+  <input
+    type="text"
+    placeholder="Search"
+    class="input search--input"
+    [formControl]="searchInput" />
+  <div *ngIf="showSearch$ | async" class="search--clear" (click)="clear()">
+    Clear
+  </div>
+</div>
+<ng-container *ngIf="{ result: searchResults$ | async } as search">
+  <div class="search--result" *ngIf="showSearch$ | async">
+    <ng-container *ngIf="(isLoading$ | async) === false; else preloader">
+      <ng-container *ngIf="search.result as searchResult">
+        <ng-container *ngIf="searchResult.length; else noResults">
+          <ng-container *ngFor="let section of searchSections">
+            <ng-container
+              *ngIf="
+                searchResult
+                  | filter : filterFunc(section.type) as sectionResults
+              ">
+              <mdb-search-result-section
+                *ngIf="sectionResults.length"
+                class="search--result-section"
+                [title]="section.title"
+                [results]="sectionResults"></mdb-search-result-section>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-template #noResults>
+      <p class="search--no-results container">
+        Sorry, no results were found based on your search, try again.
+      </p>
+    </ng-template>
+    <ng-template #preloader>
+      <mdb-preloader></mdb-preloader>
+    </ng-template>
+  </div>
+</ng-container>

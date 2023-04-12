@@ -4,6 +4,8 @@ import { TvShowDTO } from './tv-show-dto';
 
 export type MediaItemDTO = TvShowDTO | MovieDTO | PersonDTO;
 
+export type MediaItemDTOWithType = MediaItemDTO & { media_type: MediaTypeDTO };
+
 export enum MediaTypeDTO {
   Movie = 'movie',
   Tv = 'tv',

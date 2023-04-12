@@ -7,8 +7,7 @@
         aspect-ratio: 2/3;
         overflow: hidden;
         margin-bottom: 8px;
-        display: grid;
-        grid-template-areas: 'card';
+        background-color: rgb(var(--secondary));
     }
 
     &--img {
@@ -19,7 +18,7 @@
     }
 
     &--title {
-        @include font-style(14px, 1.2, 700);
+        @include font-style(12px, 1.2, 700);
 
         text-transform: uppercase;
         display: -webkit-box;
@@ -36,10 +35,6 @@
         top:0;
         right: 0;
         z-index: 1;
-    }
-
-    &--info-wrap {
-        color: rgb(var(--accent));
     }
 
     @include bp("1280") {
