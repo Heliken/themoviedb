@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ImageTypeSize } from 'src/app/types/api-configuration';
 import { MediaType } from 'src/app/types/media-type';
 
 import { DetailedHero } from 'src/app/types/ui-types/detailed-hero';
@@ -12,4 +13,8 @@ export class DetailedPageHeroComponent {
   @Input() public data?: DetailedHero;
 
   public personType = MediaType.Person;
+  public posterSizeType = ImageTypeSize.poster;
+  public posterSize = 'w342';
+  public backgroundSizeType = ImageTypeSize.profile;
+  public backgroundSize = 'original';
 }
