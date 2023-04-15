@@ -8,6 +8,7 @@ import { MainpageModule } from './pages/mainpage/mainpage.module';
 import { ApiConfigurationService } from './services/api-configuration.service';
 import { MovieTvDetailsModule } from './pages/movie-tv-details/movie-tv-details.module';
 import { HeaderModule } from './components/header/header.module';
+import { TvDetailsModule } from './pages/tv-details/tv-details.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { HeaderModule } from './components/header/header.module';
     HttpClientModule,
     HeaderModule,
     MovieTvDetailsModule,
+    TvDetailsModule,
   ],
 })
 export class AppModule {}
