@@ -20,13 +20,13 @@
         align-items: flex-start;
         grid-gap: 10px 16px;
         grid-template-columns: var(--detailed-hero-poster-size) 1fr;
-        grid-template-rows: auto auto;
         grid-template-areas: 
-            'title title'
             "poster other"
             "description description";
+
         @include bp('768') { 
             grid-gap: 20px 32px;
+            grid-template-areas: "poster other";
         }
     }
 
@@ -52,7 +52,12 @@
     }
 
     &--title {
-        grid-area: title;
+        margin-bottom: 10px;
+        position: relative;
+
+        @include bp('1280') {
+            margin-bottom: 20px;
+        }
     }
 
     &--content {
