@@ -1,0 +1,7 @@
+<div
+  *ngIf="background"
+  class="detailed-hero-bg"
+  [ngStyle]="{
+    'background-image':
+      'url(' + (background | imgSrc : backgroundSizeType : backgroundSize) + ')'
+  }"></div>

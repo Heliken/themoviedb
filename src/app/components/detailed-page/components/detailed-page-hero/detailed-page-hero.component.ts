@@ -11,6 +11,9 @@ import { DetailedHero } from 'src/app/types/ui-types/detailed-hero';
 })
 export class DetailedPageHeroComponent {
   @Input() public data?: DetailedHero;
+  @Input() public title?: string;
+  @Input() public img?: string | null;
+  @Input() public description?: string;
 
   public personType = MediaType.Person;
   public posterSizeType = ImageTypeSize.poster;

@@ -1,0 +1,101 @@
+@import "src/app/styles/mixins.scss";
+
+.detailed-hero {
+    --detailed-hero-poster-size: 120px;
+
+    position: relative;
+    padding: 20px 0;
+
+    @include bp('768') {
+        --detailed-hero-poster-size: 240px;
+    }
+
+    @include bp('1280') {
+        --detailed-hero-poster-size: 300px;
+    }
+
+    &--poster {
+        grid-area: poster;
+        background-color: rgb(var(--secondary));
+    }
+
+    &--img {
+        max-width: 100%;
+    }
+
+    &--wrap {
+        position: relative;
+        display: grid;
+        align-items: flex-start;
+        grid-gap: 10px 16px;
+        grid-template-columns: var(--detailed-hero-poster-size) 1fr;
+        grid-template-areas: 
+            "poster other"
+            "description description";
+
+        @include bp('768') { 
+            grid-gap: 20px 32px;
+            grid-template-areas: "poster other";
+        }
+    }
+
+    &--title {
+        margin-bottom: 10px;
+        position: relative;
+
+        @include bp('768') {
+            margin-bottom: 20px;
+        }
+    }
+
+    &--content {
+        display: contents;
+
+        @include bp('768') {
+            display: grid;
+            grid-row-gap: 12px;
+            grid-area: other;
+        }
+    }
+
+    &--other {
+        grid-area: other;
+        display: grid;
+        grid-row-gap: 12px;
+        max-width: 300px;
+
+        @include bp('768') { 
+            grid-area: unset;
+            display: contents;
+        }
+    }
+
+    &::ng-deep {
+        .detailed-hero {
+            &--bg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+
+            &--description {
+                grid-area: description;
+
+                @include bp('768') {
+                    font-size: 18px;
+                    grid-area: unset;
+                }
+            }
+
+            &--rating {
+                justify-self: flex-start;
+
+                @include bp('768') {
+                    order: -1;
+                }
+            }
+        }
+    }   
+}
