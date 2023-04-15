@@ -18,7 +18,7 @@ export class TvDetailsComponent {
 
   public isLoading$ = new BehaviorSubject<boolean>(true);
 
-  details$ = this.route.params.pipe(
+  public details$ = this.route.params.pipe(
     tap(() => this.isLoading$.next(true)),
     switchMap(params =>
       this.detailedDataService.requestTvShowDetailedData(params['id'])

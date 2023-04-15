@@ -1,1 +1,41 @@
-{{ details$ | async }}
+<ng-container
+  *ngIf="
+    { state: (isLoading$ | async) === false } as isLoading;
+    else preloader
+  ">
+  <ng-container *ngIf="details$ | async as details">
+    <mdb-detailed-page-hero
+      *ngIf="isLoading.state; else preloader"
+      [title]="details.title"
+      [img]="details.poster"
+      [data]="details | toDetailedHero">
+      <ng-container background>
+        <mdb-detailed-page-hero-bg
+          class="detailed-hero--bg"
+          *ngIf="details.background"
+          [background]="details.background"></mdb-detailed-page-hero-bg>
+      </ng-container>
+      <ng-container description>
+        <mdb-detailed-page-hero-description
+          class="detailed-hero--description"
+          [text]="details.description">
+        </mdb-detailed-page-hero-description>
+      </ng-container>
+      <ng-container other>
+        <mdb-detailed-page-hero-rating
+          class="detailed-hero--rating"
+          *ngIf="details.rating as rating"
+          [value]="rating"></mdb-detailed-page-hero-rating>
+        <mdb-detailed-page-hero-date
+          *ngIf="details.releaseDate as releaseDate"
+          [date]="
+            releaseDate | date : 'dd MMMM yyyy'
+          "></mdb-detailed-page-hero-date>
+        <mdb-detailed-page-hero-genres
+          [genres]="details.genres"></mdb-detailed-page-hero-genres>
+      </ng-container>
+    </mdb-detailed-page-hero>
+    <mdb-detailed-page-body> </mdb-detailed-page-body>
+  </ng-container>
+</ng-container>
+<ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>
