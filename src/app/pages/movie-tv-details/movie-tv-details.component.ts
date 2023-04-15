@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MovieTvDetailsAPIService } from './movie-tv-details.service';
+import { DetailedDataAPIService } from '../../services/detailed-data-api.service';
 import { ActivatedRoute } from '@angular/router';
 import {
   BehaviorSubject,
@@ -22,7 +22,7 @@ import { DetailedPageType } from 'src/app/types/detailed-page';
 export class MovieTvDetailsComponent {
   constructor(
     private route: ActivatedRoute,
-    private movieTvDetailsService: MovieTvDetailsAPIService
+    private detailedDataService: DetailedDataAPIService
   ) {}
 
   public isLoading$ = new BehaviorSubject<boolean>(true);
@@ -34,9 +34,9 @@ export class MovieTvDetailsComponent {
       const id = params['id'];
       switch (type) {
         case MediaType.Movie:
-          return this.movieTvDetailsService.requestMovieDetailedData(id);
+          return this.detailedDataService.requestMovieDetailedData(id);
         case MediaType.Tv:
-          return this.movieTvDetailsService.requestTvShowDetailedData(id);
+          return this.detailedDataService.requestTvShowDetailedData(id);
       }
     }),
     tap(() => this.isLoading$.next(false))

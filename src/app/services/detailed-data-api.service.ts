@@ -10,7 +10,7 @@ import { TvShowDetailed } from 'src/app/types/tv-show';
 @Injectable({
   providedIn: 'root',
 })
-export class MovieTvDetailsAPIService {
+export class DetailedDataAPIService {
   constructor(
     private readonly http: HttpClient,
     private readonly dtoTransform: DtoTransformService
