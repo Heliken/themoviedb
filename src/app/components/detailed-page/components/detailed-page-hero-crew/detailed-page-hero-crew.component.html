@@ -1,10 +1,14 @@
-<mdb-detailed-page-hero-section [title]="title">
+<mdb-detailed-page-hero-section [title]="title" *ngIf="crew">
   <div class="detailed-page-crew">
-    <div *ngFor="let crewMember of crew" class="detailed-page-crew-member">
+    <div
+      *ngFor="let crewMember of crew | groupCastByName | sort : castSortFunc"
+      class="detailed-page-crew-member">
       <span class="detailed-page-crew-member--title">{{
         crewMember.name
       }}</span>
-      <span class="detailed-page-crew-member--roles">{{ crewMember.job }}</span>
+      <span class="detailed-page-crew-member--roles">{{
+        crewMember.jobs | join
+      }}</span>
     </div>
   </div>
 </mdb-detailed-page-hero-section>
