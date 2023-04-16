@@ -14,6 +14,8 @@ import { DetailedPageBodyComponent } from './components/detailed-page-body/detai
 import { UiCardsGridModule } from '../ui-cards-grid/ui-cards-grid.module';
 import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.module';
 import { DetailedPageSectionComponent } from './components/detailed-page-section/detailed-page-section.component';
+import { GroupCastByNamePipe } from './pipes/group-cast-by-name.pipe';
+
 @NgModule({
   declarations: [
     DetailedPageHeroRatingComponent,
@@ -26,6 +28,7 @@ import { DetailedPageSectionComponent } from './components/detailed-page-section
     DetailedPageHeroCrewComponent,
     DetailedPageBodyComponent,
     DetailedPageSectionComponent,
+    GroupCastByNamePipe,
   ],
   exports: [
     DetailedPageHeroRatingComponent,
