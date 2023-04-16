@@ -18,6 +18,14 @@ export class MovieDetailsComponent {
 
   public isLoading$ = new BehaviorSubject<boolean>(true);
 
+  public crewFilterFunc = crewFilterFunc([
+    'director',
+    'novel',
+    'screenplay',
+    'story',
+    'writer',
+  ]);
+
   public details$ = this.route.params.pipe(
     tap(() => this.isLoading$.next(true)),
     switchMap(params =>
