@@ -6,7 +6,6 @@ import { crewFilterFunc } from 'src/app/components/detailed-page/helpers/crew-fi
 @Component({
   selector: 'mdb-movie-details',
   templateUrl: './movie-details.component.html',
-  styleUrls: ['./movie-details.component.scss'],
 })
 export class MovieDetailsComponent {
   constructor(

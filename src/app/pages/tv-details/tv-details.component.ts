@@ -6,7 +6,6 @@ import { DetailedDataAPIService } from 'src/app/services/detailed-data-api.servi
 @Component({
   selector: 'mdb-tv-details',
   templateUrl: './tv-details.component.html',
-  styleUrls: ['./tv-details.component.scss'],
 })
 export class TvDetailsComponent {
   constructor(
