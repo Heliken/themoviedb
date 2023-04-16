@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DetailedDataAPIService } from '../../services/detailed-data-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { crewFilterFunc } from 'src/app/components/detailed-page/helpers/crew-filter-func';
 @Component({
   selector: 'mdb-movie-details',
   templateUrl: './movie-details.component.html',
