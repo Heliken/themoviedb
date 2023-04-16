@@ -1,8 +1,7 @@
-import { NgModule, inject } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainpageComponent } from './pages/mainpage/mainpage.component';
-import { MovieTvDetailsComponent } from './pages/movie-tv-details/movie-tv-details.component';
-import { detailedPageTypeGuard } from './guards/detailed-page-type.guard';
+import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { TvDetailsComponent } from './pages/tv-details/tv-details.component';
 
 const routes: Routes = [
@@ -21,12 +20,11 @@ const routes: Routes = [
     ],
   },
   {
-    path: ':detailedPageType',
-    canActivate: [detailedPageTypeGuard],
+    path: 'movie',
     children: [
       {
         path: ':id',
-        component: MovieTvDetailsComponent,
+        component: MovieDetailsComponent,
       },
     ],
   },

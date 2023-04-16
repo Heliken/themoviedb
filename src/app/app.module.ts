@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { MainpageModule } from './pages/mainpage/mainpage.module';
 import { ApiConfigurationService } from './services/api-configuration.service';
-import { MovieTvDetailsModule } from './pages/movie-tv-details/movie-tv-details.module';
+import { MovieDetailsModule } from './pages/movie-details/movie-details.module';
 import { HeaderModule } from './components/header/header.module';
 import { TvDetailsModule } from './pages/tv-details/tv-details.module';
 
@@ -33,7 +33,7 @@ import { TvDetailsModule } from './pages/tv-details/tv-details.module';
     AppRoutingModule,
     HttpClientModule,
     HeaderModule,
-    MovieTvDetailsModule,
+    MovieDetailsModule,
     TvDetailsModule,
   ],
 })
