@@ -18,4 +18,15 @@ export interface TvShowDTO {
   media_type?: MediaTypeDTO.Tv;
 }
 
-export type TvShowDTODetailed = TvShowDTO & MovieTVDetailsDTO;
+export type TvShowDTODetailed = TvShowDTO &
+  MovieTVDetailsDTO & {
+    created_by: TvShowCreatorDTO[];
+  };
+
+export interface TvShowCreatorDTO {
+  credit_id: string;
+  gender: number;
+  id: number;
+  name: string;
+  profile_path: string;
+}

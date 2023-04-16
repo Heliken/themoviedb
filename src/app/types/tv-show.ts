@@ -1,5 +1,6 @@
 import { MovieTVDetails } from './movie-tv-details';
 import { MediaType } from './media-type';
+import { Cast } from './credits';
 
 export interface TvShow {
   id: number;
@@ -12,4 +13,7 @@ export interface TvShow {
   background: string | null;
 }
 
-export type TvShowDetailed = TvShow & MovieTVDetails;
+export type TvShowDetailed = TvShow &
+  MovieTVDetails & {
+    creators: Cast[];
+  };

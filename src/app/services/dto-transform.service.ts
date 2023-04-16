@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MovieDTO, MovieDTODetailed } from '../types/DTO/movie-dto';
 import { PersonDTO } from '../types/DTO/person-dto';
-import { TvShowDTO, TvShowDTODetailed } from '../types/DTO/tv-show-dto';
+import {
+  TvShowCreatorDTO,
+  TvShowDTO,
+  TvShowDTODetailed,
+} from '../types/DTO/tv-show-dto';
 import { MediaType } from '../types/media-type';
 import { Movie, MovieDetailed } from '../types/movie';
 import { Person } from '../types/person';
@@ -102,6 +106,7 @@ export class DtoTransformService {
     return {
       ...this.transformTVShow(tvShowDetailed),
       ...this.transformMovieTvDetails(tvShowDetailed),
+      creators: this.transformTvShowCreators(tvShowDetailed.created_by),
     };
   }
 
@@ -120,5 +125,16 @@ export class DtoTransformService {
       cast: cast.map(castUnit => this.transformCastPerson(castUnit)),
       crew: crew.map(crewUnit => this.transformCastPerson(crewUnit)),
     };
+  }
+
+  transformTvShowCreators(creators: TvShowCreatorDTO[]): Cast[] {
+    return creators.map(({ name, id, profile_path, credit_id }) => ({
+      name,
+      id,
+      photo: profile_path,
+      mediaType: MediaType.Person,
+      creditId: credit_id,
+      job: 'Creator',
+    }));
   }
 }
