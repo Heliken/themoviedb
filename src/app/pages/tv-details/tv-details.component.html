@@ -31,6 +31,12 @@
           [date]="
             releaseDate | date : 'dd MMMM yyyy'
           "></mdb-detailed-page-hero-date>
+        <ng-container
+          *ngIf="details.credits.crew | filter : crewFilterFunc as crew">
+          <mdb-detailed-page-hero-crew
+            *ngIf="crew.length"
+            [crew]="crew"></mdb-detailed-page-hero-crew>
+        </ng-container>
         <mdb-detailed-page-hero-genres
           [genres]="details.genres"></mdb-detailed-page-hero-genres>
       </ng-container>

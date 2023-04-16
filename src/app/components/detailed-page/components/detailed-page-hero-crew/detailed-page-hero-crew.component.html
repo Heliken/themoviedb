@@ -1,0 +1,10 @@
+<mdb-detailed-page-hero-section [title]="title">
+  <div class="detailed-page-crew">
+    <div *ngFor="let crewMember of crew" class="detailed-page-crew-member">
+      <span class="detailed-page-crew-member--title">{{
+        crewMember.name
+      }}</span>
+      <span class="detailed-page-crew-member--roles">{{ crewMember.job }}</span>
+    </div>
+  </div>
+</mdb-detailed-page-hero-section>

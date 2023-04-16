@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, tap, switchMap } from 'rxjs';
+import { crewFilterFunc } from 'src/app/helpers/crew-filter-func';
 import { DetailedDataAPIService } from 'src/app/services/detailed-data-api.service';
-import { DetailedPageType } from 'src/app/types/detailed-page';
-import { MediaType } from 'src/app/types/media-type';
 
 @Component({
   selector: 'mdb-tv-details',
@@ -17,6 +16,8 @@ export class TvDetailsComponent {
   ) {}
 
   public isLoading$ = new BehaviorSubject<boolean>(true);
+
+  public crewFilterFunc = crewFilterFunc(['creator']);
 
   public details$ = this.route.params.pipe(
     tap(() => this.isLoading$.next(true)),
