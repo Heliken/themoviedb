@@ -15,6 +15,9 @@ import { DetailedPageSectionComponent } from './components/detailed-page-section
 import { GroupCastByNamePipe } from './pipes/group-cast-by-name.pipe';
 import { JoinModule } from '../../pipes/join/join.module';
 import { SortModule } from '../../pipes/sort/sort.module';
+import { DetailedPageHeroRatingDropdownComponent } from './components/detailed-page-hero-rating-dropdown/detailed-page-hero-rating-dropdown.component';
+import { RatingPickerModule } from '../rating-picker/rating-picker.module';
+
 @NgModule({
   declarations: [
     DetailedPageHeroRatingComponent,
@@ -25,6 +28,7 @@ import { SortModule } from '../../pipes/sort/sort.module';
     DetailedPageHeroCrewComponent,
     DetailedPageBodyComponent,
     DetailedPageSectionComponent,
+    DetailedPageHeroRatingDropdownComponent,
     GroupCastByNamePipe,
   ],
   exports: [
@@ -45,6 +49,7 @@ import { SortModule } from '../../pipes/sort/sort.module';
     ToGridItemsModule,
     JoinModule,
     SortModule,
+    RatingPickerModule,
   ],
 })
 export class DetailedPageModule {}

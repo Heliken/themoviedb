@@ -1,0 +1,10 @@
+<div class="rating-picker">
+  <p class="rating-picker--title">{{ ratingValue.value }}/10</p>
+  <input
+    type="range"
+    [min]="min"
+    [step]="step"
+    [max]="max"
+    [formControl]="ratingValue" />
+  <button class="rating-picker--btn button _primary" type="button">Rate</button>
+</div>

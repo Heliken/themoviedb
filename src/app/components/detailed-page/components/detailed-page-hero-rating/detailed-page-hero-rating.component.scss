@@ -1,9 +1,44 @@
 @import "src/app/styles/mixins.scss";
 
 .detailed-page-hero-rating {
-    @include font-style(16px, 140%, 700);
+    position: relative;
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
 
-    @include bp('768') {
-        font-size: 18px; 
+    &--value {
+        @include font-style(16px, 140%, 700);
+
+        @include bp('768') {
+            font-size: 18px; 
+        }
+    }
+
+    &--rate-btn {
+        cursor: pointer;
+        color: rgb(var(--accent));
+        text-decoration: underline;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+                filter: brightness(1.1);
+            }
+        }
+    }
+
+    &--dropdown {
+        position: absolute;
+        top: calc(100% + 10px);
+        z-index: 1;
+        right: 0;
+        @include bp('768') {
+            right: 50%;
+            transform: translateX(50%);
+        }
+    }
+
+    &--side {
+        position: relative;
     }
 }

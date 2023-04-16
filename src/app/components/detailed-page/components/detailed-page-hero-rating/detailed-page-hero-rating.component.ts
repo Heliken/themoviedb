@@ -8,4 +8,10 @@ import { Component, Input } from '@angular/core';
 export class DetailedPageHeroRatingComponent {
   @Input() public value = 0;
   @Input() public title = 'Rating: ';
+
+  public showDropdown = false;
+
+  public toggleDropdown(): void {
+    this.showDropdown = !this.showDropdown;
+  }
 }

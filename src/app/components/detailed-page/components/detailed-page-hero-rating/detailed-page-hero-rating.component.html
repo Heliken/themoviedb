@@ -1,4 +1,19 @@
-<mdb-rating-badge
-  class="detailed-page-hero-rating"
-  [title]="title"
-  [value]="value"></mdb-rating-badge>
+<div class="detailed-page-hero-rating">
+  <mdb-rating-badge
+    class="detailed-page-hero-rating--value"
+    [title]="title"
+    [value]="value"></mdb-rating-badge>
+  <div class="detailed-page-hero-rating--side">
+    <button
+      class="detailed-page-hero-rating--rate-btn link"
+      (click)="toggleDropdown()">
+      Rate
+    </button>
+    <mdb-detailed-page-hero-rating-dropdown
+      *ngIf="showDropdown"
+      class="detailed-page-hero-rating--dropdown"
+      (toggleDropdown)="
+        toggleDropdown()
+      "></mdb-detailed-page-hero-rating-dropdown>
+  </div>
+</div>
