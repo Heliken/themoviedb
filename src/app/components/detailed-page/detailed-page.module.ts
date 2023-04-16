@@ -9,7 +9,11 @@ import { DetailedPageHeroSectionComponent } from './components/detailed-page-her
 import { DetailedPageHeroGenresComponent } from './components/detailed-page-hero-genres/detailed-page-hero-genres.component';
 import { DetailedPageHeroDateComponent } from './components/detailed-page-hero-date/detailed-page-hero-date.component';
 import { DetailedPageHeroRatingComponent } from './components/detailed-page-hero-rating/detailed-page-hero-rating.component';
-
+import { DetailedPageHeroCrewComponent } from './components/detailed-page-hero-crew/detailed-page-hero-crew.component';
+import { DetailedPageBodyComponent } from './components/detailed-page-body/detailed-page-body.component';
+import { UiCardsGridModule } from '../ui-cards-grid/ui-cards-grid.module';
+import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.module';
+import { DetailedPageSectionComponent } from './components/detailed-page-section/detailed-page-section.component';
 @NgModule({
   declarations: [
     DetailedPageHeroRatingComponent,
@@ -19,6 +23,9 @@ import { DetailedPageHeroRatingComponent } from './components/detailed-page-hero
     DetailedPageHeroSectionComponent,
     DetailedPageHeroGenresComponent,
     DetailedPageHeroDateComponent,
+    DetailedPageHeroCrewComponent,
+    DetailedPageBodyComponent,
+    DetailedPageSectionComponent,
   ],
   exports: [
     DetailedPageHeroRatingComponent,
@@ -28,7 +35,16 @@ import { DetailedPageHeroRatingComponent } from './components/detailed-page-hero
     DetailedPageHeroSectionComponent,
     DetailedPageHeroGenresComponent,
     DetailedPageHeroDateComponent,
+    DetailedPageHeroCrewComponent,
+    DetailedPageBodyComponent,
+    DetailedPageSectionComponent,
   ],
-  imports: [CommonModule, RatingBadgeModule, ImgSrcModule],
+  imports: [
+    CommonModule,
+    RatingBadgeModule,
+    ImgSrcModule,
+    UiCardsGridModule,
+    ToGridItemsModule,
+  ],
 })
 export class DetailedPageModule {}

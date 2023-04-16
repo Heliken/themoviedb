@@ -4,6 +4,6 @@ export interface GridMediaItem {
   type: MediaType;
   image: string | null;
   title: string;
-  releaseDate?: Date;
+  subtitle?: string;
   rating?: number;
 }

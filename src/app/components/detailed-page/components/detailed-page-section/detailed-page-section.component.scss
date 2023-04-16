@@ -1,0 +1,7 @@
+.detailed-page-section {
+    &--title {
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        color: rgb(var(--accent));
+    }
+}

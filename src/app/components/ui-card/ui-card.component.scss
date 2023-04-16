@@ -28,6 +28,12 @@
         text-overflow: ellipsis;
     }
 
+    &--subtitle {
+        margin-top: 2px;
+        font-size: 12px;
+        opacity: .8;
+    }
+
     &--rating-badge {
         @include font-style(14px, 1, 700);
         

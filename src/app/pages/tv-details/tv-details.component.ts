@@ -19,6 +19,8 @@ export class TvDetailsComponent {
 
   public crewFilterFunc = crewFilterFunc(['creator']);
 
+  public castToShow = 10;
+
   public details$ = this.route.params.pipe(
     tap(() => this.isLoading$.next(true)),
     switchMap(params =>
