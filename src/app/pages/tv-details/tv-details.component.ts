@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, tap, switchMap } from 'rxjs';
-import { crewFilterFunc } from 'src/app/helpers/crew-filter-func';
 import { DetailedDataAPIService } from 'src/app/services/detailed-data-api.service';
 
 @Component({
@@ -16,8 +15,6 @@ export class TvDetailsComponent {
   ) {}
 
   public isLoading$ = new BehaviorSubject<boolean>(true);
-
-  public crewFilterFunc = crewFilterFunc(['creator']);
 
   public castToShow = 10;
 

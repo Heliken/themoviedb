@@ -62,7 +62,6 @@
         grid-area: other;
         display: grid;
         grid-row-gap: 12px;
-        max-width: 300px;
 
         @include bp('768') { 
             grid-area: unset;
@@ -84,7 +83,6 @@
                 grid-area: description;
 
                 @include bp('768') {
-                    font-size: 18px;
                     grid-area: unset;
                 }
             }
