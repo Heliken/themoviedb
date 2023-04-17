@@ -20,6 +20,7 @@
           <mdb-detailed-page-hero-rating
             class="detailed-hero--rating"
             *ngIf="details.rating"
+            [ratingPostConfig]="details | toRatingPostConfig"
             [value]="details.rating"></mdb-detailed-page-hero-rating>
           <mdb-detailed-page-hero-section
             *ngIf="details.releaseDate"

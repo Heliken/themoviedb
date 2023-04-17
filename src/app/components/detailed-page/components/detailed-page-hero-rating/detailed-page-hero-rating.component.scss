@@ -42,3 +42,30 @@
         position: relative;
     }
 }
+
+.detailed-page-hero-rating-dropdown {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 16px;
+    background-color: rgb(var(--secondary));
+
+    &--picker {
+        width: 180px;
+        display: block;
+    }
+
+    &--close {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        padding: 4px;
+        font-size: 11px;
+        color: rgb(var(--neutral));
+        text-decoration: underline;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
