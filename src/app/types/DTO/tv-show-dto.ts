@@ -1,5 +1,6 @@
 import { MediaTypeDTO } from './media-item-dto';
 import { MovieTVDetailsDTO } from './movie-tv-details-dto';
+import { Rated } from './rated-dto';
 
 export interface TvShowDTO {
   backdrop_path: null | string;
@@ -30,3 +31,5 @@ export interface TvShowCreatorDTO {
   name: string;
   profile_path: string;
 }
+
+export type TvShowDTORated = TvShowDTO & Rated;

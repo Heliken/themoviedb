@@ -3,3 +3,5 @@ export enum MediaType {
   Tv = 'tv',
   Person = 'person',
 }
+
+export type CanBeRatedMediaType = MediaType.Movie | MediaType.Tv;
