@@ -1,3 +1,4 @@
 <div [style.background-color]="bgColor" class="rating-badge">
+  <ng-container *ngIf="title">{{ title }}</ng-container>
   {{ value | number : '1.1-1' }}
 </div>

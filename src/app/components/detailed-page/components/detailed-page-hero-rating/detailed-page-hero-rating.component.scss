@@ -1,0 +1,9 @@
+@import "src/app/styles/mixins.scss";
+
+.detailed-page-hero-rating {
+    @include font-style(16px, 140%, 700);
+
+    @include bp('768') {
+        font-size: 18px; 
+    }
+}

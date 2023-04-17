@@ -1,9 +1,10 @@
 import { MediaTypeDTO } from './media-item-dto';
+import { MovieTVDetailsDTO } from './movie-tv-details-dto';
 
 export interface MovieDTO {
   adult: boolean;
   backdrop_path: null | string;
-  genre_ids: number[];
+  genre_ids?: number[];
   id: number;
   original_language: string;
   original_title: string;
@@ -17,3 +18,5 @@ export interface MovieDTO {
   vote_count: number;
   media_type?: MediaTypeDTO.Movie;
 }
+
+export type MovieDTODetailed = MovieDTO & MovieTVDetailsDTO;

@@ -11,8 +11,9 @@ Project feature branch deployed on [Github Pages](https://heliken.github.io/them
 1. Main page:
     - [x] trending, popular and upcoming moves or tv-series
     - [x] live search
-- [ ] 2. Movie/tv-series details page
-- [ ] 3. Person details page
+- [x] 2. Movie/tv-series details page
+- [ ] 3. Ability to rate movie/tv-show from detailed page
+- [ ] 4. Person details page
 ---
 ### Nice to have
 - [x] Live search sholud search movies, tv-series and people simultaneously.

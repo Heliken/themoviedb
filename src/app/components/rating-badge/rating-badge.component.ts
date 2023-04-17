@@ -9,6 +9,7 @@ export class RatingBadgeComponent {
   private _value = 0;
   public bgColor = 'rgb(0,0,0)';
 
+  @Input() public title?: string;
   @Input() public set value(value: number) {
     this._value = value;
     this.bgColor = getBgColor(value);

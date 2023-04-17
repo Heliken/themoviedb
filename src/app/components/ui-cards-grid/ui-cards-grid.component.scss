@@ -25,22 +25,30 @@
         }
     }
 
+    &--item {
+        cursor: pointer;
+        scroll-snap-align: start;
+    }
+
     &--wrap {
+        --ui-card-grid-no-scroll-card-size: 90px;
+
         position: relative;
         display: grid;
         grid-gap: 12px;
         max-width: 100%;
 
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(var(--ui-card-grid-no-scroll-card-size), 1fr));
+
+        @include bp('768') {
+            --ui-card-grid-no-scroll-card-size: 114px;
+
+        }
 
         @include bp('1280') {
             max-width: var(--containerMaxWidth);
         }
         
-        &--item {
-            scroll-snap-align: start;
-        }
-
         .ui-cards-grid_mobile-scroll & {
             --ui-card-grid-card-size: 114px;
             overflow-x: auto;

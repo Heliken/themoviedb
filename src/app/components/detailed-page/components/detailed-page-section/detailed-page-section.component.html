@@ -1,0 +1,9 @@
+<div class="detailed-page-section">
+  <div class="container">
+    <h4 class="h2 detailed-page-section--title">{{ title }}</h4>
+  </div>
+  <mdb-ui-cards-grid
+    *ngIf="gridData"
+    class="search-result-section--grid"
+    [dataList]="gridData | toGridItems"></mdb-ui-cards-grid>
+</div>

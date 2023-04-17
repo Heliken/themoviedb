@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GridMediaItem } from 'src/app/types/grid-media-item';
+import { GridMediaItem } from 'src/app/types/ui-types/grid-media-item';
 
 @Component({
   selector: 'mdb-ui-card',

@@ -1,0 +1,48 @@
+<ng-container *ngIf="{ state: (isLoading$ | async) === false } as isLoading">
+  <ng-container *ngIf="details$ | async as details; else preloader">
+    <ng-container *ngIf="isLoading.state; else preloader">
+      <mdb-detailed-page-hero [title]="details.title" [img]="details.poster">
+        <ng-container background>
+          <mdb-detailed-page-hero-bg
+            *ngIf="details.background"
+            class="detailed-hero--bg"
+            [background]="details.background"></mdb-detailed-page-hero-bg>
+        </ng-container>
+        <ng-container description>
+          <mdb-detailed-page-hero-section
+            *ngIf="details.description"
+            class="detailed-hero--description"
+            [title]="'Overview:'">
+            <p>{{ details.description }}</p>
+          </mdb-detailed-page-hero-section>
+        </ng-container>
+        <ng-container other>
+          <mdb-detailed-page-hero-rating
+            class="detailed-hero--rating"
+            *ngIf="details.rating"
+            [value]="details.rating"></mdb-detailed-page-hero-rating>
+          <mdb-detailed-page-hero-section
+            *ngIf="details.releaseDate"
+            [title]="'Release date:'">
+            <p>{{ details.releaseDate | date : 'dd MMMM yyyy' }}</p>
+          </mdb-detailed-page-hero-section>
+          <mdb-detailed-page-hero-crew
+            *ngIf="details.creators.length"
+            [crew]="details.creators"></mdb-detailed-page-hero-crew>
+          <mdb-detailed-page-hero-genres
+            *ngIf="details.genres.length"
+            [genres]="details.genres"></mdb-detailed-page-hero-genres>
+        </ng-container>
+      </mdb-detailed-page-hero>
+      <mdb-detailed-page-body>
+        <mdb-detailed-page-section
+          *ngIf="details.credits.cast.length"
+          title="Series cast"
+          [gridData]="
+            details.credits.cast | slice : 0 : castToShow
+          "></mdb-detailed-page-section>
+      </mdb-detailed-page-body>
+    </ng-container>
+  </ng-container>
+</ng-container>
+<ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>

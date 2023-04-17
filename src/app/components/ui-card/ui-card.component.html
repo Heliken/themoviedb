@@ -11,4 +11,7 @@
       class="ui-card--img" />
   </div>
   <div class="ui-card--title">{{ dataItem.title }}</div>
+  <div *ngIf="dataItem.subtitle" class="ui-card--subtitle">
+    {{ dataItem.subtitle }}
+  </div>
 </div>

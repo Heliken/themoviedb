@@ -28,7 +28,15 @@
         text-overflow: ellipsis;
     }
 
+    &--subtitle {
+        margin-top: 2px;
+        font-size: 12px;
+        opacity: .8;
+    }
+
     &--rating-badge {
+        @include font-style(14px, 1, 700);
+        
         position: absolute;
         top:0;
         right: 0;
@@ -37,8 +45,13 @@
 
     @include bp("1280") {
         &:hover {
-            .ui-card--img {
-                transform: scale(1.1);
+            .ui-card {
+                &--img {
+                    transform: scale(1.1);
+                }
+                &--title {
+                    color: rgb(var(--accent));
+                }
             }
         }
     }

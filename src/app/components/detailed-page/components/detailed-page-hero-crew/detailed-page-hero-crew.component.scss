@@ -1,0 +1,19 @@
+.detailed-page-crew {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+}
+
+.detailed-page-crew-member {
+    display: grid;
+    row-gap: 2px;
+
+    &--name {
+        font-size: 14px;
+    }
+
+    &--roles {
+        font-size: 12px;
+        opacity: .8;
+    }
+}

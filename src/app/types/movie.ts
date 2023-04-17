@@ -1,3 +1,4 @@
+import { MovieTVDetails } from './movie-tv-details';
 import { MediaType } from './media-type';
 
 export interface Movie {
@@ -7,4 +8,8 @@ export interface Movie {
   mediaType: MediaType.Movie;
   releaseDate?: Date;
   rating?: number;
+  description: string;
+  background: string | null;
 }
+
+export type MovieDetailed = Movie & MovieTVDetails;

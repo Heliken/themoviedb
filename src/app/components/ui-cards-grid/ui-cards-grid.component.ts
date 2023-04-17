@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GridMediaItem } from 'src/app/types/grid-media-item';
+import { GridMediaItem } from 'src/app/types/ui-types/grid-media-item';
 
 @Component({
   selector: 'mdb-ui-cards-grid',
@@ -9,4 +9,8 @@ import { GridMediaItem } from 'src/app/types/grid-media-item';
 export class UiCardsGridComponent {
   @Input() public dataList: GridMediaItem[] = [];
   @Input() public withMobileScroll = false;
+
+  trackById(_: number, item: GridMediaItem): number {
+    return item.id;
+  }
 }
