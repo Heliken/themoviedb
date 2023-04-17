@@ -15,7 +15,7 @@ import { FormControl } from '@angular/forms';
 import { MediaItem } from 'src/app/types/media-item';
 import { MediaType } from 'src/app/types/media-type';
 import { FilterFunc } from 'src/app/pipes/filter/filter.pipe';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 @Component({
   selector: 'mdb-search',
   templateUrl: './search.component.html',
@@ -61,7 +61,7 @@ export class SearchComponent implements OnDestroy, OnInit {
 
   public ngOnInit() {
     this.routerSubscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter(event => event instanceof NavigationStart))
       .subscribe(() => this.clear());
   }
 
