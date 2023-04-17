@@ -13,22 +13,23 @@
             [background]="details.background"></mdb-detailed-page-hero-bg>
         </ng-container>
         <ng-container description>
-          <mdb-detailed-page-hero-description
+          <mdb-detailed-page-hero-section
             *ngIf="details.description"
             class="detailed-hero--description"
-            [text]="details.description">
-          </mdb-detailed-page-hero-description>
+            [title]="'Overview:'">
+            <p>{{ details.description }}</p>
+          </mdb-detailed-page-hero-section>
         </ng-container>
         <ng-container other>
           <mdb-detailed-page-hero-rating
             class="detailed-hero--rating"
             *ngIf="details.rating"
             [value]="details.rating"></mdb-detailed-page-hero-rating>
-          <mdb-detailed-page-hero-date
+          <mdb-detailed-page-hero-section
             *ngIf="details.releaseDate"
-            [date]="
-              details.releaseDate | date : 'dd MMMM yyyy'
-            "></mdb-detailed-page-hero-date>
+            [title]="'Release date:'">
+            <p>{{ details.releaseDate | date : 'dd MMMM yyyy' }}</p>
+          </mdb-detailed-page-hero-section>
           <mdb-detailed-page-hero-crew
             *ngIf="details.creators.length"
             [crew]="details.creators"></mdb-detailed-page-hero-crew>
