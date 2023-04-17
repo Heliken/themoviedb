@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
+  Subscription,
   debounceTime,
-  distinctUntilChanged,
   filter,
   map,
   switchMap,
@@ -15,14 +15,20 @@ import { FormControl } from '@angular/forms';
 import { MediaItem } from 'src/app/types/media-item';
 import { MediaType } from 'src/app/types/media-type';
 import { FilterFunc } from 'src/app/pipes/filter/filter.pipe';
-
+import { NavigationEnd, Router } from '@angular/router';
 @Component({
   selector: 'mdb-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent {
-  constructor(private searchApi: SearchApiService) {}
+export class SearchComponent implements OnDestroy {
+  private routerSubscription: Subscription;
+
+  constructor(private searchApi: SearchApiService, private router: Router) {
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.clear());
+  }
 
   public searchInput = new FormControl();
   public debounceTime = 200;
@@ -55,5 +61,9 @@ export class SearchComponent {
 
   public clear() {
     this.searchInput.setValue('');
+  }
+
+  public ngOnDestroy() {
+    this.routerSubscription.unsubscribe();
   }
 }

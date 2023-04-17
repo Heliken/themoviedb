@@ -6,6 +6,5 @@
 <mdb-ui-cards-grid
   *ngIf="results"
   class="search-result-section--grid"
-  [dataList]="results | toGridItems"
-  (resultClick)="resultClick.emit()">
+  [dataList]="results | toGridItems">
 </mdb-ui-cards-grid>
