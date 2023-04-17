@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ImageTypeSize } from 'src/app/types/api-configuration';
-import { MediaType } from 'src/app/types/media-type';
 @Component({
   selector: 'mdb-detailed-page-hero',
   templateUrl: './detailed-page-hero.component.html',
@@ -11,9 +10,6 @@ export class DetailedPageHeroComponent {
   @Input() public img?: string | null;
   @Input() public description?: string;
 
-  public personType = MediaType.Person;
   public posterSizeType = ImageTypeSize.poster;
   public posterSize = 'w342';
-  public backgroundSizeType = ImageTypeSize.profile;
-  public backgroundSize = 'original';
 }
