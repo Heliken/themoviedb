@@ -1,9 +1,5 @@
-<ng-container
-  *ngIf="
-    { state: (isLoading$ | async) === false } as isLoading;
-    else preloader
-  ">
-  <ng-container *ngIf="details$ | async as details">
+<ng-container *ngIf="{ state: (isLoading$ | async) === false } as isLoading">
+  <ng-container *ngIf="details$ | async as details; else preloader">
     <ng-container *ngIf="isLoading.state; else preloader">
       <mdb-detailed-page-hero [title]="details.title" [img]="details.poster">
         <ng-container background>
