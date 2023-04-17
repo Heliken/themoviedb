@@ -10,10 +10,12 @@ import { Cast } from '../types/credits';
   providedIn: 'root',
 })
 export class MediaToGridMediaService {
-  public convert(media: Person | TvShow | Movie): GridMediaItem {
+  public convert(media: Person | TvShow | Movie | Cast): GridMediaItem {
     switch (media.mediaType) {
       case MediaType.Person:
-        return this.personMapper(media);
+        return 'creditId' in media
+          ? this.castMapper(media as Cast)
+          : this.personMapper(media);
       case MediaType.Movie:
         return this.movieMapper(media);
       case MediaType.Tv:
@@ -21,14 +23,20 @@ export class MediaToGridMediaService {
     }
   }
 
-  private personMapper(person: Person | Cast): GridMediaItem {
+  private personMapper(person: Person): GridMediaItem {
     const { id, name, photo, mediaType } = person;
     return {
       id,
       title: name,
       type: mediaType,
       image: photo,
-      subtitle: 'character' in person ? person.character : undefined,
+    };
+  }
+
+  private castMapper(cast: Cast): GridMediaItem {
+    return {
+      ...this.personMapper(cast),
+      subtitle: cast.character,
     };
   }
 
