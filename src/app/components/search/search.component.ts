@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   BehaviorSubject,
   Observable,
@@ -21,14 +21,10 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnDestroy {
-  private routerSubscription: Subscription;
+export class SearchComponent implements OnDestroy, OnInit {
+  private routerSubscription?: Subscription;
 
-  constructor(private searchApi: SearchApiService, private router: Router) {
-    this.routerSubscription = this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => this.clear());
-  }
+  constructor(private searchApi: SearchApiService, private router: Router) {}
 
   public searchInput = new FormControl();
   public debounceTime = 200;
@@ -63,7 +59,15 @@ export class SearchComponent implements OnDestroy {
     this.searchInput.setValue('');
   }
 
+  public ngOnInit() {
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => this.clear());
+  }
+
   public ngOnDestroy() {
-    this.routerSubscription.unsubscribe();
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 }
