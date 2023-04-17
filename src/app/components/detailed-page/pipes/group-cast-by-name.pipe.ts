@@ -8,19 +8,22 @@ export type CastWithJobs = Omit<Cast, 'job'> & { jobs: string[] };
 })
 export class GroupCastByNamePipe implements PipeTransform {
   transform(value: Cast[]): CastWithJobs[] {
-    return value.reduce((acc: CastWithJobs[], cast: Cast) => {
-      const inArray = acc.find(({ name }) => cast.name === name);
-      if (inArray && cast.job) {
-        inArray.jobs.push(cast.job);
-      } else {
+    const castWithJobsMap = value.reduce(
+      (map: Map<string, CastWithJobs>, cast: Cast) => {
         const { job, ...rest } = cast;
-        const newValue: CastWithJobs = { ...rest, jobs: [] };
+        const inMap = map.get(cast.name);
+
         if (job) {
-          newValue.jobs.push(job);
+          inMap
+            ? inMap.jobs.push(job)
+            : map.set(cast.name, { ...rest, jobs: [job] });
         }
-        acc.push(newValue);
-      }
-      return acc;
-    }, []);
+
+        return map;
+      },
+      new Map<string, CastWithJobs>()
+    );
+
+    return Array.from(castWithJobsMap.values());
   }
 }
