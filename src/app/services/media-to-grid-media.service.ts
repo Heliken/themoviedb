@@ -5,6 +5,7 @@ import { Movie } from '../types/movie';
 import { Person } from '../types/person';
 import { TvShow } from '../types/tv-show';
 import { Cast } from '../types/credits';
+import { isCast } from 'app/guards/cast-type-guard';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class MediaToGridMediaService {
   public convert(media: Person | TvShow | Movie | Cast): GridMediaItem {
     switch (media.mediaType) {
       case MediaType.Person:
-        return 'creditId' in media
+        return isCast(media)
           ? this.castMapper(media as Cast)
           : this.personMapper(media);
       case MediaType.Movie:
