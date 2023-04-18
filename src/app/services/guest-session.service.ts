@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map, of, tap } from 'rxjs';
 import { GuestSession } from '../types/guest-session';
 import { LocalStorageService } from './local-storage.service';
-import { GUEST_SESSION_CACHE_KEY } from 'src/api-info';
+import { GUEST_SESSION_ID_CACHE_KEY } from 'src/api-info';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,7 @@ export class GuestSessionService {
     }
   }
 
-  private cacheKey = GUEST_SESSION_CACHE_KEY;
+  private cacheKey = GUEST_SESSION_ID_CACHE_KEY;
   private sessionId = '';
 
   private requestSessionId(): Observable<GuestSession> {
