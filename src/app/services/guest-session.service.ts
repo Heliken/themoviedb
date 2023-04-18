@@ -22,6 +22,7 @@ export class GuestSessionService {
     const cachedSessionId = this.localStorageService.getItem(this.cacheKey);
 
     if (cachedSessionId) {
+      this.sessionId = cachedSessionId;
       return of(cachedSessionId);
     } else {
       return this.requestSessionId().pipe(
