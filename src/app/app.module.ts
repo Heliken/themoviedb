@@ -9,6 +9,7 @@ import { ApiConfigurationService } from './services/api-configuration.service';
 import { MovieDetailsModule } from './pages/movie-details/movie-details.module';
 import { HeaderModule } from './components/header/header.module';
 import { TvDetailsModule } from './pages/tv-details/tv-details.module';
+import { GuestSessionService } from './services/guest-session.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,13 @@ import { TvDetailsModule } from './pages/tv-details/tv-details.module';
       useFactory: (apiConfigService: ApiConfigurationService) => () =>
         apiConfigService.loadConfig(),
       deps: [ApiConfigurationService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (guestSessionService: GuestSessionService) => () =>
+        guestSessionService.loadSessionId(),
+      deps: [GuestSessionService],
       multi: true,
     },
     {

@@ -14,7 +14,11 @@ export class GuestSessionService {
     private localStorageService: LocalStorageService<string>
   ) {}
 
-  public getSessionId(): Observable<string> {
+  public getSessionId(): string {
+    return this.sessionId;
+  }
+
+  public loadSessionId(): Observable<string> {
     const cachedSessionId = this.localStorageService.getItem(this.cacheKey);
 
     if (cachedSessionId) {
@@ -28,6 +32,7 @@ export class GuestSessionService {
   }
 
   private cacheKey = GUEST_SESSION_CACHE_KEY;
+  private sessionId = '';
 
   private requestSessionId(): Observable<GuestSession> {
     return this.http.get<GuestSession>('authentication/guest_session/new');
