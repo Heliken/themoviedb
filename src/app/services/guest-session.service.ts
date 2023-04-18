@@ -39,6 +39,8 @@ export class GuestSessionService {
   }
 
   private saveSessionId({ guest_session_id, expires_at }: GuestSession): void {
+    this.sessionId = guest_session_id;
+
     this.localStorageService.setItem(this.cacheKey, {
       data: guest_session_id,
       timestamp: new Date(expires_at).getTime().toString(),
