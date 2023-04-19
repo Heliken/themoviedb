@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RatingPostConfig } from 'src/app/pipes/to-rating-post-config/to-rating-post-config.pipe';
+import { RatingPostConfig } from 'src/app/types/rating-post-config';
 
 @Component({
   selector: 'mdb-detailed-page-hero-rating',

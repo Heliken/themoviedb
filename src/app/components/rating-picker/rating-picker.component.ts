@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, switchMap } from 'rxjs';
-import { RatingPostConfig } from 'src/app/pipes/to-rating-post-config/to-rating-post-config.pipe';
+import { RatingPostConfig } from 'src/app/types/rating-post-config';
 import { GuestSessionService } from 'src/app/services/guest-session.service';
 import { RatingService } from 'src/app/services/rating.service';
 
