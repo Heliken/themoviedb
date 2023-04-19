@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { LOCAL_STORAGE_EXPIRATION_TIME } from 'src/api-info';
 
 interface LocalStorageData<T> {
-  timestamp: string;
+  timestamp?: string;
   data: T;
 }
 
@@ -16,14 +16,14 @@ export class LocalStorageService<T> {
     if (stringValue) {
       try {
         const { timestamp, data } = JSON.parse(stringValue);
-        const isExpired = this.checkExpiration(timestamp);
-
-        if (isExpired) {
-          this.removeItem(key);
-          return undefined;
-        } else {
-          return data;
+        if (timestamp) {
+          const isExpired = this.checkExpiration(timestamp);
+          if (isExpired) {
+            this.removeItem(key);
+            return undefined;
+          }
         }
+        return data;
       } catch (error) {
         console.log(
           'Error parsing stored data, requesting new from API:',
