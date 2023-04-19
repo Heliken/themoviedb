@@ -14,20 +14,23 @@ export class GuestSessionService {
     private localStorageService: LocalStorageService<string>
   ) {}
 
-  public getSessionId(): Observable<string> {
-    const cachedSessionId = this.localStorageService.getItem(this.cacheKey);
+  public getSessionId(): string | undefined {
+    return this.sessionId;
+  }
 
-    if (cachedSessionId) {
-      return of(cachedSessionId);
+  public loadSessionId(): Observable<string> {
+    if (this.sessionId) {
+      return of(this.sessionId);
     } else {
       return this.requestSessionId().pipe(
         tap(guestSession => this.saveSessionId(guestSession)),
-        map(guestSession => guestSession.guest_session_id)
+        map(guestSession => (this.sessionId = guestSession.guest_session_id))
       );
     }
   }
 
   private cacheKey = GUEST_SESSION_ID_CACHE_KEY;
+  private sessionId = this.localStorageService.getItem(this.cacheKey);
 
   private requestSessionId(): Observable<GuestSession> {
     return this.http.get<GuestSession>('authentication/guest_session/new');
