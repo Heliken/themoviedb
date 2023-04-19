@@ -22,13 +22,6 @@ import { GuestSessionService } from './services/guest-session.service';
       multi: true,
     },
     {
-      provide: APP_INITIALIZER,
-      useFactory: (guestSessionService: GuestSessionService) => () =>
-        guestSessionService.loadSessionId(),
-      deps: [GuestSessionService],
-      multi: true,
-    },
-    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
