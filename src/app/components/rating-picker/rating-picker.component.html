@@ -1,10 +1,26 @@
-<div class="rating-picker">
-  <p class="rating-picker--title">{{ ratingValue.value }}/10</p>
+<div class="rating-picker" *ngIf="ratingPostConfig">
+  <div
+    *ngIf="
+      ratedMaps[ratingPostConfig.type]
+        | async
+        | mapGet : ratingPostConfig?.id as guestRating
+    ">
+    {{ guestRating }}
+  </div>
+  <p class="rating-picker--title">
+    {{ ratingValue.value | number : '1.1' }}/10
+  </p>
   <input
     type="range"
     [min]="min"
     [step]="step"
     [max]="max"
     [formControl]="ratingValue" />
-  <button class="rating-picker--btn button _primary" type="button">Rate</button>
+  <button
+    [disabled]="isSubmitting$ | async"
+    class="rating-picker--btn button _primary"
+    type="button"
+    (click)="submitRating()">
+    Rate
+  </button>
 </div>
