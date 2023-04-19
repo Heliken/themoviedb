@@ -2,9 +2,13 @@
 
 .detailed-page-hero-rating {
     position: relative;
-    display: flex;
+    display: grid;
     align-items: center;
-    column-gap: 20px;
+    gap: 4px;
+
+    @include bp('768') {
+        grid-auto-flow: column;
+    }
 
     &--value {
         @include font-style(16px, 140%, 700);
@@ -12,9 +16,21 @@
         @include bp('768') {
             font-size: 18px; 
         }
+
+        &_user-rating {
+            cursor: pointer;
+
+            @include bp('1280') {
+                &:hover {
+                    filter: brightness(1.1);
+                }
+            }
+        }
     }
 
     &--rate-btn {
+        font-size: 12px;
+        margin-right: auto;
         cursor: pointer;
         color: rgb(var(--accent));
         text-decoration: underline;
@@ -31,15 +47,16 @@
         position: absolute;
         top: calc(100% + 10px);
         z-index: 1;
-        right: 0;
+        left: -60px;
+
         @include bp('768') {
-            right: 50%;
-            transform: translateX(50%);
+            left: 0;
         }
     }
 
     &--side {
-        position: relative;
+        display: grid;
+        gap: 2px;
     }
 }
 

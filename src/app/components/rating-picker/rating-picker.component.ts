@@ -23,7 +23,6 @@ export class RatingPickerComponent {
   public step = 0.5;
   public min = this.step;
   public max = 10;
-  public ratedMaps = this.ratingService.ratedMaps;
 
   public ratingValue = new FormControl(this.initial);
 

@@ -3,12 +3,26 @@
     class="detailed-page-hero-rating--value"
     [title]="title"
     [value]="value"></mdb-rating-badge>
-  <div class="detailed-page-hero-rating--side">
-    <button
-      class="detailed-page-hero-rating--rate-btn link"
-      (click)="toggleDropdown()">
-      Rate
-    </button>
+  <div class="detailed-page-hero-rating--side" *ngIf="ratingPostConfig">
+    <mdb-rating-badge
+      *ngIf="
+        ratedMaps[ratingPostConfig.type]
+          | async
+          | mapGet : ratingPostConfig?.id as guestRating;
+        else rateNow
+      "
+      class="detailed-page-hero-rating--value detailed-page-hero-rating--value_user-rating"
+      [title]="'You rated:'"
+      (click)="toggleDropdown()"
+      [value]="guestRating"></mdb-rating-badge>
+
+    <ng-template #rateNow>
+      <button
+        class="detailed-page-hero-rating--rate-btn link"
+        (click)="toggleDropdown()">
+        Rate now!
+      </button>
+    </ng-template>
     <div
       *ngIf="showDropdown"
       class="detailed-page-hero-rating--dropdown detailed-page-hero-rating-dropdown">

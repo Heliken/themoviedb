@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { RatingService } from 'src/app/services/rating.service';
 import { RatingPostConfig } from 'src/app/types/rating-post-config';
 
 @Component({
@@ -7,11 +8,14 @@ import { RatingPostConfig } from 'src/app/types/rating-post-config';
   styleUrls: ['./detailed-page-hero-rating.component.scss'],
 })
 export class DetailedPageHeroRatingComponent {
+  constructor(private ratingService: RatingService) {}
   @Input() public value = 0;
   @Input() public title = 'Rating: ';
   @Input() public ratingPostConfig?: RatingPostConfig;
 
   public showDropdown = false;
+
+  public ratedMaps = this.ratingService.ratedMaps;
 
   public toggleDropdown(): void {
     this.showDropdown = !this.showDropdown;

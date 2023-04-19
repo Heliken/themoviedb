@@ -16,6 +16,7 @@ import { GroupCastByNamePipe } from './pipes/group-cast-by-name.pipe';
 import { JoinModule } from '../../pipes/join/join.module';
 import { SortModule } from '../../pipes/sort/sort.module';
 import { RatingPickerModule } from '../rating-picker/rating-picker.module';
+import { MapGetModule } from '../../pipes/map-get/map-get.module';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { RatingPickerModule } from '../rating-picker/rating-picker.module';
     JoinModule,
     SortModule,
     RatingPickerModule,
+    MapGetModule,
   ],
 })
 export class DetailedPageModule {}

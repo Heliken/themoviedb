@@ -1,12 +1,4 @@
 <div class="rating-picker" *ngIf="ratingPostConfig">
-  <div
-    *ngIf="
-      ratedMaps[ratingPostConfig.type]
-        | async
-        | mapGet : ratingPostConfig?.id as guestRating
-    ">
-    {{ guestRating }}
-  </div>
   <p class="rating-picker--title">
     {{ ratingValue.value | number : '1.1' }}/10
   </p>
