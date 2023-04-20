@@ -29,15 +29,16 @@ export class GuestSessionService {
     }
   }
 
-  private cacheKey = GUEST_SESSION_ID_CACHE_KEY;
-  private sessionId = this.localStorageService.getItem(this.cacheKey);
+  private sessionId = this.localStorageService.getItem(
+    GUEST_SESSION_ID_CACHE_KEY
+  );
 
   private requestSessionId(): Observable<GuestSession> {
     return this.http.get<GuestSession>('authentication/guest_session/new');
   }
 
   private saveSessionId({ guest_session_id }: GuestSession): void {
-    this.localStorageService.setItem(this.cacheKey, {
+    this.localStorageService.setItem(GUEST_SESSION_ID_CACHE_KEY, {
       data: guest_session_id,
     });
   }
