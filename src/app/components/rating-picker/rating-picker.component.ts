@@ -4,6 +4,8 @@ import { BehaviorSubject, switchMap } from 'rxjs';
 import { RatingPostConfig } from 'src/app/types/rating-post-config';
 import { GuestSessionService } from 'src/app/services/guest-session.service';
 import { RatingService } from 'src/app/services/rating.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { CustomNotificationType } from 'src/app/types/notification';
 
 @Component({
   selector: 'mdb-rating-picker',
@@ -13,7 +15,8 @@ import { RatingService } from 'src/app/services/rating.service';
 export class RatingPickerComponent {
   constructor(
     private readonly ratingService: RatingService,
-    private readonly guestSessionService: GuestSessionService
+    private readonly guestSessionService: GuestSessionService,
+    private readonly notificationsService: NotificationsService
   ) {}
 
   @Input() public initial = 5;
@@ -37,15 +40,25 @@ export class RatingPickerComponent {
         .loadSessionId()
         .pipe(switchMap(() => this.ratingService.postRating(id, type, value)))
         .subscribe({
-          next: () => {
+          next: ({ status_message }) => {
+            this.handleResponse(status_message, CustomNotificationType.Success);
             this.ratingService.addNewRated(id, type, value);
-            this.isSubmitting$.next(false);
           },
-          error: error => {
-            console.error('Error submitting rating:', error);
-            this.isSubmitting$.next(false);
+          error: ({ error: { status_message } }) => {
+            this.handleResponse(status_message, CustomNotificationType.Error);
           },
         });
     }
+  }
+
+  private handleResponse(
+    status_message: string,
+    notificationType: CustomNotificationType
+  ) {
+    this.notificationsService.showNotification({
+      type: notificationType,
+      message: status_message,
+    });
+    this.isSubmitting$.next(false);
   }
 }

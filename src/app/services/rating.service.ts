@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { RatedMap } from '../types/rated-map';
 import { CanBeRatedMediaType, MediaType } from '../types/media-type';
 import { GuestSessionService } from './guest-session.service';
+import { PostRatingResponse } from '../types/post-rating-response';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +30,12 @@ export class RatingService {
     [MediaType.Tv]: this.ratedTvShows$,
   };
 
-  postRating(id: number, type: CanBeRatedMediaType, value: number) {
-    return this.http.post(
+  postRating(
+    id: number,
+    type: CanBeRatedMediaType,
+    value: number
+  ): Observable<PostRatingResponse> {
+    return this.http.post<PostRatingResponse>(
       `${type}/${id}/rating?guest_session_id=${this.guestSessionService.getSessionId()}`,
       {
         value,
