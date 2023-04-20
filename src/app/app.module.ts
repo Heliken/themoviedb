@@ -12,6 +12,7 @@ import { TvDetailsModule } from './pages/tv-details/tv-details.module';
 import { GuestSessionService } from './services/guest-session.service';
 import { RatingService } from './services/rating.service';
 import { forkJoin, of } from 'rxjs';
+import { NotificationModule } from './components/notifications/notifications.module';
 
 const ratingInitializerFactory =
   (ratingService: RatingService, guestSessionService: GuestSessionService) =>
@@ -61,6 +62,7 @@ const configInitializerFactory =
     HeaderModule,
     MovieDetailsModule,
     TvDetailsModule,
+    NotificationModule,
   ],
 })
 export class AppModule {}
