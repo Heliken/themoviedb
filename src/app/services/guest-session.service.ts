@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map, of, tap } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { GuestSession } from '../types/guest-session';
 import { LocalStorageService } from './local-storage.service';
 import { GUEST_SESSION_ID_CACHE_KEY } from 'src/api-info';
