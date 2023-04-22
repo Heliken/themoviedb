@@ -1,4 +1,6 @@
 import { MediaType } from '../media-type';
+import { MovieDTO } from './movie-dto';
+import { TvShowDTO } from './tv-show-dto';
 
 export interface PersonDTO {
   adult: boolean;
@@ -13,24 +15,29 @@ export interface PersonDTO {
   media_type?: MediaType.Person;
 }
 
-export interface KnownForDTO {
-  adult: boolean;
-  backdrop_path: string;
-  id: number;
-  title?: string;
-  original_language: string;
-  original_title?: string;
-  overview: string;
-  poster_path: string;
-  media_type: MediaType;
-  genre_ids: number[];
-  popularity: number;
-  release_date?: Date;
-  video?: boolean;
-  vote_average: number;
-  vote_count: number;
-  name?: string;
-  original_name?: string;
-  first_air_date?: Date;
-  origin_country?: string[];
+export type KnownForDTO = MovieDTO | TvShowDTO;
+
+export type KnownForAsCrewDTO = KnownForDTO & KnownForAsCrewDTODetails;
+
+export interface KnownForAsCrewDTODetails {
+  job: string;
+  department: string;
+}
+
+export type KnownForAsCastDTO = KnownForDTO & KnownForAsCastDTODetails;
+
+export interface KnownForAsCastDTODetails {
+  character: string;
+}
+
+export type PersonDTODetailed = PersonDTO & {
+  place_of_birth?: string;
+  birthday?: Date;
+  biography?: string;
+  combined_credits: PersonDTODetailedCombinedCredits;
+};
+
+export interface PersonDTODetailedCombinedCredits {
+  crew: KnownForAsCrewDTO[];
+  cast: KnownForAsCastDTO[];
 }
