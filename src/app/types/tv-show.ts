@@ -11,6 +11,8 @@ export interface TvShow {
   rating?: number;
   description: string;
   background: string | null;
+  popularity: number;
+  voteCount: number;
 }
 
 export type TvShowDetailed = TvShow &

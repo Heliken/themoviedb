@@ -10,6 +10,8 @@ export interface Movie {
   rating?: number;
   description: string;
   background: string | null;
+  popularity: number;
+  voteCount: number;
 }
 
 export type MovieDetailed = Movie & MovieTVDetails;
