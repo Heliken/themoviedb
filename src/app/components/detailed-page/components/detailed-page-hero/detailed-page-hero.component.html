@@ -2,7 +2,9 @@
   <ng-content select="[background]"></ng-content>
   <div class="container">
     <h3 class="h1 detailed-hero--title">{{ title }}</h3>
-    <div class="detailed-hero--wrap">
+    <div
+      class="detailed-hero--wrap"
+      [class.detailed-hero--wrap_person]="isPersonPage">
       <div class="detailed-hero--poster">
         <img
           *ngIf="img"

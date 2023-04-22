@@ -9,6 +9,7 @@ export class DetailedPageHeroComponent {
   @Input() public title?: string;
   @Input() public img?: string | null;
   @Input() public description?: string;
+  @Input() public isPersonPage = false;
 
   public posterSizeType = ImageTypeSize.poster;
   public posterSize = 'w342';
