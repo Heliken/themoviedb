@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, delay, tap } from 'rxjs';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { CustomNotification } from 'src/app/types/notification';
 
@@ -17,14 +17,13 @@ export class NotificationsComponent implements OnInit, OnDestroy {
   private notificationDelayTime = 3000;
 
   ngOnInit(): void {
-    this.notificationsSubscription =
-      this.notificationsService.notifications$.subscribe(notification => {
-        this.notifications.push(notification);
-
-        setTimeout(() => {
-          this.notifications.shift();
-        }, this.notificationDelayTime);
-      });
+    this.notificationsSubscription = this.notificationsService.notifications$
+      .pipe(
+        tap(notification => this.notifications.push(notification)),
+        delay(this.notificationDelayTime),
+        tap(() => this.notifications.shift())
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
