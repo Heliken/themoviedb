@@ -1,4 +1,4 @@
-import { MediaTypeDTO } from './media-item-dto';
+import { MediaType } from '../media-type';
 import { MovieTVDetailsDTO } from './movie-tv-details-dto';
 import { Rated } from './rated-dto';
 
@@ -16,7 +16,7 @@ export interface TvShowDTO {
   poster_path: null | string;
   vote_average: number;
   vote_count: number;
-  media_type?: MediaTypeDTO.Tv;
+  media_type?: MediaType.Tv;
 }
 
 export type TvShowDTODetailed = TvShowDTO &

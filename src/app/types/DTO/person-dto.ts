@@ -1,4 +1,4 @@
-import { MediaTypeDTO } from './media-item-dto';
+import { MediaType } from '../media-type';
 
 export interface PersonDTO {
   adult: boolean;
@@ -9,8 +9,8 @@ export interface PersonDTO {
   gender: number;
   known_for_department: string;
   profile_path: null | string;
-  known_for: KnownForDTO[];
-  media_type?: MediaTypeDTO.Person;
+  known_for?: KnownForDTO[];
+  media_type?: MediaType.Person;
 }
 
 export interface KnownForDTO {
@@ -22,7 +22,7 @@ export interface KnownForDTO {
   original_title?: string;
   overview: string;
   poster_path: string;
-  media_type: MediaTypeDTO;
+  media_type: MediaType;
   genre_ids: number[];
   popularity: number;
   release_date?: Date;

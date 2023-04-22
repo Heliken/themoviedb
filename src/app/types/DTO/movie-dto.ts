@@ -1,4 +1,4 @@
-import { MediaTypeDTO } from './media-item-dto';
+import { MediaType } from '../media-type';
 import { MovieTVDetailsDTO } from './movie-tv-details-dto';
 import { Rated } from './rated-dto';
 
@@ -11,13 +11,13 @@ export interface MovieDTO {
   original_title: string;
   overview: string;
   popularity: number;
-  poster_path: string;
+  poster_path: string | null;
   release_date?: Date;
   title: string;
   video: boolean;
   vote_average: number;
   vote_count: number;
-  media_type?: MediaTypeDTO.Movie;
+  media_type?: MediaType.Movie;
 }
 
 export type MovieDTODetailed = MovieDTO & MovieTVDetailsDTO;

@@ -4,8 +4,8 @@ import { Observable, map } from 'rxjs';
 import { DtoTransformService } from 'src/app/services/dto-transform.service';
 import { MediaItemDTOWithType } from 'src/app/types/DTO/media-item-dto';
 import { MediaListResponse } from 'src/app/types/media-list-response';
-import { MediaTypeDTO } from 'src/app/types/DTO/media-item-dto';
 import { MediaItem } from 'src/app/types/media-item';
+import { MediaType } from 'src/app/types/media-type';
 @Injectable({
   providedIn: 'root',
 })
@@ -38,11 +38,11 @@ export class SearchApiService {
       map(({ results }) =>
         results.map(mediaItem => {
           switch (mediaItem.media_type) {
-            case MediaTypeDTO.Person:
+            case MediaType.Person:
               return this.dtoTranform.transformPerson(mediaItem);
-            case MediaTypeDTO.Movie:
+            case MediaType.Movie:
               return this.dtoTranform.transformMovie(mediaItem);
-            case MediaTypeDTO.Tv:
+            case MediaType.Tv:
               return this.dtoTranform.transformTVShow(mediaItem);
           }
         })
