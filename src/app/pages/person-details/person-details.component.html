@@ -1,1 +1,43 @@
-<p>person-details works!</p>
+<ng-container *ngIf="{ state: (isLoading$ | async) === false } as isLoading">
+  <ng-container *ngIf="details$ | async as details; else preloader">
+    <ng-container *ngIf="isLoading.state; else preloader">
+      <mdb-detailed-page-hero
+        [isPersonPage]="true"
+        [title]="details.name"
+        [img]="details.photo">
+        <ng-container description>
+          <mdb-detailed-page-hero-section
+            *ngIf="details.biography"
+            class="detailed-hero--description detailed-hero--description_small"
+            [title]="'Biography:'">
+            <p>{{ details.biography }}</p>
+          </mdb-detailed-page-hero-section>
+          <mdb-detailed-page-hero-known-for
+            class="detailed-hero--known-for"
+            [knownForList]="
+              details.combinedCredits
+                | toKnownFor
+                | sort : knownForSortFunc
+                | slice : 0 : knownForToShow
+                | toGridItems
+            ">
+          </mdb-detailed-page-hero-known-for>
+        </ng-container>
+        <ng-container other>
+          <mdb-detailed-page-hero-section
+            *ngIf="details.birthday"
+            [title]="'Date of birth:'">
+            <p>{{ details.birthday | date : 'dd MMMM yyyy' }}</p>
+          </mdb-detailed-page-hero-section>
+          <mdb-detailed-page-hero-section
+            *ngIf="details.placeOfBirth"
+            [title]="'Place of birth:'">
+            <p>{{ details.placeOfBirth }}</p>
+          </mdb-detailed-page-hero-section>
+        </ng-container>
+      </mdb-detailed-page-hero>
+      <mdb-detailed-page-body> </mdb-detailed-page-body>
+    </ng-container>
+  </ng-container>
+</ng-container>
+<ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>
