@@ -41,6 +41,7 @@ export class RatingPickerComponent {
         .pipe(switchMap(() => this.ratingService.postRating(id, type, value)))
         .subscribe({
           next: ({ status_message }) => {
+            this.guestSessionService.saveSessionId();
             this.handleResponse(status_message, CustomNotificationType.Success);
             this.ratingService.addNewRated(id, type, value);
           },

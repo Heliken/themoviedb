@@ -23,7 +23,6 @@ export class GuestSessionService {
       return of(this.sessionId);
     } else {
       return this.requestSessionId().pipe(
-        tap(guestSession => this.saveSessionId(guestSession)),
         map(guestSession => (this.sessionId = guestSession.guest_session_id))
       );
     }
@@ -37,9 +36,11 @@ export class GuestSessionService {
     return this.http.get<GuestSession>('authentication/guest_session/new');
   }
 
-  private saveSessionId({ guest_session_id }: GuestSession): void {
-    this.localStorageService.setItem(GUEST_SESSION_ID_CACHE_KEY, {
-      data: guest_session_id,
-    });
+  public saveSessionId(): void {
+    if (this.sessionId) {
+      this.localStorageService.setItem(GUEST_SESSION_ID_CACHE_KEY, {
+        data: this.sessionId,
+      });
+    }
   }
 }
