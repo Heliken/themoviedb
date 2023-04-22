@@ -11,26 +11,9 @@ import { HeaderModule } from './components/header/header.module';
 import { TvDetailsModule } from './pages/tv-details/tv-details.module';
 import { GuestSessionService } from './services/guest-session.service';
 import { RatingService } from './services/rating.service';
-import { forkJoin, of } from 'rxjs';
 import { NotificationModule } from './components/notifications/notifications.module';
-
-const ratingInitializerFactory =
-  (ratingService: RatingService, guestSessionService: GuestSessionService) =>
-  () => {
-    const sessionId = guestSessionService.getSessionId();
-    if (sessionId) {
-      return forkJoin([
-        ratingService.requestRatedMovies(sessionId),
-        ratingService.requestRatedTvShows(sessionId),
-      ]);
-    } else {
-      return of(null);
-    }
-  };
-
-const configInitializerFactory =
-  (apiConfigService: ApiConfigurationService) => () =>
-    apiConfigService.loadConfig();
+import { ratingInitializerFactory } from './factories/rating-initializer.factory';
+import { configInitializerFactory } from './factories/config-initializer.factory';
 
 @NgModule({
   declarations: [AppComponent],
