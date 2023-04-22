@@ -5,12 +5,7 @@
     [value]="value"></mdb-rating-badge>
   <div class="detailed-page-hero-rating--side" *ngIf="ratingPostConfig">
     <mdb-rating-badge
-      *ngIf="
-        ratedMaps[ratingPostConfig.type]
-          | async
-          | mapGet : ratingPostConfig?.id as guestRating;
-        else rateNow
-      "
+      *ngIf="guestUserRated | async as guestRating; else rateNow"
       class="detailed-page-hero-rating--value detailed-page-hero-rating--value_user-rating"
       [title]="'You rated:'"
       (click)="toggleDropdown()"

@@ -2,7 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MediaListResponse } from '../types/media-list-response';
 import { MovieDTORated } from '../types/DTO/movie-dto';
-import { BehaviorSubject, Observable, map, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  distinctUntilChanged,
+  map,
+  tap,
+} from 'rxjs';
 import { RatedMap } from '../types/rated-map';
 import { CanBeRatedMediaType, MediaType } from '../types/media-type';
 import { GuestSessionService } from './guest-session.service';
@@ -47,6 +53,16 @@ export class RatingService {
     const currentRatedMap = this.ratedMaps[type].getValue();
     const newRatedMap = new Map(currentRatedMap).set(id, rating);
     this.ratedMaps[type].next(newRatedMap);
+  }
+
+  getRating(
+    id: number,
+    type: CanBeRatedMediaType
+  ): Observable<number | undefined> {
+    return this.ratedMaps[type].pipe(
+      map((ratedMap: RatedMap) => ratedMap.get(id)),
+      distinctUntilChanged()
+    );
   }
 
   requestRatedMovies(sessionId: string): Observable<RatedMap> {
