@@ -1,7 +1,7 @@
 <mdb-detailed-page-hero-section [title]="title" *ngIf="knownForList.length">
   <div class="detailed-hero-known-for">
     <mdb-ui-card
-      *ngFor="let item of knownForList"
+      *ngFor="let item of knownForList; trackBy: trackById"
       [routerLink]="['/', item.type, item.id]"
       [dataItem]="item"></mdb-ui-card>
   </div>
