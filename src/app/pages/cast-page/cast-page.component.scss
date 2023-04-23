@@ -1,0 +1,19 @@
+.cast-page {
+    padding: 20px 0;
+
+    &--title {
+        margin-bottom: 20px;
+    }
+
+    &--body {
+        display: grid;
+        grid-row-gap: 20px;
+    }
+}
+
+
+.cast-page-section {
+    &--title {
+        margin-bottom: 16px;
+    }
+}
