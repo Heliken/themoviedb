@@ -1,6 +1,14 @@
 <div class="detailed-page-section">
   <div class="container">
-    <h4 class="h2 detailed-page-section--title">{{ title }}</h4>
+    <div class="detailed-page-section--header">
+      <h4 class="h2 detailed-page-section--title">{{ title }}</h4>
+      <span
+        class="detailed-page-section--link"
+        *ngIf="link"
+        [routerLink]="link.route"
+        >{{ link.text }}</span
+      >
+    </div>
   </div>
   <mdb-ui-cards-grid
     *ngIf="gridData"

@@ -1,7 +1,29 @@
+@import "src/app/styles/mixins.scss";
+
 .detailed-page-section {
     &--title {
         text-transform: uppercase;
-        margin-bottom: 12px;
         color: rgb(var(--accent));
+    }
+
+    &--header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    &--link {
+        @include font-style(12px, 140%, 900);
+
+        text-transform: uppercase;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-left: 12px;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 }
