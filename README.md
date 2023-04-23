@@ -12,13 +12,14 @@ Project feature branch deployed on [Github Pages](https://heliken.github.io/them
     - [x] trending, popular and upcoming moves or tv-series
     - [x] live search
 - [x] 2. Movie/tv-series details page
-- [ ] 3. Ability to rate movie/tv-show from detailed page
-- [ ] 4. Person details page
+- [ ] 3. Person details page
 ---
 ### Nice to have
 - [x] Live search sholud search movies, tv-series and people simultaneously.
-- [ ] Movie list page with sorting and filtering.
-- [ ] Movies by genre page - list of movies + pagination + sorting
+- [ ] Movie list page with pagination
+    - [ ] sorting
+    - [ ] filtering by genres and date range
+- [x] Rating on movie/tv-show detailed page with guest session
 - [ ] subpage of a movie details page with a list of cast and crew members
 ---
 ### Extra hard level
