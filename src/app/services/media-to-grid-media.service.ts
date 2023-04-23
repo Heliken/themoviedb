@@ -37,7 +37,7 @@ export class MediaToGridMediaService {
   private castMapper(cast: Cast): GridMediaItem {
     return {
       ...this.personMapper(cast),
-      subtitle: cast.character,
+      subtitle: cast.character || cast.job,
     };
   }
 

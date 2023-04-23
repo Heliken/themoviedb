@@ -54,6 +54,7 @@ export class DtoTransformService {
     credit_id,
     order,
     department,
+    known_for_department,
     job,
   }: CastDetailsDTO): CastDetails {
     return {
@@ -61,7 +62,7 @@ export class DtoTransformService {
       character,
       creditId: credit_id,
       order,
-      department,
+      department: department || known_for_department,
       job,
     };
   }

@@ -13,5 +13,6 @@ export interface CastDetailsDTO {
   credit_id: string;
   order?: number;
   department?: string;
+  known_for_department?: string;
   job?: string;
 }
