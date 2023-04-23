@@ -4,7 +4,7 @@ import { MovieTVDetailsDTO } from './movie-tv-details-dto';
 import { Rated } from './rated-dto';
 
 export interface TvShowDTO extends BaseMediaDTO {
-  first_air_date: Date;
+  first_air_date: string;
   name: string;
   origin_country: string[];
   original_name: string;

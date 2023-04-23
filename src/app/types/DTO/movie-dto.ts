@@ -6,7 +6,7 @@ import { Rated } from './rated-dto';
 export interface MovieDTO extends BaseMediaDTO {
   adult: boolean;
   original_title: string;
-  release_date?: Date;
+  release_date: string;
   title: string;
   video: boolean;
   media_type: MediaType.Movie;

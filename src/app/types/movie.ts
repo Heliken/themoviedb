@@ -6,7 +6,7 @@ export interface Movie {
   poster: string | null;
   title: string;
   mediaType: MediaType.Movie;
-  releaseDate?: Date;
+  releaseDate: string;
   rating?: number;
   description: string;
   background: string | null;

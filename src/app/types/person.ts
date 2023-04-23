@@ -12,6 +12,13 @@ export type KnownFor = Movie | TvShow;
 
 export type KnownForAsCrew = KnownFor & KnownForAsCrewDetails;
 
+export type KnownForAsCredits = KnownFor & KnownForAsCreditsDetails;
+
+export interface KnownForAsCreditsDetails {
+  job: string;
+  department?: string;
+}
+
 export interface KnownForAsCrewDetails {
   job: string;
   department: string;
@@ -23,6 +30,7 @@ export interface KnownForAsCastDetails {
   character: string;
 }
 export interface PersonDetails {
+  knownForDepartment: string;
   placeOfBirth?: string;
   birthday?: Date;
   biography?: string;
@@ -30,8 +38,8 @@ export interface PersonDetails {
 }
 
 export interface PersonDetailsCombinedCredits {
-  cast: KnownForAsCast[];
-  crew: KnownForAsCrew[];
+  cast: KnownForAsCredits[];
+  crew: KnownForAsCredits[];
 }
 
 export type PersonDetailed = Person & PersonDetails;
