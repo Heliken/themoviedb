@@ -17,9 +17,7 @@ import { MediaType } from '../types/media-type';
 import { Movie, MovieDetailed } from '../types/movie';
 import {
   KnownFor,
-  KnownForAsCastDetails,
   KnownForAsCreditsDetails,
-  KnownForAsCrewDetails,
   Person,
   PersonDetailed,
   PersonDetailsCombinedCredits,

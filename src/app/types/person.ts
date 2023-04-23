@@ -10,8 +10,6 @@ export interface Person {
 
 export type KnownFor = Movie | TvShow;
 
-export type KnownForAsCrew = KnownFor & KnownForAsCrewDetails;
-
 export type KnownForAsCredits = KnownFor & KnownForAsCreditsDetails;
 
 export interface KnownForAsCreditsDetails {
@@ -19,16 +17,6 @@ export interface KnownForAsCreditsDetails {
   department?: string;
 }
 
-export interface KnownForAsCrewDetails {
-  job: string;
-  department: string;
-}
-
-export type KnownForAsCast = KnownFor & KnownForAsCastDetails;
-
-export interface KnownForAsCastDetails {
-  character: string;
-}
 export interface PersonDetails {
   knownForDepartment: string;
   placeOfBirth?: string;
