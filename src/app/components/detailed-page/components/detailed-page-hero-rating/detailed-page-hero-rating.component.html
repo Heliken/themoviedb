@@ -1,4 +1,35 @@
-<mdb-rating-badge
-  class="detailed-page-hero-rating"
-  [title]="title"
-  [value]="value"></mdb-rating-badge>
+<div class="detailed-page-hero-rating">
+  <mdb-rating-badge
+    class="detailed-page-hero-rating--value"
+    [title]="title"
+    [value]="value"></mdb-rating-badge>
+  <div class="detailed-page-hero-rating--side" *ngIf="ratingPostConfig">
+    <mdb-rating-badge
+      *ngIf="guestUserRated | async as guestRating; else rateNow"
+      class="detailed-page-hero-rating--value detailed-page-hero-rating--value_user-rating"
+      [title]="'You rated:'"
+      (click)="toggleDropdown()"
+      [value]="guestRating"></mdb-rating-badge>
+
+    <ng-template #rateNow>
+      <button
+        class="detailed-page-hero-rating--rate-btn link"
+        (click)="toggleDropdown()">
+        Rate now!
+      </button>
+    </ng-template>
+    <div
+      *ngIf="showDropdown"
+      class="detailed-page-hero-rating--dropdown detailed-page-hero-rating-dropdown">
+      <mdb-rating-picker
+        [ratingPostConfig]="ratingPostConfig"
+        class="detailed-page-hero-rating-dropdown--picker">
+      </mdb-rating-picker>
+      <button
+        class="detailed-page-hero-rating-dropdown--close link"
+        (click)="toggleDropdown()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

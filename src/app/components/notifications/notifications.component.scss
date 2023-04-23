@@ -1,0 +1,32 @@
+@import "src/app/styles/mixins.scss";
+
+.notifications {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+}
+
+.notification {
+    @include font-style(10px, 1.2, 900);
+
+    text-transform: uppercase;
+    width: 186px;
+    padding: 10px 16px;
+
+    @include bp('1280') {
+        font-size: 12px;
+        width: 250px;
+    }
+
+    &._success {
+        background-color: rgb(var(--success));
+    }
+
+    &._error {
+        background-color: rgb(var(--error));
+    }
+}

@@ -13,3 +13,8 @@ export interface Movie {
 }
 
 export type MovieDetailed = Movie & MovieTVDetails;
+
+export interface MovieTvRated {
+  id: number;
+  rating: number;
+}

@@ -1,0 +1,16 @@
+@import "src/app/styles/mixins.scss";
+
+.rating-picker {
+    display: grid;
+    row-gap: 4px;
+    &--title {
+        @include font-style(18px, 1.2, 900);
+
+        color: rgb(var(--neutral));
+        text-align: center;
+    }
+
+    &--btn {
+        justify-self: center;
+    }
+}

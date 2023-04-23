@@ -24,8 +24,108 @@
     }
 }
 
+@mixin input-range-thumb {
+    box-shadow: none;
+    border: 1px solid rgb(var(--primary));
+    height: 20px;
+    width: 25px;
+    border-radius: 0px;
+    background: rgb(var(--accent));
+    cursor: pointer;
+    -webkit-appearance: none;
+    box-shadow: -200px 0 0 200px rgb(var(--accent));
+}
+
+@mixin input-range-track {
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+    box-shadow: none;
+    background: rgb(var(--primary));
+    border-radius: 0px;
+    border: none;
+}
+
+input[type=range] {
+    height: 20px;
+    overflow: hidden;
+    -webkit-appearance: none;
+    margin: 10px 0;
+    width: 100%;
+    background: transparent;
+
+    &:focus {
+        outline: none;
+    }
+
+    &::-webkit-slider-thumb {
+        @include input-range-thumb;
+    }
+
+    &::-moz-range-thumb {
+        @include input-range-thumb;
+    }
+
+    &::-ms-thumb {
+        @include input-range-thumb;
+    }
+
+    &::-moz-range-track {
+        @include input-range-track;
+    }
+
+    &::-ms-track {
+        @include input-range-track;
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include input-range-track;
+    }
+
+    &::-ms-fill-lower {
+        background: rgb(var(--accent));
+        border: none;
+        box-shadow: none;
+    }
+
+    &::-ms-fill-upper {
+        background: rgb(var(--primary));
+        border: none;
+        box-shadow: none;
+    }
+}
+
+
 .link {
     border: none;
     outline: none;
     background-color: transparent;
+}
+
+.button {
+    @include font-style(12px, 100%, 900);
+
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 5px rgb(var(--primary));
+
+    &._primary {
+        border: 1px solid rgb(var(--primary));
+        background-color: rgb(var(--accent));
+        color: rgb(var(--neutral));
+    }
+
+    @include bp('1280') {
+        &:hover {
+            filter: brightness(1.1);
+        }
+    }
+
+    &[disabled] {
+        pointer-events: none;
+        filter: grayscale(1);
+    }
 }

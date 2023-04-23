@@ -9,15 +9,25 @@ import { ApiConfigurationService } from './services/api-configuration.service';
 import { MovieDetailsModule } from './pages/movie-details/movie-details.module';
 import { HeaderModule } from './components/header/header.module';
 import { TvDetailsModule } from './pages/tv-details/tv-details.module';
+import { GuestSessionService } from './services/guest-session.service';
+import { RatingService } from './services/rating.service';
+import { NotificationModule } from './components/notifications/notifications.module';
+import { ratingInitializerFactory } from './factories/rating-initializer.factory';
+import { configInitializerFactory } from './factories/config-initializer.factory';
 
 @NgModule({
   declarations: [AppComponent],
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: (apiConfigService: ApiConfigurationService) => () =>
-        apiConfigService.loadConfig(),
+      useFactory: configInitializerFactory,
       deps: [ApiConfigurationService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: ratingInitializerFactory,
+      deps: [RatingService, GuestSessionService],
       multi: true,
     },
     {
@@ -35,6 +45,7 @@ import { TvDetailsModule } from './pages/tv-details/tv-details.module';
     HeaderModule,
     MovieDetailsModule,
     TvDetailsModule,
+    NotificationModule,
   ],
 })
 export class AppModule {}

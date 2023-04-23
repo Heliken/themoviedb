@@ -1,5 +1,6 @@
 import { MediaTypeDTO } from './media-item-dto';
 import { MovieTVDetailsDTO } from './movie-tv-details-dto';
+import { Rated } from './rated-dto';
 
 export interface MovieDTO {
   adult: boolean;
@@ -20,3 +21,5 @@ export interface MovieDTO {
 }
 
 export type MovieDTODetailed = MovieDTO & MovieTVDetailsDTO;
+
+export type MovieDTORated = MovieDTO & Rated;

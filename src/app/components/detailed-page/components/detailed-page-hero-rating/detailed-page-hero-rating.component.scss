@@ -1,9 +1,88 @@
 @import "src/app/styles/mixins.scss";
 
 .detailed-page-hero-rating {
-    @include font-style(16px, 140%, 700);
+    position: relative;
+    display: grid;
+    align-items: center;
+    gap: 4px;
 
     @include bp('768') {
-        font-size: 18px; 
+        grid-auto-flow: column;
+    }
+
+    &--value {
+        @include font-style(16px, 140%, 700);
+
+        @include bp('768') {
+            font-size: 18px; 
+        }
+
+        &_user-rating {
+            cursor: pointer;
+
+            @include bp('1280') {
+                &:hover {
+                    filter: brightness(1.1);
+                }
+            }
+        }
+    }
+
+    &--rate-btn {
+        font-size: 12px;
+        margin-right: auto;
+        cursor: pointer;
+        color: rgb(var(--accent));
+        text-decoration: underline;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+                filter: brightness(1.1);
+            }
+        }
+    }
+
+    &--dropdown {
+        position: absolute;
+        top: calc(100% + 10px);
+        z-index: 1;
+        left: -60px;
+
+        @include bp('768') {
+            left: 0;
+        }
+    }
+
+    &--side {
+        display: grid;
+        gap: 2px;
+    }
+}
+
+.detailed-page-hero-rating-dropdown {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 16px;
+    background-color: rgb(var(--secondary));
+
+    &--picker {
+        width: 180px;
+        display: block;
+    }
+
+    &--close {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        padding: 4px;
+        font-size: 11px;
+        color: rgb(var(--neutral));
+        text-decoration: underline;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 }
