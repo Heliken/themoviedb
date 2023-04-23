@@ -7,6 +7,7 @@ import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.modul
 import { ConcatModule } from '../../pipes/concat/concat.module';
 import { GroupByModule } from '../../pipes/group-array-by/group-array-by.module';
 import { GroupCastByNameModule } from '../../pipes/group-cast-by-name/group-cast-by-name.module';
+import { RouterLink } from '@angular/router';
 
 @NgModule({
   declarations: [CastPageComponent],
@@ -18,6 +19,7 @@ import { GroupCastByNameModule } from '../../pipes/group-cast-by-name/group-cast
     ConcatModule,
     GroupByModule,
     GroupCastByNameModule,
+    RouterLink,
   ],
 })
 export class CastPageModule {}

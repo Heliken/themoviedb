@@ -3,7 +3,11 @@
     <ng-container *ngIf="isLoading.state; else preloader">
       <div class="cast-page">
         <div class="container">
-          <h1 class="h1 cast-page--title">{{ details.title }}</h1>
+          <h1
+            class="h1 cast-page--title"
+            [routerLink]="['/', details.mediaType, details.id]">
+            {{ details.title }}
+          </h1>
         </div>
         <div class="cast-page--body">
           <ng-container *ngIf="details.credits.cast as cast">

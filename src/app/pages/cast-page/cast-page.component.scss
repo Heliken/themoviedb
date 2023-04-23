@@ -1,8 +1,17 @@
+@import "src/app/styles/mixins.scss";
+
 .cast-page {
     padding: 20px 0;
 
     &--title {
+        cursor: pointer;
         margin-bottom: 20px;
+
+        @include bp('1280') {
+            &:hover {
+                color: rgb(var(--accent));
+            }
+        }
     }
 
     &--body {
@@ -15,5 +24,6 @@
 .cast-page-section {
     &--title {
         margin-bottom: 16px;
+        color: rgb(var(--accent));
     }
 }
