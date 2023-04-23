@@ -6,24 +6,28 @@
           <h1 class="h1 cast-page--title">{{ details.title }}</h1>
         </div>
         <div class="cast-page--body">
+          <ng-container *ngIf="details.credits.cast as cast">
+            <ng-container
+              [ngTemplateOutlet]="section"
+              [ngTemplateOutletContext]="{
+                group: {
+                  key: 'Acting',
+                  value: cast
+                },
+                shouldBeGrouped: false
+              }"></ng-container>
+          </ng-container>
           <ng-container
             *ngIf="
-              details.credits.cast
-                | concat : details.credits.crew
-                | groupArrayBy : 'department' as groupedRoles
+              details.credits.crew | groupArrayBy : 'department' as groupedCrew
             ">
-            <section
-              class="cast-page-section"
-              *ngFor="let group of groupedRoles">
-              <div class="container">
-                <h2 class="cast-page-section--title h2">{{ group.key }}</h2>
-              </div>
-              <mdb-ui-cards-grid
-                *ngIf="group.value as creditsGroupList"
-                class="search-result-section--grid"
-                [dataList]="creditsGroupList | toGridItems">
-              </mdb-ui-cards-grid>
-            </section>
+            <ng-container
+              *ngFor="let group of groupedCrew"
+              [ngTemplateOutlet]="section"
+              [ngTemplateOutletContext]="{
+                group: group,
+                shouldBeGrouped: true
+              }"></ng-container>
           </ng-container>
         </div>
       </div>
@@ -31,3 +35,20 @@
   </ng-container>
 </ng-container>
 <ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>
+
+<ng-template #section let-group="group" let-shouldBeGrouped="shouldBeGrouped">
+  <section class="cast-page-section">
+    <div class="container">
+      <h2 class="cast-page-section--title h2">{{ group.key }}</h2>
+    </div>
+    <mdb-ui-cards-grid
+      *ngIf="group.value as creditsGroupList"
+      class="search-result-section--grid"
+      [dataList]="
+        shouldBeGrouped
+          ? (creditsGroupList | groupCastByName | toGridItems)
+          : (creditsGroupList | toGridItems)
+      ">
+    </mdb-ui-cards-grid>
+  </section>
+</ng-template>
