@@ -36,7 +36,16 @@
           </mdb-detailed-page-hero-section>
         </ng-container>
       </mdb-detailed-page-hero>
-      <mdb-detailed-page-body> </mdb-detailed-page-body>
+      <mdb-detailed-page-body>
+        <div class="container">
+          <mdb-detailed-page-roles
+            [mainKnownFor]="details.knownForDepartment"
+            [rolesList]="
+              details.combinedCredits.cast
+                | concat : details.combinedCredits.crew
+            "></mdb-detailed-page-roles>
+        </div>
+      </mdb-detailed-page-body>
     </ng-container>
   </ng-container>
 </ng-container>

@@ -8,6 +8,7 @@ import { UiCardsGridModule } from '../../components/ui-cards-grid/ui-cards-grid.
 import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.module';
 import { ToKnownForModule } from '../../pipes/to-known-for/to-known-for.module';
 import { SortModule } from '../../pipes/sort/sort.module';
+import { ConcatModule } from '../../pipes/concat/concat.module';
 
 @NgModule({
   declarations: [PersonDetailsComponent],
@@ -21,6 +22,7 @@ import { SortModule } from '../../pipes/sort/sort.module';
     ToGridItemsModule,
     ToKnownForModule,
     SortModule,
+    ConcatModule,
   ],
 })
 export class PersonDetailsModule {}
