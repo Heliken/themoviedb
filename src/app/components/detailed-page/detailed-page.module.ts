@@ -12,7 +12,6 @@ import { DetailedPageBodyComponent } from './components/detailed-page-body/detai
 import { UiCardsGridModule } from '../ui-cards-grid/ui-cards-grid.module';
 import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.module';
 import { DetailedPageSectionComponent } from './components/detailed-page-section/detailed-page-section.component';
-import { GroupCastByNamePipe } from './pipes/group-cast-by-name.pipe';
 import { JoinModule } from '../../pipes/join/join.module';
 import { SortModule } from '../../pipes/sort/sort.module';
 import { RatingPickerModule } from '../rating-picker/rating-picker.module';
@@ -23,6 +22,7 @@ import { DetailedPageRolesComponent } from './components/detailed-page-roles/det
 import { GroupByModule } from '../../pipes/group-array-by/group-array-by.module';
 import { FindModule } from '../../pipes/find/find.module';
 import { FilterModule } from '../../pipes/filter/filter.module';
+import { GroupCastByNameModule } from '../../pipes/group-cast-by-name/group-cast-by-name.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { FilterModule } from '../../pipes/filter/filter.module';
     DetailedPageHeroCrewComponent,
     DetailedPageBodyComponent,
     DetailedPageSectionComponent,
-    GroupCastByNamePipe,
     DetailedPageHeroKnownForComponent,
     DetailedPageRolesComponent,
   ],
@@ -64,6 +63,7 @@ import { FilterModule } from '../../pipes/filter/filter.module';
     GroupByModule,
     FindModule,
     FilterModule,
+    GroupCastByNameModule,
   ],
 })
 export class DetailedPageModule {}
