@@ -4,6 +4,7 @@ import { MainpageComponent } from './pages/mainpage/mainpage.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
 import { TvDetailsComponent } from './pages/tv-details/tv-details.component';
 import { PersonDetailsComponent } from './pages/person-details/person-details.component';
+import { CastPageComponent } from './pages/cast-page/cast-page.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,11 @@ const routes: Routes = [
       {
         path: ':id',
         component: TvDetailsComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: ':id/cast',
+        component: CastPageComponent,
       },
     ],
   },
@@ -26,6 +32,11 @@ const routes: Routes = [
       {
         path: ':id',
         component: MovieDetailsComponent,
+        pathMatch: 'full',
+      },
+      {
+        path: ':id/cast',
+        component: CastPageComponent,
       },
     ],
   },
