@@ -1,6 +1,6 @@
 import { KnownFor } from '../types/person';
 
-export function popularityFormula({
+export function countPopularity({
   rating,
   popularity,
   voteCount,

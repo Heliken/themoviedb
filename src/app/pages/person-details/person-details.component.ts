@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, tap, switchMap } from 'rxjs';
-import { popularityFormula } from 'src/app/helpers/popularity-formula';
+import { countPopularity } from 'src/app/helpers/popularity-formula';
 import { SortFunc } from 'src/app/pipes/sort/sort.pipe';
 import { DetailedDataAPIService } from 'src/app/services/detailed-data-api.service';
 import { KnownFor } from 'src/app/types/person';
@@ -21,7 +21,7 @@ export class PersonDetailsComponent {
   public knownForToShow = 8;
 
   public knownForSortFunc: SortFunc<KnownFor> = (a, b) =>
-    popularityFormula(b) - popularityFormula(a);
+    countPopularity(b) - countPopularity(a);
 
   public details$ = this.route.params.pipe(
     tap(() => this.isLoading$.next(true)),
