@@ -9,7 +9,6 @@ import { KnownFor } from 'src/app/types/person';
 @Component({
   selector: 'mdb-person-details',
   templateUrl: './person-details.component.html',
-  styleUrls: ['./person-details.component.scss'],
 })
 export class PersonDetailsComponent {
   constructor(
