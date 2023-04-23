@@ -18,6 +18,7 @@ import { Movie, MovieDetailed } from '../types/movie';
 import {
   KnownFor,
   KnownForAsCastDetails,
+  KnownForAsCreditsDetails,
   KnownForAsCrewDetails,
   Person,
   PersonDetailed,
@@ -115,7 +116,7 @@ export class DtoTransformService {
       title: name,
       poster: poster_path,
       rating: vote_average,
-      releaseDate: new Date(first_air_date),
+      releaseDate: first_air_date,
       mediaType: MediaType.Tv,
       description: overview,
       background: backdrop_path,
@@ -168,6 +169,7 @@ export class DtoTransformService {
     biography,
     birthday,
     place_of_birth,
+    known_for_department,
   }: PersonDTODetailed): PersonDetailed {
     return {
       name,
@@ -177,6 +179,7 @@ export class DtoTransformService {
       birthday,
       placeOfBirth: place_of_birth,
       mediaType: MediaType.Person,
+      knownForDepartment: known_for_department,
       combinedCredits:
         this.transformPersonDetailedCombinedCredits(combined_credits),
     };
@@ -209,16 +212,17 @@ export class DtoTransformService {
 
   transformKnownForAsCastDetails({
     character,
-  }: KnownForAsCastDTO): KnownForAsCastDetails {
+  }: KnownForAsCastDTO): KnownForAsCreditsDetails {
     return {
-      character,
+      job: character,
+      department: 'Acting',
     };
   }
 
   transformKnownForAsCrewDetails({
     job,
     department,
-  }: KnownForAsCrewDTO): KnownForAsCrewDetails {
+  }: KnownForAsCrewDTO): KnownForAsCreditsDetails {
     return {
       job,
       department,
