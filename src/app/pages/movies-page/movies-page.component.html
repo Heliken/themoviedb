@@ -1,1 +1,6 @@
-<p>movies-page works!</p>
+<ng-container *ngIf="results$ | async as results">
+  <mdb-pagination
+    [total]="results.totalPages"
+    [current]="results.page"
+    (pageSelect)="setPage($event)"></mdb-pagination>
+</ng-container>
