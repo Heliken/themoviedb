@@ -62,8 +62,16 @@
         }
 
         .ui-cards-grid_fullpage & {
-            @include bp('768') {
-                grid-template-columns: repeat(5, 1fr);
+            --ui-card-grid-fullpage-columns: 2;
+
+            grid-template-columns: repeat(var(--ui-card-grid-fullpage-columns), 1fr);
+
+            @include bp('540') {
+                --ui-card-grid-fullpage-columns: 4;
+            }
+
+            @include bp('1024') {
+                --ui-card-grid-fullpage-columns: 5;
             }
         }
     }
