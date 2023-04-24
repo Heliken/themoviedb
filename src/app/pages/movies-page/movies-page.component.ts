@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MoviesPageApiService } from './movies-page-api.service';
-import { switchMap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { UICardsGridType } from '../../types/ui-types/ui-cards-grid-type';
 
 @Component({
   selector: 'mdb-movies-page',
@@ -15,6 +16,10 @@ export class MoviesPageComponent {
     private moviesApiService: MoviesPageApiService
   ) {}
 
+  public fullpageGrid = UICardsGridType.fullpage;
+
+  public isLoading$ = new BehaviorSubject<boolean>(true);
+
   public setPage(newPage: number): void {
     this.router.navigate([], {
       relativeTo: this.route,
@@ -24,6 +29,8 @@ export class MoviesPageComponent {
   }
 
   public results$ = this.route.queryParams.pipe(
-    switchMap(params => this.moviesApiService.requestMovies(params))
+    tap(() => this.isLoading$.next(true)),
+    switchMap(params => this.moviesApiService.requestMovies(params)),
+    tap(() => this.isLoading$.next(false))
   );
 }
