@@ -1,0 +1,65 @@
+@import "src/app/styles/mixins.scss";
+
+.detailed-page-roles {
+
+    @include bp('768') {
+        column-count: 2;
+        column-gap: 20px;
+    }
+}
+
+.detailed-page-roles-section {
+    --detailed-roles-section-side-gaps: 14px;
+
+    background-color: rgb(var(--secondary));
+    break-inside: avoid-column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    &--title {
+        padding: 10px var(--detailed-roles-section-side-gaps);
+        border-bottom: 1px solid rgb(var(--primary));
+    }
+}
+
+.detailed-page-role {
+    font-size: 14px;
+    padding: 10px var(--detailed-roles-section-side-gaps);
+    display: grid;
+    gap: 4px 12px;
+    align-items: center;
+    grid-auto-flow: column;
+    border-bottom: 1px solid rgb(var(--primary));
+    grid-template-columns: 40px 1fr;
+    grid-template-areas: 
+        'date title'
+        'date role'
+    ;
+
+    &--date {
+        grid-area: date;
+        align-self: baseline;
+    }
+
+    &--title {
+        @include font-style(14px, 120%, 900);
+
+        grid-area: title;
+        cursor: pointer;
+        margin-right: auto;
+
+        @include bp('1280') {
+            &:hover {
+                color: rgb(var(--accent));
+            }
+        }
+
+    }
+
+    &--role {
+        grid-area: role;
+    }
+}

@@ -1,3 +1,5 @@
+@import "src/app/styles/mixins.scss";
+
 .detailed-page-crew {
     display: flex;
     flex-wrap: wrap;
@@ -7,6 +9,15 @@
 .detailed-page-crew-member {
     display: grid;
     row-gap: 2px;
+
+    &--title {
+        cursor: pointer;
+        @include bp('1280') {
+            &:hover {
+                color: rgb(var(--accent));
+            }
+        }
+    }
 
     &--name {
         font-size: 14px;

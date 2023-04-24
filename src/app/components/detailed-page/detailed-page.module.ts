@@ -16,6 +16,13 @@ import { GroupCastByNamePipe } from './pipes/group-cast-by-name.pipe';
 import { JoinModule } from '../../pipes/join/join.module';
 import { SortModule } from '../../pipes/sort/sort.module';
 import { RatingPickerModule } from '../rating-picker/rating-picker.module';
+import { DetailedPageHeroKnownForComponent } from './components/detailed-page-hero-known-for/detailed-page-hero-known-for.component';
+import { UiCardModule } from '../ui-card/ui-card.module';
+import { RouterLink } from '@angular/router';
+import { DetailedPageRolesComponent } from './components/detailed-page-roles/detailed-page-roles.component';
+import { GroupByModule } from '../../pipes/group-array-by/group-array-by.module';
+import { FindModule } from '../../pipes/find/find.module';
+import { FilterModule } from '../../pipes/filter/filter.module';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,8 @@ import { RatingPickerModule } from '../rating-picker/rating-picker.module';
     DetailedPageBodyComponent,
     DetailedPageSectionComponent,
     GroupCastByNamePipe,
+    DetailedPageHeroKnownForComponent,
+    DetailedPageRolesComponent,
   ],
   exports: [
     DetailedPageHeroRatingComponent,
@@ -38,6 +47,8 @@ import { RatingPickerModule } from '../rating-picker/rating-picker.module';
     DetailedPageHeroCrewComponent,
     DetailedPageBodyComponent,
     DetailedPageSectionComponent,
+    DetailedPageHeroKnownForComponent,
+    DetailedPageRolesComponent,
   ],
   imports: [
     CommonModule,
@@ -48,6 +59,11 @@ import { RatingPickerModule } from '../rating-picker/rating-picker.module';
     JoinModule,
     SortModule,
     RatingPickerModule,
+    UiCardModule,
+    RouterLink,
+    GroupByModule,
+    FindModule,
+    FilterModule,
   ],
 })
 export class DetailedPageModule {}

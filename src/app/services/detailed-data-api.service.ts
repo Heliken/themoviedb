@@ -6,6 +6,8 @@ import { MovieDTODetailed } from 'src/app/types/DTO/movie-dto';
 import { TvShowDTODetailed } from 'src/app/types/DTO/tv-show-dto';
 import { MovieDetailed } from 'src/app/types/movie';
 import { TvShowDetailed } from 'src/app/types/tv-show';
+import { PersonDetailed } from '../types/person';
+import { PersonDTODetailed } from '../types/DTO/person-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -26,5 +28,13 @@ export class DetailedDataAPIService {
     return this.http
       .get<TvShowDTODetailed>(`tv/${id}?append_to_response=credits`)
       .pipe(map(tvShow => this.dtoTransform.transformTVShowDetailed(tvShow)));
+  }
+
+  requestPersonDetailedData(id: number): Observable<PersonDetailed> {
+    return this.http
+      .get<PersonDTODetailed>(
+        `person/${id}?append_to_response=combined_credits`
+      )
+      .pipe(map(person => this.dtoTransform.transformPersonDetailed(person)));
   }
 }

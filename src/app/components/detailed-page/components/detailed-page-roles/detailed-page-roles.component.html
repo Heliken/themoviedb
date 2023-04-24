@@ -1,0 +1,45 @@
+<div class="detailed-page-roles">
+  <ng-container *ngIf="rolesList | groupArrayBy : 'department' as groupedRoles">
+    <ng-container
+      *ngIf="
+        groupedRoles | find : mainKnownForFindFunc(mainKnownFor) as mainGroup
+      "
+      [ngTemplateOutlet]="section"
+      [ngTemplateOutletContext]="{
+        title: mainGroup.key,
+        list: mainGroup.value | sort : rolesByDateSortFunc
+      }">
+    </ng-container>
+    <ng-container
+      *ngFor="
+        let group of groupedRoles
+          | filter : notMainKnownForFilterFunc(mainKnownFor)
+          | sort : groupByAmountSortFunc
+      "
+      [ngTemplateOutlet]="section"
+      [ngTemplateOutletContext]="{
+        title: group.key,
+        list: group.value | sort : rolesByDateSortFunc
+      }">
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #section let-title="title" let-list="list">
+  <div class="detailed-page-roles-section">
+    <h4 class="detailed-page-roles-section--title h4">{{ title }}</h4>
+    <div class="detailed-page-roles-section--list">
+      <div class="detailed-page-role" *ngFor="let role of list">
+        <span class="detailed-page-role--date" *ngIf="role.releaseDate">
+          {{ role.releaseDate | date : 'yyyy' }}
+        </span>
+        <span
+          class="detailed-page-role--title"
+          [routerLink]="['/', role.mediaType, role.id]"
+          >{{ role.title }}</span
+        >
+        <span class="detailed-page-role--role">{{ role.job }}</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

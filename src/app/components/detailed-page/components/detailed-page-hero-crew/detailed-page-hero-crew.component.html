@@ -3,9 +3,11 @@
     <div
       *ngFor="let crewMember of crew | groupCastByName | sort : castSortFunc"
       class="detailed-page-crew-member">
-      <span class="detailed-page-crew-member--title">{{
-        crewMember.name
-      }}</span>
+      <span
+        [routerLink]="['/person', crewMember.id]"
+        class="detailed-page-crew-member--title"
+        >{{ crewMember.name }}</span
+      >
       <span class="detailed-page-crew-member--roles">{{
         crewMember.jobs | join
       }}</span>

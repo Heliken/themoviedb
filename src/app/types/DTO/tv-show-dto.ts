@@ -1,22 +1,14 @@
-import { MediaTypeDTO } from './media-item-dto';
+import { MediaType } from '../media-type';
+import { BaseMediaDTO } from './base-media-dto';
 import { MovieTVDetailsDTO } from './movie-tv-details-dto';
 import { Rated } from './rated-dto';
 
-export interface TvShowDTO {
-  backdrop_path: null | string;
+export interface TvShowDTO extends BaseMediaDTO {
   first_air_date: string;
-  genre_ids: number[];
-  id: number;
   name: string;
   origin_country: string[];
-  original_language: string;
   original_name: string;
-  overview: string;
-  popularity: number;
-  poster_path: null | string;
-  vote_average: number;
-  vote_count: number;
-  media_type?: MediaTypeDTO.Tv;
+  media_type: MediaType.Tv;
 }
 
 export type TvShowDTODetailed = TvShowDTO &

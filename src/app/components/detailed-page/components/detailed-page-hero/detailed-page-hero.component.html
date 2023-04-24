@@ -2,7 +2,9 @@
   <ng-content select="[background]"></ng-content>
   <div class="container">
     <h3 class="h1 detailed-hero--title">{{ title }}</h3>
-    <div class="detailed-hero--wrap">
+    <div
+      class="detailed-hero--wrap"
+      [class.detailed-hero--wrap_person]="isPersonPage">
       <div class="detailed-hero--poster">
         <img
           *ngIf="img"
@@ -10,12 +12,7 @@
           [src]="img | imgSrc : posterSizeType : posterSize"
           [alt]="title" />
       </div>
-      <div class="detailed-hero--content">
-        <ng-content select="[description]"></ng-content>
-        <div class="detailed-hero--other">
-          <ng-content select="[other]"></ng-content>
-        </div>
-      </div>
+      <ng-content select="[content]"></ng-content>
     </div>
   </div>
 </section>
