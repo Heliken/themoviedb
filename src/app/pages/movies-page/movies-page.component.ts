@@ -21,6 +21,8 @@ export class MoviesPageComponent {
   public isLoading$ = new BehaviorSubject<boolean>(true);
 
   public setPage(newPage: number): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { page: newPage },
