@@ -54,17 +54,6 @@
                     "poster description"
                     "poster other"
                     "knownFor knownFor";
-
-                .detailed-hero {
-                    &--content {
-                        display: contents;
-                    }
-
-                    &--other {
-                        display: grid;
-                        grid-area: other;
-                    }
-                }
             }
 
             @include bp('1280') {
@@ -120,10 +109,6 @@
 
             &--rating {
                 justify-self: flex-start;
-
-                @include bp('768') {
-                    order: -1;
-                }
             }
         }
     }   
