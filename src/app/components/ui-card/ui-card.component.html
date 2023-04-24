@@ -6,7 +6,7 @@
   <div class="ui-card--img-wrap">
     <img
       *ngIf="dataItem.image"
-      [src]="dataItem.image | imgSrc"
+      [src]="dataItem.image | imgSrc : imageSizeType : imgSize"
       [alt]="dataItem.title"
       class="ui-card--img" />
   </div>

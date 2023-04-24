@@ -14,4 +14,12 @@ export class UiCardsGridComponent {
   trackById(_: number, item: GridMediaItem): number {
     return item.id;
   }
+
+  public fullpageGrid = UICardsGridType.fullpage;
+
+  public cardImgSize = {
+    [UICardsGridType.fullpage]: 'w342',
+    [UICardsGridType.default]: 'w185',
+    [UICardsGridType.mobileScroll]: 'w185',
+  };
 }

@@ -60,5 +60,11 @@
             grid-template-columns: var(--ui-card-grid-card-size);
             grid-auto-columns: var(--ui-card-grid-card-size);
         }
+
+        .ui-cards-grid_fullpage & {
+            @include bp('768') {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
     }
 }
