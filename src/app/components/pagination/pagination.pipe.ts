@@ -22,7 +22,7 @@ export class PaginationPipe implements PipeTransform {
       return [1, ...this.getFilledArray(2, 4), undefined, totalPages];
     }
 
-    if (currentPage >= totalPages - 4) {
+    if (currentPage > totalPages - 4) {
       return [
         1,
         undefined,
@@ -34,7 +34,7 @@ export class PaginationPipe implements PipeTransform {
     return [
       1,
       undefined,
-      ...this.getFilledArray(currentPage - 1, 4),
+      ...this.getFilledArray(currentPage - 1, 3),
       undefined,
       totalPages,
     ];
