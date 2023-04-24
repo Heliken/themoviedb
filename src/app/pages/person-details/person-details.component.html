@@ -5,7 +5,7 @@
         [isPersonPage]="true"
         [title]="details.name"
         [img]="details.photo">
-        <ng-container description>
+        <ng-container content>
           <mdb-detailed-page-hero-section
             *ngIf="details.biography"
             class="detailed-hero--description detailed-hero--description_small"
@@ -22,18 +22,18 @@
                 | toGridItems
             ">
           </mdb-detailed-page-hero-known-for>
-        </ng-container>
-        <ng-container other>
-          <mdb-detailed-page-hero-section
-            *ngIf="details.birthday"
-            [title]="'Date of birth:'">
-            <p>{{ details.birthday | date : 'dd MMMM yyyy' }}</p>
-          </mdb-detailed-page-hero-section>
-          <mdb-detailed-page-hero-section
-            *ngIf="details.placeOfBirth"
-            [title]="'Place of birth:'">
-            <p>{{ details.placeOfBirth }}</p>
-          </mdb-detailed-page-hero-section>
+          <div class="detailed-hero--other">
+            <mdb-detailed-page-hero-section
+              *ngIf="details.birthday"
+              [title]="'Date of birth:'">
+              <p>{{ details.birthday | date : 'dd MMMM yyyy' }}</p>
+            </mdb-detailed-page-hero-section>
+            <mdb-detailed-page-hero-section
+              *ngIf="details.placeOfBirth"
+              [title]="'Place of birth:'">
+              <p>{{ details.placeOfBirth }}</p>
+            </mdb-detailed-page-hero-section>
+          </div>
         </ng-container>
       </mdb-detailed-page-hero>
       <mdb-detailed-page-body>

@@ -7,7 +7,7 @@ export interface TvShow {
   poster: string | null;
   title: string;
   mediaType: MediaType.Tv;
-  releaseDate: string;
+  releaseDate?: Date;
   rating?: number;
   description: string;
   background: string | null;

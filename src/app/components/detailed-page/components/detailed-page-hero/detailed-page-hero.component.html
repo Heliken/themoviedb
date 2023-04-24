@@ -12,12 +12,7 @@
           [src]="img | imgSrc : posterSizeType : posterSize"
           [alt]="title" />
       </div>
-      <div class="detailed-hero--content">
-        <ng-content select="[description]"></ng-content>
-        <div class="detailed-hero--other">
-          <ng-content select="[other]"></ng-content>
-        </div>
-      </div>
+      <ng-content select="[content]"></ng-content>
     </div>
   </div>
 </section>
