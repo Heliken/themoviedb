@@ -30,13 +30,16 @@
         align-items: flex-start;
         grid-gap: 10px 16px;
         grid-template-columns: var(--detailed-hero-poster-size) auto;
+        grid-template-rows: auto 1fr;
         grid-template-areas: 
             "poster other"
             "description description";
 
         @include bp('768') { 
             grid-gap: 20px 24px;
-            grid-template-areas: "poster other";
+            grid-template-areas: 
+                "poster other"
+                "poster description";
         }
 
         &_person {
@@ -85,23 +88,6 @@
 
     &--content {
         display: contents;
-
-        @include bp('768') {
-            display: grid;
-            grid-row-gap: 12px;
-            grid-area: other;
-        }
-    }
-
-    &--other {
-        grid-area: other;
-        display: grid;
-        grid-row-gap: 12px;
-
-        @include bp('768') { 
-            grid-area: unset;
-            display: contents;
-        }
     }
 
     &::ng-deep {
@@ -117,13 +103,15 @@
             &--description {
                 grid-area: description;
 
-                @include bp('768') {
-                    grid-area: unset;
-                }
-
                 &_small {
                     font-size: 14px;
                 }
+            }
+
+            &--other {
+                grid-area: other;
+                display: grid;
+                grid-row-gap: 12px;
             }
 
             &--known-for {
