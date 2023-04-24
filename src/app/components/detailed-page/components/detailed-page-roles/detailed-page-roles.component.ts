@@ -36,14 +36,10 @@ export class DetailedPageRolesComponent {
   };
 
   public rolesByDateSortFunc: SortFunc<KnownForAsCredits> = (a, b) => {
-    const aDate = new Date(a.releaseDate);
-    const bDate = new Date(b.releaseDate);
+    const aDate = a.releaseDate;
+    const bDate = b.releaseDate;
 
     // move movies/tv-shows with empty string as date to the top, as on themoviedb
-    return isNaN(aDate.getTime())
-      ? -1
-      : isNaN(bDate.getTime())
-      ? 1
-      : bDate.getTime() - aDate.getTime();
+    return !aDate ? -1 : !bDate ? 1 : bDate.getTime() - aDate.getTime();
   };
 }
