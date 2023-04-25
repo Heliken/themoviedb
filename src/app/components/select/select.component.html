@@ -1,0 +1,11 @@
+<label class="select" *ngIf="selectControl">
+  <span class="select--title" *ngIf="title">{{ title }}</span>
+  <select class="select--input" [formControl]="selectControl">
+    <option
+      *ngFor="let option of options"
+      class="select--option"
+      [value]="option.value">
+      {{ option.key }}
+    </option>
+  </select>
+</label>

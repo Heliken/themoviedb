@@ -1,0 +1,30 @@
+.select {
+    position: relative;
+    padding: 8px;
+    border-radius: 2px;
+    background-color: rgb(var(--secondary));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    grid-auto-flow: column;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    line-height: 20px;
+
+
+    &--input {
+
+        cursor: pointer;
+        color: rgb(var(--accent));
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        outline: none;
+        border: none;
+        box-shadow: none;
+        line-height: inherit;
+    }
+
+    &--option {
+        color: rgb(var(--primary));
+    }
+}
