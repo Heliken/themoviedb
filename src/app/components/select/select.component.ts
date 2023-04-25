@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SelectOption } from '../../types/ui-types/sorting-option';
+import { SelectOption } from '../../types/ui-types/select-option';
 
 @Component({
   selector: 'mdb-select',
