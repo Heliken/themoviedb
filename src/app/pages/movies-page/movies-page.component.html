@@ -1,6 +1,13 @@
 <div class="movies-page">
   <div class="container">
     <h1 class="movies-page--title h2">Explore our movies library</h1>
+    <div class="movies-page--controls">
+      <mdb-select
+        class="movies-page--sort"
+        title="Sort by:"
+        [selectControl]="sortFormControl"
+        [options]="sortingOptions"></mdb-select>
+    </div>
   </div>
   <ng-container *ngIf="{ state: (isLoading$ | async) === false } as isLoading">
     <ng-container *ngIf="results$ | async as response; else preloader">

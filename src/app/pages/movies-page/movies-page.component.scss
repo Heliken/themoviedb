@@ -2,4 +2,16 @@
     padding: 20px 0;
     display: grid;
     grid-gap: 20px;
+
+    &--title {
+        margin-bottom: 20px;
+    }
+
+    &--controls {
+        display: flex;
+    }
+
+    &--sort {
+        margin-left: auto;
+    }
 }
