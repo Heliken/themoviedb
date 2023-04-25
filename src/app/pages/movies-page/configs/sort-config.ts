@@ -6,8 +6,8 @@ export const sortTypeKeys = {
   [SortType.popularityDesc]: 'Most popular',
   [SortType.releaseDateAsc]: 'Oldest',
   [SortType.releaseDateDesc]: 'Newest',
-  [SortType.voteAverageAsc]: 'Best rating',
-  [SortType.voteAverageDesc]: 'Worst rating',
+  [SortType.voteAverageAsc]: 'Worst rating',
+  [SortType.voteAverageDesc]: 'Best rating',
 };
 
 export const sortingOptions: SelectOption[] = Object.values(SortType).map(
