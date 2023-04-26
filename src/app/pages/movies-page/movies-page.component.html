@@ -7,7 +7,8 @@
           class="movies-page--sort"
           title="Sort by:"
           [selectControl]="controlsFormGroup.controls.sort_by"
-          [options]="sortingOptions"></mdb-select>
+          [options]="sortingOptions"
+          (selectChange)="setSorting($event)"></mdb-select>
       </div>
     </div>
     <ng-container
