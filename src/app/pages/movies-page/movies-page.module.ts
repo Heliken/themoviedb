@@ -7,9 +7,10 @@ import { UiCardsGridModule } from '../../components/ui-cards-grid/ui-cards-grid.
 import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.module';
 import { SelectModule } from '../../components/select/select.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MoviesPageFiltersComponent } from './components/movies-page-filters/movies-page-filters.component';
 
 @NgModule({
-  declarations: [MoviesPageComponent],
+  declarations: [MoviesPageComponent, MoviesPageFiltersComponent],
   imports: [
     CommonModule,
     PaginationModule,

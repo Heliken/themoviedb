@@ -1,0 +1,9 @@
+<div class="movies-page-filters">
+  <div class="movies-page-filters--btn" (click)="toggleFilters()">⚖</div>
+  <div
+    class="movies-page-filters--body"
+    [class.movies-page-filters--body_active]="showFilters">
+    <div class="movies-page-filters--close" (click)="toggleFilters()">✖</div>
+    <ng-content> </ng-content>
+  </div>
+</div>
