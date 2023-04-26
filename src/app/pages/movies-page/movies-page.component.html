@@ -16,6 +16,7 @@
       <ng-container *ngIf="results$ | async as response; else preloader">
         <ng-container *ngIf="isLoading.state; else gridPreloader">
           <mdb-ui-cards-grid
+            *ngIf="response.results.length; else emptyState"
             [type]="fullpageGrid"
             [dataList]="response.results | toGridItems"></mdb-ui-cards-grid>
         </ng-container>
@@ -27,6 +28,13 @@
     </ng-container>
 
     <ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>
+    <ng-template #emptyState>
+      <div class="container">
+        <div class="movies-page--empty">
+          No results matching your filters, try another search!
+        </div>
+      </div>
+    </ng-template>
   </div>
 </form>
 <ng-template #gridPreloader>
