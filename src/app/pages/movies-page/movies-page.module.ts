@@ -8,10 +8,15 @@ import { ToGridItemsModule } from '../../pipes/to-grid-items/to-grid-items.modul
 import { SelectModule } from '../../components/select/select.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MoviesPageFiltersComponent } from './components/movies-page-filters/movies-page-filters.component';
+import { MoviesPageGenresComponent } from './components/movies-page-genres/movies-page-genres.component';
 import { DaterangeModule } from '../../components/daterange/daterange.module';
 
 @NgModule({
-  declarations: [MoviesPageComponent, MoviesPageFiltersComponent],
+  declarations: [
+    MoviesPageComponent,
+    MoviesPageFiltersComponent,
+    MoviesPageGenresComponent,
+  ],
   imports: [
     CommonModule,
     PaginationModule,

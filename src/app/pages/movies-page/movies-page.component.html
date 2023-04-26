@@ -6,6 +6,10 @@
       <div class="movies-page--controls">
         <mdb-movies-page-filters class="movies-page--filters">
           <div class="movies-page-filter">
+            <p class="movies-page-filter--title">Choose genre:</p>
+            <mdb-movies-page-genres></mdb-movies-page-genres>
+          </div>
+          <div class="movies-page-filter">
             <p class="movies-page-filter--title">Choose release date:</p>
             <mdb-daterange
               (dateChanged)="setReleaseDate($event)"
