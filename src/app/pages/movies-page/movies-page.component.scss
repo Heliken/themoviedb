@@ -27,3 +27,17 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 }
+
+.movies-page-filter {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    &--title {
+        @include font-style(14px, 120%, 900);
+
+        text-transform: uppercase;
+        color: rgb(var(--accent));
+        margin-bottom: 6px;
+    }
+}

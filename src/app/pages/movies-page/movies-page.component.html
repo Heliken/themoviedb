@@ -2,7 +2,18 @@
   <div class="movies-page">
     <div class="container">
       <h1 class="movies-page--title h2">Explore our movies library</h1>
+
       <div class="movies-page--controls">
+        <mdb-movies-page-filters class="movies-page--filters">
+          <div class="movies-page-filter">
+            <p class="movies-page-filter--title">Choose release date:</p>
+            <mdb-daterange
+              (dateChanged)="setReleaseDate($event)"
+              [dateFormGroup]="
+                controlsFormGroup.controls.releaseDate
+              "></mdb-daterange>
+          </div>
+        </mdb-movies-page-filters>
         <mdb-select
           class="movies-page--sort"
           title="Sort by:"
