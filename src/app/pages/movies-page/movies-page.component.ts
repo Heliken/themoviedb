@@ -23,7 +23,6 @@ export class MoviesPageComponent {
   // used only to store values for UI
   public controlsFormGroup = this.formBuilder.group({
     sort_by: new FormControl<SortType>(defaultSortOption),
-    page: new FormControl<number>(1),
   });
 
   public fullpageGrid = UICardsGridType.fullpage;
