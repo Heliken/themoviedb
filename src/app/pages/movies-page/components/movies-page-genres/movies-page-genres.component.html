@@ -1,5 +1,11 @@
-<div class="movies-page-genres">
-  <div *ngFor="let genre of genres$ | async" class="movies-page-genres--unit">
+<div class="movies-page-genres" *ngIf="genresFormControl">
+  <div
+    *ngFor="let genre of genres$ | async"
+    class="movies-page-genres--unit"
+    [class.movies-page-genres--unit_active]="
+      genresFormControl.value && (genresFormControl.value | includes : genre.id)
+    "
+    (click)="toggleGenre(genre.id)">
     {{ genre.name }}
   </div>
 </div>

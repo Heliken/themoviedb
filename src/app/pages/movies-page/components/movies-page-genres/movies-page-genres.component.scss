@@ -16,8 +16,7 @@
         border: 2px solid rgb(var(--neutral));
 
         &_active {
-            color: rgb(var(--accent));
-            border-color: currentColor;
+            border-color: rgb(var(--accent));
         }
 
         @include bp('1280') {
