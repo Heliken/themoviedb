@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { genres } from '../../configs/sort-config';
 
 @Component({
   selector: 'mdb-movies-page-filters',
@@ -12,6 +11,4 @@ export class MoviesPageFiltersComponent {
   public toggleFilters(): void {
     this.showFilters = !this.showFilters;
   }
-
-  public genres = genres;
 }
