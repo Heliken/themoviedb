@@ -30,12 +30,6 @@ export class DetailedDataAPIService {
       .pipe(map(tvShow => this.dtoTransform.transformTVShowDetailed(tvShow)));
   }
 
-  requestMovieCast(id: number): Observable<MovieDetailed> {
-    return this.http
-      .get<MovieDTODetailed>(`movie/${id}?append_to_response=credits`)
-      .pipe(map(movie => this.dtoTransform.transformMovieDetailed(movie)));
-  }
-
   requestPersonDetailedData(id: number): Observable<PersonDetailed> {
     return this.http
       .get<PersonDTODetailed>(
