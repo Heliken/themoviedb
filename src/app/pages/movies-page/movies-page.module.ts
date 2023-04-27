@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MoviesPageFiltersComponent } from './components/movies-page-filters/movies-page-filters.component';
 import { MoviesPageGenresComponent } from './components/movies-page-genres/movies-page-genres.component';
 import { DaterangeModule } from '../../components/daterange/daterange.module';
+import { IncludesModule } from '../../pipes/includes/includes.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { DaterangeModule } from '../../components/daterange/daterange.module';
     SelectModule,
     ReactiveFormsModule,
     DaterangeModule,
+    IncludesModule,
   ],
 })
 export class MoviesPageModule {}

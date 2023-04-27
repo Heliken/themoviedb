@@ -6,8 +6,8 @@ import { UICardsGridType } from '../../types/ui-types/ui-cards-grid-type';
 import { SortType } from './types/sort-types';
 import { defaultSortOption, sortingOptions } from './configs/sort-config';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { MatchMediaService } from '../../services/match-media.service';
 import { DaterangeForm, DaterangeValue } from '../../types/ui-types/daterange';
+import { GenresQueryParam } from '../../types/ui-types/genres-form-control';
 @Component({
   selector: 'mdb-movies-page',
   templateUrl: './movies-page.component.html',
@@ -28,6 +28,7 @@ export class MoviesPageComponent {
       min: new FormControl<string | null>(null),
       max: new FormControl<string | null>(null),
     }),
+    genres: new FormControl<GenresQueryParam>(null),
   });
 
   public fullpageGrid = UICardsGridType.fullpage;
@@ -52,6 +53,13 @@ export class MoviesPageComponent {
     });
   }
 
+  public setGenres(genres: GenresQueryParam) {
+    this.setQueryParams({
+      page: undefined,
+      with_genres: genres && genres.length ? genres.join(',') : undefined,
+    });
+  }
+
   // used as source of state of the page, only patches value to formGroup to correctly update UI
   public results$ = this.route.queryParams.pipe(
     tap(() => this.isLoading$.next(true)),
@@ -63,7 +71,15 @@ export class MoviesPageComponent {
         max: params['release_date.lte'],
       };
       this.controlsFormGroup.patchValue(
-        { ...params, releaseDate },
+        {
+          ...params,
+          releaseDate,
+          genres: params['with_genres']
+            ? params['with_genres']
+                .split(',')
+                .map((val: string) => parseInt(val))
+            : null,
+        },
         { emitEvent: false }
       );
     }),
