@@ -8,6 +8,8 @@ import { defaultSortOption, sortingOptions } from './configs/sort-config';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { DaterangeForm, DaterangeValue } from '../../types/ui-types/daterange';
 import { GenresQueryParam } from '../../types/ui-types/genres-form-control';
+import { queryParamsKeys } from './configs/query-params-keys';
+
 @Component({
   selector: 'mdb-movies-page',
   templateUrl: './movies-page.component.html',
@@ -45,18 +47,18 @@ export class MoviesPageComponent {
   }
 
   public setReleaseDate({ min, max }: DaterangeValue) {
-    console.log('setReleaseDate');
     this.setQueryParams({
       page: undefined,
-      ['release_date.gte']: min,
-      ['release_date.lte']: max,
+      [queryParamsKeys.releaseDate.min]: min,
+      [queryParamsKeys.releaseDate.max]: max,
     });
   }
 
   public setGenres(genres: GenresQueryParam) {
     this.setQueryParams({
       page: undefined,
-      with_genres: genres && genres.length ? genres.join(',') : undefined,
+      [queryParamsKeys.genres]:
+        genres && genres.length ? genres.join(',') : undefined,
     });
   }
 
@@ -65,20 +67,9 @@ export class MoviesPageComponent {
     tap(() => this.isLoading$.next(true)),
     tap(params => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      // todo: move all params to some sort of enum, find a way to map params before passing to controlsFomrGroup
-      const releaseDate = {
-        min: params['release_date.gte'],
-        max: params['release_date.lte'],
-      };
       this.controlsFormGroup.patchValue(
         {
-          ...params,
-          releaseDate,
-          genres: params['with_genres']
-            ? params['with_genres']
-                .split(',')
-                .map((val: string) => parseInt(val))
-            : null,
+          ...this.mapQueryParamsToFormGroup(params),
         },
         { emitEvent: false }
       );
@@ -87,6 +78,21 @@ export class MoviesPageComponent {
     distinctUntilChanged(),
     tap(() => this.isLoading$.next(false))
   );
+
+  public mapQueryParamsToFormGroup(params: Params) {
+    return {
+      releaseDate: {
+        min: params[queryParamsKeys.releaseDate.min],
+        max: params[queryParamsKeys.releaseDate.max],
+      },
+      genres: params[queryParamsKeys.genres]
+        ? params[queryParamsKeys.genres]
+            .split(',')
+            .map((val: string) => parseInt(val))
+        : null,
+      ...params,
+    };
+  }
 
   public setQueryParams(params: Params) {
     this.router.navigate([], {
