@@ -44,6 +44,7 @@ export class MoviesPageComponent {
   }
 
   public setReleaseDate({ min, max }: DaterangeValue) {
+    console.log('setReleaseDate');
     this.setQueryParams({
       page: undefined,
       ['release_date.gte']: min,
@@ -56,11 +57,15 @@ export class MoviesPageComponent {
     tap(() => this.isLoading$.next(true)),
     tap(params => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      // todo: move all params to some sort of enum, find a way to map params before passing to controlsFomrGroup
       const releaseDate = {
         min: params['release_date.gte'],
         max: params['release_date.lte'],
       };
-      this.controlsFormGroup.patchValue({ ...params, releaseDate });
+      this.controlsFormGroup.patchValue(
+        { ...params, releaseDate },
+        { emitEvent: false }
+      );
     }),
     switchMap(params => this.moviesApiService.requestMovies(params)),
     distinctUntilChanged(),
