@@ -12,7 +12,7 @@ Project feature branch deployed on [Github Pages](https://heliken.github.io/them
     - [x] trending, popular and upcoming moves or tv-series
     - [x] live search
 - [x] 2. Movie/tv-series details page
-- [ ] 3. Person details page
+- [x] 3. Person details page
 ---
 ### Nice to have
 - [x] Live search sholud search movies, tv-series and people simultaneously.
@@ -20,7 +20,7 @@ Project feature branch deployed on [Github Pages](https://heliken.github.io/them
     - [ ] sorting
     - [ ] filtering by genres and date range
 - [x] Rating on movie/tv-show detailed page with guest session
-- [ ] subpage of a movie details page with a list of cast and crew members
+- [x] subpage of a movie details page with a list of cast and crew members
 ---
 ### Extra hard level
 - [ ] authentification feature similar to oAuth
