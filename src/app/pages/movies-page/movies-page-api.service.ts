@@ -8,6 +8,8 @@ import { Observable, map } from 'rxjs';
 import { DISCOVER_MAX_PAGE } from '../../../api-info';
 import { DiscoverResponse } from '../../types/discover-response';
 import { Movie } from '../../types/movie';
+import { GenresRequestResponse } from '../../types/DTO/genres-request';
+import { Genre } from '../../types/genre';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +33,12 @@ export class MoviesPageApiService {
         params,
       })
       .pipe(map(res => this.dtoTranform.transformDiscoverResponse(res)));
+  }
+
+  requestGenres(): Observable<Genre[]> {
+    return this.http
+      .get<GenresRequestResponse>('genre/movie/list')
+      .pipe(map(({ genres }) => genres));
   }
 
   pageGuard(page: string) {

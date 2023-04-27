@@ -1,5 +1,5 @@
 <div class="movies-page-genres">
-  <div *ngFor="let genre of genres" class="movies-page-genres--unit">
+  <div *ngFor="let genre of genres$ | async" class="movies-page-genres--unit">
     {{ genre.name }}
   </div>
 </div>

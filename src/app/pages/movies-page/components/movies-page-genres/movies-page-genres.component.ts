@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { genres } from '../../configs/sort-config';
+import { MoviesPageApiService } from '../../movies-page-api.service';
 
 @Component({
   selector: 'mdb-movies-page-genres',
@@ -7,5 +7,6 @@ import { genres } from '../../configs/sort-config';
   styleUrls: ['./movies-page-genres.component.scss'],
 })
 export class MoviesPageGenresComponent {
-  public genres = genres;
+  constructor(private moviesApiService: MoviesPageApiService) {}
+  public genres$ = this.moviesApiService.requestGenres();
 }
