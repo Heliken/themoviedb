@@ -8,7 +8,6 @@
         @include font-style(14px, 120%, 600);
 
         user-select: none;
-        cursor: pointer;
         background-color: rgb(var(--secondary));
         min-width: 32px;
         height: 32px;
@@ -20,17 +19,19 @@
             color: rgb(var(--accent));
         }
 
-        &_inactive {
-            pointer-events: none;
-        }
-
         @include bp('1280') {
             font-size: 16px;
             min-width: 40px;
             height: 40px;
+        }
 
-            &:hover {
-                text-decoration: underline;
+        &:not(.pagination--unit_blank) { 
+            cursor: pointer;
+
+            @include bp('1280') {
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }
