@@ -15,8 +15,6 @@ export class UiCardsGridComponent {
     return item.id;
   }
 
-  public fullpageGrid = UICardsGridType.fullpage;
-
   public cardImgSize = {
     [UICardsGridType.fullpage]: 'w342',
     [UICardsGridType.default]: 'w185',
