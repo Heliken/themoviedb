@@ -1,0 +1,19 @@
+<div class="daterange" *ngIf="dateFormGroup">
+  <div class="daterange--body">
+    <label class="input-label">
+      <span class="input-label--title">From:</span>
+      <input
+        type="date"
+        class="input"
+        [formControl]="dateFormGroup.controls.min" />
+    </label>
+    <label class="input-label">
+      <span class="input-label--title">To:</span>
+      <input
+        type="date"
+        class="input"
+        [formControl]="dateFormGroup.controls.max" />
+    </label>
+  </div>
+  <span class="daterange--clear" (click)="clearDates()">Clear dates</span>
+</div>

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { GridMediaItem } from 'src/app/types/ui-types/grid-media-item';
+import { UICardsGridType } from '../../types/ui-types/ui-cards-grid-type';
 
 @Component({
   selector: 'mdb-ui-cards-grid',
@@ -8,9 +9,17 @@ import { GridMediaItem } from 'src/app/types/ui-types/grid-media-item';
 })
 export class UiCardsGridComponent {
   @Input() public dataList: GridMediaItem[] = [];
-  @Input() public withMobileScroll = false;
+  @Input() public type = UICardsGridType.default;
 
   trackById(_: number, item: GridMediaItem): number {
     return item.id;
   }
+
+  public fullpageGrid = UICardsGridType.fullpage;
+
+  public cardImgSize = {
+    [UICardsGridType.fullpage]: 'w342',
+    [UICardsGridType.default]: 'w185',
+    [UICardsGridType.mobileScroll]: 'w185',
+  };
 }

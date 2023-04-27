@@ -24,6 +24,17 @@
     }
 }
 
+.input-label {
+    display: block;
+    max-width: 100%;
+    &--title {
+        @include font-style(10px, 100%, 900);
+
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+}
+
 @mixin input-range-thumb {
     box-shadow: none;
     border: 1px solid rgb(var(--primary));

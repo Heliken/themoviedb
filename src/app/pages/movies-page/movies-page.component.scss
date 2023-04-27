@@ -1,0 +1,43 @@
+@import "src/app/styles/mixins.scss";
+
+.movies-page {
+    padding: 20px 0;
+    display: grid;
+    grid-gap: 20px;
+
+    &--title {
+        margin-bottom: 20px;
+    }
+
+    &--controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+    }
+
+    &--empty {
+        @include font-style(18px, 120%, 700);
+
+        background: rgb(var(--secondary));
+        padding: 20px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}
+
+.movies-page-filter {
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    &--title {
+        @include font-style(14px, 120%, 900);
+
+        text-transform: uppercase;
+        color: rgb(var(--accent));
+        margin-bottom: 6px;
+    }
+}

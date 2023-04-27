@@ -7,12 +7,17 @@ import { PersonDetailsComponent } from './pages/person-details/person-details.co
 import { CastPageComponent } from './pages/cast-page/cast-page.component';
 import { MediaType } from './types/media-type';
 import { CastPageRouteData } from './types/cast-page-route-data';
+import { MoviesPageComponent } from './pages/movies-page/movies-page.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
     component: MainpageComponent,
+  },
+  {
+    path: 'movies',
+    component: MoviesPageComponent,
   },
   {
     path: 'tv',

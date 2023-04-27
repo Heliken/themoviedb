@@ -1,0 +1,28 @@
+@import "src/app/styles/mixins.scss";
+
+.movies-page-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    &--unit {
+        @include font-style(11px, 140%, 700);
+
+        cursor: pointer;
+        text-transform: uppercase;
+        color: rgb(var(--neutral));
+        padding: 2px 4px;
+        border-radius: 6px;
+        border: 2px solid rgb(var(--neutral));
+
+        &_active {
+            border-color: rgb(var(--accent));
+        }
+
+        @include bp('1280') {
+            &:hover {
+                color: rgb(var(--accent));
+            }
+        }
+    }
+}
