@@ -1,0 +1,58 @@
+<ng-container *ngIf="{ state: (isLoading$ | async) === false } as isLoading">
+  <ng-container *ngIf="details$ | async as details; else preloader">
+    <ng-container *ngIf="isLoading.state; else preloader">
+      <div class="cast-page">
+        <div class="container">
+          <h1
+            class="h1 cast-page--title"
+            [routerLink]="['/', details.mediaType, details.id]">
+            {{ details.title }}
+          </h1>
+        </div>
+        <div class="cast-page--body">
+          <ng-container *ngIf="details.credits.cast as cast">
+            <ng-container
+              [ngTemplateOutlet]="section"
+              [ngTemplateOutletContext]="{
+                group: {
+                  key: 'Acting',
+                  value: cast
+                },
+                shouldBeGrouped: false
+              }"></ng-container>
+          </ng-container>
+          <ng-container
+            *ngIf="
+              details.credits.crew | groupArrayBy : 'department' as groupedCrew
+            ">
+            <ng-container
+              *ngFor="let group of groupedCrew"
+              [ngTemplateOutlet]="section"
+              [ngTemplateOutletContext]="{
+                group: group,
+                shouldBeGrouped: true
+              }"></ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</ng-container>
+<ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>
+
+<ng-template #section let-group="group" let-shouldBeGrouped="shouldBeGrouped">
+  <section class="cast-page-section">
+    <div class="container">
+      <h2 class="cast-page-section--title h2">{{ group.key }}</h2>
+    </div>
+    <mdb-ui-cards-grid
+      *ngIf="group.value as creditsGroupList"
+      class="search-result-section--grid"
+      [dataList]="
+        shouldBeGrouped
+          ? (creditsGroupList | groupCastByName | toGridItems)
+          : (creditsGroupList | toGridItems)
+      ">
+    </mdb-ui-cards-grid>
+  </section>
+</ng-template>

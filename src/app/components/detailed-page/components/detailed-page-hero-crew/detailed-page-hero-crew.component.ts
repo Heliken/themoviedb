@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Cast } from 'src/app/types/credits';
-import { CastWithJobs } from '../../pipes/group-cast-by-name.pipe';
 import { SortFunc } from 'src/app/pipes/sort/sort.pipe';
+import { CastWithJobs } from 'src/app/pipes/group-cast-by-name/group-cast-by-name.pipe';
 
 @Component({
   selector: 'mdb-detailed-page-hero-crew',

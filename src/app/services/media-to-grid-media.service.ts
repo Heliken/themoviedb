@@ -6,6 +6,7 @@ import { Person } from '../types/person';
 import { TvShow } from '../types/tv-show';
 import { Cast } from '../types/credits';
 import { isCast } from 'src/app/guards/cast-type-guard';
+import { CastWithJobs } from '../pipes/group-cast-by-name/group-cast-by-name.pipe';
 
 @Injectable({
   providedIn: 'root',
@@ -34,10 +35,15 @@ export class MediaToGridMediaService {
     };
   }
 
-  private castMapper(cast: Cast): GridMediaItem {
+  private castMapper(cast: Cast | CastWithJobs): GridMediaItem {
+    const subtitle =
+      cast.character ??
+      (cast as Cast).job ??
+      (cast as CastWithJobs).jobs.join(', ');
+
     return {
       ...this.personMapper(cast),
-      subtitle: cast.character,
+      subtitle,
     };
   }
 

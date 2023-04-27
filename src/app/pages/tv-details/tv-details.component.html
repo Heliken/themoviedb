@@ -42,6 +42,10 @@
         <mdb-detailed-page-section
           *ngIf="details.credits.cast.length"
           title="Series cast"
+          [link]="{
+            text: 'See all',
+            route: ['/', details.mediaType, details.id, 'cast']
+          }"
           [gridData]="
             details.credits.cast | slice : 0 : castToShow
           "></mdb-detailed-page-section>
