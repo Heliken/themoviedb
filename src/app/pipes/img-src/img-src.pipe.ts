@@ -50,7 +50,7 @@ export class ImgSrcPipe implements PipeTransform {
   transform(
     imgPath: string,
     type: ImageTypeSize = ImageTypeSize.poster,
-    size = this.defaultImgSize
+    size: ImgSize = this.defaultImgSize
   ): string {
     if (this.apiConfig) {
       const imgSize = this.replaceImgSizeIfMissing(
