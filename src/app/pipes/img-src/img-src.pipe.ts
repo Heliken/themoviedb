@@ -4,6 +4,7 @@ import {
   ConfigurationImages,
   ImageTypeSize,
 } from 'src/app/types/api-configuration';
+import { ImgSize } from '../../types/ui-types/img-size';
 
 @Pipe({
   name: 'imgSrc',
@@ -12,7 +13,7 @@ export class ImgSrcPipe implements PipeTransform {
   constructor(private apiConfigService: ApiConfigurationService) {}
 
   private apiConfig = this.apiConfigService.getConfig();
-  private defaultImgSize = 'w185';
+  private defaultImgSize = ImgSize.w185;
   private fallbackImgSize = 'original';
 
   private getImageSizeArray(
