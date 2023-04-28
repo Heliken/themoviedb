@@ -18,16 +18,27 @@
     }
 
     &--wrap {
+        gap: 20px;
+        align-items: center;
         display: flex;
+    }
+
+    &--logo {
+        width: 32px;
+
     }
 }
 
 .header-nav {
-    @include font-style(18px, 140%, 900);
+    @include font-style(14px, 140%, 900);
     display: flex;
     align-items: center;
 
     color: rgb(var(--neutral));
+
+    @include bp('768') {
+        font-size: 18px;
+    }
 
     &--unit {
         outline: none;

@@ -10,4 +10,10 @@ export class PaginationComponent {
   @Input() current?: number;
 
   @Output() pageSelect = new EventEmitter<number>();
+
+  public paginationClick(number: number | undefined) {
+    if (number !== undefined) {
+      this.pageSelect.emit(number);
+    }
+  }
 }

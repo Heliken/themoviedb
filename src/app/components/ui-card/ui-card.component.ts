@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { GridMediaItem } from 'src/app/types/ui-types/grid-media-item';
 import { ImageTypeSize } from '../../types/api-configuration';
+import { ImgSize } from '../../types/ui-types/img-size';
 
 @Component({
   selector: 'mdb-ui-card',
@@ -9,7 +10,7 @@ import { ImageTypeSize } from '../../types/api-configuration';
 })
 export class UiCardComponent {
   @Input() public dataItem?: GridMediaItem;
-  @Input() public imgSize = 'w185';
+  @Input() public imgSize = ImgSize.w185;
 
   public imageSizeType = ImageTypeSize.poster;
 }

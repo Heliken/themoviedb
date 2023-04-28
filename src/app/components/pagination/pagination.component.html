@@ -1,12 +1,14 @@
 <div class="pagination" *ngIf="total && current">
-  <div
-    *ngFor="let number of total | pagination : current"
-    class="pagination--unit"
-    (click)="number === undefined || pageSelect.emit(number)"
-    [ngClass]="{
-      'pagination--unit_active': number === current,
-      'pagination--unit_inactive': number === undefined
-    }">
-    {{ number || '...' }}
-  </div>
+  <ng-container *ngFor="let number of total | pagination : current">
+    <div
+      *ngIf="number; else blankButton"
+      class="pagination--unit"
+      [class.pagination--unit_active]="number === current"
+      (click)="paginationClick(number)">
+      {{ number }}
+    </div>
+  </ng-container>
+  <ng-template #blankButton>
+    <div class="pagination--unit pagination--unit_blank">...</div>
+  </ng-template>
 </div>
