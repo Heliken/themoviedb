@@ -1,0 +1,35 @@
+<form [formGroup]="controlsFormGroup">
+  <div class="movies-page">
+    <div class="container">
+      <h1 class="movies-page--title h2">Explore our movies library</h1>
+      <div class="movies-page--controls">
+        <mdb-select
+          class="movies-page--sort"
+          title="Sort by:"
+          [selectControl]="controlsFormGroup.controls.sort_by"
+          [options]="sortingOptions"
+          (selectChange)="setSorting($event)"></mdb-select>
+      </div>
+    </div>
+    <ng-container
+      *ngIf="{ state: (isLoading$ | async) === false } as isLoading">
+      <ng-container *ngIf="results$ | async as response; else preloader">
+        <ng-container *ngIf="isLoading.state; else gridPreloader">
+          <mdb-ui-cards-grid
+            [type]="fullpageGrid"
+            [dataList]="response.results | toGridItems"></mdb-ui-cards-grid>
+        </ng-container>
+        <mdb-pagination
+          [total]="response.totalPages"
+          [current]="response.page"
+          (pageSelect)="setPage($event)"></mdb-pagination>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #preloader><mdb-preloader></mdb-preloader></ng-template>
+  </div>
+</form>
+<ng-template #gridPreloader>
+  <mdb-ui-cards-grid-preloader
+    [type]="fullpageGrid"></mdb-ui-cards-grid-preloader>
+</ng-template>

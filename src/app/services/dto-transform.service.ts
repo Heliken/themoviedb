@@ -27,6 +27,9 @@ import { CastDTO, CastDetailsDTO, CreditsDTO } from '../types/DTO/credits-dto';
 import { Cast, CastDetails, Credits } from '../types/credits';
 import { MovieTVDetails } from '../types/movie-tv-details';
 import { MovieTVDetailsDTO } from '../types/DTO/movie-tv-details-dto';
+import { MediaListResponse } from '../types/media-list-response';
+import { DiscoverResponse } from '../types/discover-response';
+import { DISCOVER_MAX_PAGE } from '../../api-info';
 
 @Injectable({
   providedIn: 'root',
@@ -225,6 +228,19 @@ export class DtoTransformService {
     return {
       job,
       department,
+    };
+  }
+
+  transformDiscoverResponse({
+    page,
+    total_pages,
+    results,
+  }: MediaListResponse<MovieDTO>): DiscoverResponse<Movie> {
+    return {
+      page,
+      totalPages:
+        total_pages > DISCOVER_MAX_PAGE ? DISCOVER_MAX_PAGE : total_pages,
+      results: results.map(item => this.transformMovie(item)),
     };
   }
 }

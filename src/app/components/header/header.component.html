@@ -1,5 +1,18 @@
 <header class="header">
   <div class="container">
-    <mdb-search class="header--search"></mdb-search>
+    <div class="header--wrap">
+      <a routerLink="/">
+        <img class="header--logo" src="assets/logo.svg" alt="" />
+      </a>
+      <nav class="header-nav">
+        <a
+          class="header-nav--unit"
+          routerLinkActive="header-nav--unit_active"
+          routerLink="/movies"
+          >Movies</a
+        >
+      </nav>
+      <mdb-search class="header--search"></mdb-search>
+    </div>
   </div>
 </header>

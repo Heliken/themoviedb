@@ -16,6 +16,7 @@ import { ratingInitializerFactory } from './factories/rating-initializer.factory
 import { configInitializerFactory } from './factories/config-initializer.factory';
 import { PersonDetailsModule } from './pages/person-details/person-details.module';
 import { CastPageModule } from './pages/cast-page/cast-page.module';
+import { MoviesPageModule } from './pages/movies-page/movies-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +50,7 @@ import { CastPageModule } from './pages/cast-page/cast-page.module';
     TvDetailsModule,
     PersonDetailsModule,
     CastPageModule,
+    MoviesPageModule,
     NotificationModule,
   ],
 })
