@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CONFIG_CACHE_KEY } from 'src/api-info';
+import { CONFIG_CACHE_KEY, LOCAL_STORAGE_EXPIRATION_TIME } from 'src/api-info';
 import { ConfigurationResponse } from '../types/api-configuration';
 import { LocalStorageService } from './local-storage.service';
 import { Observable, of, tap } from 'rxjs';
@@ -40,7 +40,7 @@ export class ApiConfigurationService {
 
     this.localStorageService.setItem(this.cacheKey, {
       data: newConfig,
-      timestamp: Date.now().toString(),
+      expires: (Date.now() + LOCAL_STORAGE_EXPIRATION_TIME).toString(),
     });
   }
 }

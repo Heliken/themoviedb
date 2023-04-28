@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { LOCAL_STORAGE_EXPIRATION_TIME } from 'src/api-info';
 
 interface LocalStorageData<T> {
-  timestamp?: string;
+  expires?: string;
   data: T;
 }
 
@@ -15,9 +14,10 @@ export class LocalStorageService<T> {
 
     if (stringValue) {
       try {
-        const { timestamp, data } = JSON.parse(stringValue);
-        if (timestamp) {
-          const isExpired = this.checkExpiration(timestamp);
+        const { data, expires } = JSON.parse(stringValue);
+        if (expires) {
+          const isExpired = this.checkExpiration(expires);
+          console.log(isExpired);
           if (isExpired) {
             this.removeItem(key);
             return undefined;
@@ -45,7 +45,7 @@ export class LocalStorageService<T> {
     localStorage.removeItem(key);
   }
 
-  private checkExpiration(timestamp: string): boolean {
-    return Date.now() - parseInt(timestamp) > LOCAL_STORAGE_EXPIRATION_TIME;
+  private checkExpiration(expires: string): boolean {
+    return Date.now() - parseInt(expires) > 0;
   }
 }
