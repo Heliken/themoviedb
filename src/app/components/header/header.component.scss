@@ -1,3 +1,5 @@
+@import "src/app/styles/mixins.scss";
+
 .header {
     position: fixed;
     top: 0;
@@ -13,5 +15,44 @@
         display: block;
         margin-left: auto;
         max-width: 300px;
+    }
+
+    &--wrap {
+        gap: 20px;
+        align-items: center;
+        display: flex;
+    }
+
+    &--logo {
+        width: 32px;
+
+    }
+}
+
+.header-nav {
+    @include font-style(14px, 140%, 900);
+    display: flex;
+    align-items: center;
+
+    color: rgb(var(--neutral));
+
+    @include bp('768') {
+        font-size: 18px;
+    }
+
+    &--unit {
+        outline: none;
+        color: inherit;
+        text-decoration: none;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &_active {
+            color: rgb(var(--accent));
+        }
     }
 }

@@ -1,0 +1,38 @@
+@import "src/app/styles/mixins.scss";
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    &--unit {
+        @include font-style(14px, 120%, 600);
+
+        user-select: none;
+        background-color: rgb(var(--secondary));
+        min-width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &_active {
+            color: rgb(var(--accent));
+        }
+
+        @include bp('1280') {
+            font-size: 16px;
+            min-width: 40px;
+            height: 40px;
+        }
+
+        &:not(.pagination--unit_blank) { 
+            cursor: pointer;
+
+            @include bp('1280') {
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

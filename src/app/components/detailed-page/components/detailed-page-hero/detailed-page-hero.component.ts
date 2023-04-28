@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ImageTypeSize } from 'src/app/types/api-configuration';
+import { ImgSize } from '../../../../types/ui-types/img-size';
 @Component({
   selector: 'mdb-detailed-page-hero',
   templateUrl: './detailed-page-hero.component.html',
@@ -12,5 +13,5 @@ export class DetailedPageHeroComponent {
   @Input() public isPersonPage = false;
 
   public posterSizeType = ImageTypeSize.poster;
-  public posterSize = 'w342';
+  public posterSize = ImgSize.w342;
 }
