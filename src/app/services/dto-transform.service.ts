@@ -27,6 +27,8 @@ import { CastDTO, CastDetailsDTO, CreditsDTO } from '../types/DTO/credits-dto';
 import { Cast, CastDetails, Credits } from '../types/credits';
 import { MovieTVDetails } from '../types/movie-tv-details';
 import { MovieTVDetailsDTO } from '../types/DTO/movie-tv-details-dto';
+import { UserInfoDTO } from '../types/DTO/user-info';
+import { UserInfo } from '../types/user-info';
 
 @Injectable({
   providedIn: 'root',
@@ -225,6 +227,15 @@ export class DtoTransformService {
     return {
       job,
       department,
+    };
+  }
+
+  transformUserInfo({ avatar, id, name, username }: UserInfoDTO): UserInfo {
+    return {
+      avatar,
+      id,
+      name,
+      username,
     };
   }
 }
