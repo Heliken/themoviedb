@@ -16,6 +16,7 @@ import { ratingInitializerFactory } from './factories/rating-initializer.factory
 import { configInitializerFactory } from './factories/config-initializer.factory';
 import { PersonDetailsModule } from './pages/person-details/person-details.module';
 import { CastPageModule } from './pages/cast-page/cast-page.module';
+import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,6 +36,11 @@ import { CastPageModule } from './pages/cast-page/cast-page.module';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserInfoInterceptor,
       multi: true,
     },
   ],
