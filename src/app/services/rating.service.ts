@@ -6,24 +6,20 @@ import {
   BehaviorSubject,
   Observable,
   distinctUntilChanged,
+  forkJoin,
   map,
   tap,
 } from 'rxjs';
 import { RatedMap } from '../types/rated-map';
 import { CanBeRatedMediaType, MediaType } from '../types/media-type';
 import { PostRatingResponse } from '../types/post-rating-response';
-import { AuthorizationService } from './authorization.service';
 import { UserInfoService } from './user-info.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RatingService {
-  constructor(
-    private http: HttpClient,
-    private authService: AuthorizationService,
-    private userInfo: UserInfoService
-  ) {}
+  constructor(private http: HttpClient, private userInfo: UserInfoService) {}
 
   public ratedMovies$ = new BehaviorSubject<RatedMap>(
     new Map<number, number>()
@@ -90,6 +86,13 @@ export class RatingService {
   clearRatingLists(): void {
     this.ratedMovies$.next(new Map<number, number>());
     this.ratedTvShows$.next(new Map<number, number>());
+  }
+
+  requestRatedMoviesAndTvShows(sessionId: string) {
+    return forkJoin([
+      this.requestRatedMovies(sessionId),
+      this.requestRatedMovies(sessionId),
+    ]);
   }
 
   private convertToMap(movies: MovieDTORated[]): Map<number, number> {

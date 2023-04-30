@@ -59,6 +59,7 @@ export class AuthorizationService {
 
   logout(): void {
     this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
+    this.ratingService.clearRatingLists();
     this.userInfo.clearSessionId();
     this.isLoggedIn$.next(false);
     this.notificationService.showNotification({
