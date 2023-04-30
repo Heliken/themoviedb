@@ -4,6 +4,8 @@ import { UserInfoDTO } from '../types/DTO/user-info';
 import { HttpClient } from '@angular/common/http';
 import { DtoTransformService } from './dto-transform.service';
 import { UserInfo } from '../types/user-info';
+import { LocalStorageService } from './local-storage.service';
+import { SESSION_ID_CACHE_KEY } from '../../api-info';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,8 @@ import { UserInfo } from '../types/user-info';
 export class UserInfoService {
   constructor(
     private http: HttpClient,
-    private dtoTransform: DtoTransformService
+    private dtoTransform: DtoTransformService,
+    private localStorage: LocalStorageService<string>
   ) {}
 
   public isLoggedIn$ = new BehaviorSubject<boolean>(false);
@@ -26,5 +29,11 @@ export class UserInfoService {
         this.userInfo$.next(userInfo);
       })
     );
+  }
+
+  public logout(): void {
+    this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
+    this.userInfo$.next(undefined);
+    this.isLoggedIn$.next(false);
   }
 }
