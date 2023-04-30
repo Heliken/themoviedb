@@ -11,8 +11,9 @@ import {
 } from 'rxjs';
 import { RatedMap } from '../types/rated-map';
 import { CanBeRatedMediaType, MediaType } from '../types/media-type';
-import { GuestSessionService } from './guest-session.service';
 import { PostRatingResponse } from '../types/post-rating-response';
+import { AuthorizationService } from './authorization.service';
+import { UserInfoService } from './user-info.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +21,8 @@ import { PostRatingResponse } from '../types/post-rating-response';
 export class RatingService {
   constructor(
     private http: HttpClient,
-    private guestSessionService: GuestSessionService
+    private authService: AuthorizationService,
+    private userInfo: UserInfoService
   ) {}
 
   public ratedMovies$ = new BehaviorSubject<RatedMap>(
@@ -42,7 +44,7 @@ export class RatingService {
     value: number
   ): Observable<PostRatingResponse> {
     return this.http.post<PostRatingResponse>(
-      `${type}/${id}/rating?guest_session_id=${this.guestSessionService.getSessionId()}`,
+      `${type}/${id}/rating?session_id=${this.userInfo.getSessionId()}`,
       {
         value,
       }
@@ -68,7 +70,7 @@ export class RatingService {
   requestRatedMovies(sessionId: string): Observable<RatedMap> {
     return this.http
       .get<MediaListResponse<MovieDTORated>>(
-        `guest_session/${sessionId}/rated/movies`
+        `account/${sessionId}/rated/movies`
       )
       .pipe(
         map(({ results }) => this.convertToMap(results)),
@@ -78,13 +80,16 @@ export class RatingService {
 
   requestRatedTvShows(sessionId: string): Observable<RatedMap> {
     return this.http
-      .get<MediaListResponse<MovieDTORated>>(
-        `guest_session/${sessionId}/rated/tv`
-      )
+      .get<MediaListResponse<MovieDTORated>>(`account/${sessionId}/rated/tv`)
       .pipe(
         map(({ results }) => this.convertToMap(results)),
         tap(resultsMap => this.ratedTvShows$.next(resultsMap))
       );
+  }
+
+  clearRatingLists(): void {
+    this.ratedMovies$.next(new Map<number, number>());
+    this.ratedTvShows$.next(new Map<number, number>());
   }
 
   private convertToMap(movies: MovieDTORated[]): Map<number, number> {

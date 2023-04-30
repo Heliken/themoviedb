@@ -45,7 +45,7 @@ export class LoginFormComponent {
           this.isSubmitting$.next(false);
         }),
         switchMap(({ session_id }) => {
-          this.authService.saveSessionId(session_id);
+          this.userInfo.saveSessionId(session_id);
           return this.userInfo.getUserInfo();
         })
       )

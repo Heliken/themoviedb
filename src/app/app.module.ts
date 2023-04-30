@@ -9,7 +9,6 @@ import { ApiConfigurationService } from './services/api-configuration.service';
 import { MovieDetailsModule } from './pages/movie-details/movie-details.module';
 import { HeaderModule } from './components/header/header.module';
 import { TvDetailsModule } from './pages/tv-details/tv-details.module';
-import { GuestSessionService } from './services/guest-session.service';
 import { RatingService } from './services/rating.service';
 import { NotificationModule } from './components/notifications/notifications.module';
 import { ratingInitializerFactory } from './factories/rating-initializer.factory';
@@ -33,14 +32,14 @@ import { LoginPageModule } from './pages/login-page/login-page.module';
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: ratingInitializerFactory,
-      deps: [RatingService, GuestSessionService],
+      useFactory: userInfoInitializerFactory,
+      deps: [UserInfoService, LocalStorageService<string>],
       multi: true,
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: userInfoInitializerFactory,
-      deps: [UserInfoService, LocalStorageService<string>],
+      useFactory: ratingInitializerFactory,
+      deps: [RatingService, UserInfoService],
       multi: true,
     },
     {
