@@ -9,7 +9,7 @@ import { Observable, map, switchMap, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import {
   REQUEST_ACCESS_TOKEN_CACHE_KEY,
-  SESISON_ID_CACHE_KEY,
+  SESSION_ID_CACHE_KEY,
 } from '../../api-info';
 
 @Injectable({
@@ -64,7 +64,7 @@ export class AuthorizationService {
   }
 
   saveSessionId(id: string) {
-    this.localStorage.setItem(SESISON_ID_CACHE_KEY, {
+    this.localStorage.setItem(SESSION_ID_CACHE_KEY, {
       data: id,
     });
   }

@@ -40,7 +40,7 @@ export class LocalStorageService<T> {
     localStorage.setItem(key, stringValue);
   }
 
-  private removeItem(key: string): void {
+  public removeItem(key: string): void {
     localStorage.removeItem(key);
   }
 
