@@ -30,10 +30,4 @@ export class UserInfoService {
       })
     );
   }
-
-  public logout(): void {
-    this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
-    this.userInfo$.next(undefined);
-    this.isLoggedIn$.next(false);
-  }
 }

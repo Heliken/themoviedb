@@ -11,6 +11,7 @@ import {
   REQUEST_ACCESS_TOKEN_CACHE_KEY,
   SESSION_ID_CACHE_KEY,
 } from '../../api-info';
+import { UserInfoService } from './user-info.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,8 @@ import {
 export class AuthorizationService {
   constructor(
     private readonly http: HttpClient,
-    private localStorage: LocalStorageService<string>
+    private localStorage: LocalStorageService<string>,
+    private userInfo: UserInfoService
   ) {}
 
   requestAccessToken(): Observable<string> {
@@ -67,5 +69,11 @@ export class AuthorizationService {
     this.localStorage.setItem(SESSION_ID_CACHE_KEY, {
       data: id,
     });
+  }
+
+  public logout(): void {
+    this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
+    this.userInfo.userInfo$.next(undefined);
+    this.userInfo.isLoggedIn$.next(false);
   }
 }
