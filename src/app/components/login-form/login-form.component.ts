@@ -49,20 +49,24 @@ export class LoginFormComponent {
         })
       )
       .subscribe({
-        next: () => {
-          this.notificationService.showNotification({
-            type: CustomNotificationType.Success,
-            message: 'You logged in successfully!',
-          });
-        },
-        error: error => {
-          this.isSubmitting$.next(false);
-
-          this.notificationService.showNotification({
-            type: CustomNotificationType.Error,
-            message: error.error.status_message,
-          });
-        },
+        next: () => this.successAction(),
+        error: error => this.errorAction(error.error.status_message),
       });
+  }
+
+  public successAction(): void {
+    this.notificationService.showNotification({
+      type: CustomNotificationType.Success,
+      message: 'You logged in successfully!',
+    });
+  }
+
+  public errorAction(errorText: string): void {
+    this.isSubmitting$.next(false);
+
+    this.notificationService.showNotification({
+      type: CustomNotificationType.Error,
+      message: errorText,
+    });
   }
 }
