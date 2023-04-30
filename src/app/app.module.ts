@@ -16,6 +16,9 @@ import { ratingInitializerFactory } from './factories/rating-initializer.factory
 import { configInitializerFactory } from './factories/config-initializer.factory';
 import { PersonDetailsModule } from './pages/person-details/person-details.module';
 import { CastPageModule } from './pages/cast-page/cast-page.module';
+import { userInfoInitializerFactory } from './factories/user-info-initializer.factory';
+import { UserInfoService } from './services/user-info.service';
+import { LocalStorageService } from './services/local-storage.service';
 import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
 
 @NgModule({
@@ -31,6 +34,12 @@ import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
       provide: APP_INITIALIZER,
       useFactory: ratingInitializerFactory,
       deps: [RatingService, GuestSessionService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: userInfoInitializerFactory,
+      deps: [UserInfoService, LocalStorageService<string>],
       multi: true,
     },
     {
