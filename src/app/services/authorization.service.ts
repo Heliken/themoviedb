@@ -12,6 +12,8 @@ import {
   SESSION_ID_CACHE_KEY,
 } from '../../api-info';
 import { UserInfoService } from './user-info.service';
+import { NotificationsService } from './notifications.service';
+import { CustomNotificationType } from '../types/notification';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +22,8 @@ export class AuthorizationService {
   constructor(
     private readonly http: HttpClient,
     private localStorage: LocalStorageService<string>,
-    private userInfo: UserInfoService
+    private userInfo: UserInfoService,
+    private notificationService: NotificationsService
   ) {}
 
   requestAccessToken(): Observable<string> {
@@ -75,5 +78,9 @@ export class AuthorizationService {
     this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
     this.userInfo.userInfo$.next(undefined);
     this.userInfo.isLoggedIn$.next(false);
+    this.notificationService.showNotification({
+      type: CustomNotificationType.Success,
+      message: 'You have been logged out',
+    });
   }
 }
