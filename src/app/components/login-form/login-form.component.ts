@@ -5,8 +5,8 @@ import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { LoginCredits } from '../../types/DTO/authorisation-response';
 import { NotificationsService } from '../../services/notifications.service';
 import { CustomNotificationType } from '../../types/notification';
-import { UserInfo } from '../../types/user-info';
 import { UserInfoService } from '../../services/user-info.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mdb-login-form',
@@ -18,7 +18,8 @@ export class LoginFormComponent {
     private formBuilder: FormBuilder,
     private authService: AuthorizationService,
     private notificationService: NotificationsService,
-    private userInfo: UserInfoService
+    private userInfo: UserInfoService,
+    private router: Router
   ) {}
 
   public loginForm = this.formBuilder.group({
@@ -59,6 +60,8 @@ export class LoginFormComponent {
       type: CustomNotificationType.Success,
       message: 'You logged in successfully!',
     });
+
+    this.router.navigate(['/']);
   }
 
   public errorAction(errorText: string): void {
