@@ -5,7 +5,7 @@ import {
   LoginCredits,
   NewSessionResponse,
 } from '../types/DTO/authorisation-response';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, switchMap, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import {
   REQUEST_ACCESS_TOKEN_CACHE_KEY,
@@ -26,6 +26,8 @@ export class AuthorizationService {
     private notificationService: NotificationsService
   ) {}
 
+  public isLoggedIn$ = new BehaviorSubject<boolean>(false);
+
   requestAccessToken(): Observable<string> {
     return this.http.get<AccessTokenResponse>('authentication/token/new').pipe(
       tap(({ request_token, expires_at }) =>
@@ -42,25 +44,6 @@ export class AuthorizationService {
     });
   }
 
-  requestLogin(
-    request_token: string,
-    credits: LoginCredits
-  ): Observable<AccessTokenResponse> {
-    return this.http.post<AccessTokenResponse>(
-      'authentication/token/validate_with_login',
-      {
-        request_token,
-        ...credits,
-      }
-    );
-  }
-
-  requestNewSession(request_token: string): Observable<NewSessionResponse> {
-    return this.http.post<NewSessionResponse>('authentication/session/new', {
-      request_token,
-    });
-  }
-
   initNewSession(credits: LoginCredits): Observable<NewSessionResponse> {
     return this.requestAccessToken().pipe(
       switchMap(token => this.requestLogin(token, credits)),
@@ -74,13 +57,34 @@ export class AuthorizationService {
     });
   }
 
-  public logout(): void {
+  logout(): void {
     this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
     this.userInfo.userInfo$.next(undefined);
-    this.userInfo.isLoggedIn$.next(false);
+    this.isLoggedIn$.next(false);
     this.notificationService.showNotification({
       type: CustomNotificationType.Success,
       message: 'You have been logged out',
+    });
+  }
+
+  private requestLogin(
+    request_token: string,
+    credits: LoginCredits
+  ): Observable<AccessTokenResponse> {
+    return this.http.post<AccessTokenResponse>(
+      'authentication/token/validate_with_login',
+      {
+        request_token,
+        ...credits,
+      }
+    );
+  }
+
+  private requestNewSession(
+    request_token: string
+  ): Observable<NewSessionResponse> {
+    return this.http.post<NewSessionResponse>('authentication/session/new', {
+      request_token,
     });
   }
 }

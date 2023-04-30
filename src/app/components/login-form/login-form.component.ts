@@ -56,6 +56,7 @@ export class LoginFormComponent {
   }
 
   public successAction(): void {
+    this.authService.isLoggedIn$.next(true);
     this.notificationService.showNotification({
       type: CustomNotificationType.Success,
       message: 'You logged in successfully!',

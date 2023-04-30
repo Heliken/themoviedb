@@ -13,7 +13,7 @@ export class HeaderLoginComponent {
     private authService: AuthorizationService
   ) {}
 
-  public isLogged$ = this.userInfo.isLoggedIn$;
+  public isLogged$ = this.authService.isLoggedIn$;
   public userInfo$ = this.userInfo.userInfo$;
 
   public logout(): void {

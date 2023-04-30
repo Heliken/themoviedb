@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
-import { UserInfoService } from '../services/user-info.service';
 import { map } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthorizationService } from '../services/authorization.service';
 
 export const UnAuthGuard = () => {
-  const userInfo = inject(UserInfoService);
+  const authService = inject(AuthorizationService);
   const router = inject(Router);
-  return userInfo.isLoggedIn$.pipe(
+  return authService.isLoggedIn$.pipe(
     map(isLogged => (isLogged ? router.navigate(['/']) : true))
   );
 };

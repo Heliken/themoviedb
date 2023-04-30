@@ -14,15 +14,12 @@ export class UserInfoService {
     private dtoTransform: DtoTransformService
   ) {}
 
-  public isLoggedIn$ = new BehaviorSubject<boolean>(false);
-
   public userInfo$ = new BehaviorSubject<UserInfo | undefined>(undefined);
 
   public getUserInfo(): Observable<UserInfo> {
     return this.http.get<UserInfoDTO>('/account').pipe(
       map(user => this.dtoTransform.transformUserInfo(user)),
       tap(userInfo => {
-        this.isLoggedIn$.next(true);
         this.userInfo$.next(userInfo);
       })
     );
