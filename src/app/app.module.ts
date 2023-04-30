@@ -20,6 +20,7 @@ import { userInfoInitializerFactory } from './factories/user-info-initializer.fa
 import { UserInfoService } from './services/user-info.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
+import { LoginPageModule } from './pages/login-page/login-page.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -65,6 +66,7 @@ import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
     PersonDetailsModule,
     CastPageModule,
     NotificationModule,
+    LoginPageModule,
   ],
 })
 export class AppModule {}
