@@ -1,0 +1,11 @@
+<div class="header-login" *ngIf="{ data: userInfo$ | async } as userInfo">
+  <ng-container *ngIf="userInfo.data as data; else unlogged"
+    ><span class="header-login--user">Hi, {{ data.username }}</span
+    ><button class="header-login--logout link" (click)="logout()">
+      Logout
+    </button></ng-container
+  >
+  <ng-template #unlogged>
+    <a routerLink="/login" class="header-login--link link">Login</a>
+  </ng-template>
+</div>
