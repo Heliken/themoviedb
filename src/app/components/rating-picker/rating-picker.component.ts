@@ -6,6 +6,7 @@ import { GuestSessionService } from 'src/app/services/guest-session.service';
 import { RatingService } from 'src/app/services/rating.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { CustomNotificationType } from 'src/app/types/notification';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'mdb-rating-picker',
@@ -16,13 +17,15 @@ export class RatingPickerComponent implements OnDestroy {
   constructor(
     private readonly ratingService: RatingService,
     private readonly guestSessionService: GuestSessionService,
-    private readonly notificationsService: NotificationsService
+    private readonly notificationsService: NotificationsService,
+    private readonly authService: AuthorizationService
   ) {}
 
   @Input() public initial = 5;
   @Input() public ratingPostConfig?: RatingPostConfig;
 
   public isSubmitting$ = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$ = this.authService.isLoggedIn$;
   public step = 0.5;
   public min = this.step;
   public max = 10;
@@ -37,9 +40,8 @@ export class RatingPickerComponent implements OnDestroy {
 
       this.isSubmitting$.next(true);
 
-      this.submitSubscription = this.guestSessionService
-        .loadSessionId()
-        .pipe(switchMap(() => this.ratingService.postRating(id, type, value)))
+      this.submitSubscription = this.ratingService
+        .postRating(id, type, value)
         .subscribe({
           next: ({ status_message }) => {
             this.guestSessionService.saveSessionId();

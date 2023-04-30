@@ -15,4 +15,7 @@
     (click)="submitRating()">
     Rate
   </button>
+  <p class="rating-picker--note" *ngIf="(isLoggedIn$ | async) === false">
+    You need to log in to be able to rate
+  </p>
 </div>
