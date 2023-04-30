@@ -11,6 +11,20 @@
         align-items: center;
     }
 
+    &--link {
+        text-decoration: underline;
+        
+        &_active {
+            color: rgb(var(--accent));
+        }
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
     &--user {
         font-weight: 600;
     }
@@ -19,5 +33,11 @@
         font-size: 12px;
         color: rgb(var(--accent));
         text-decoration: underline;
+
+        @include bp('1280') {
+            &:hover {
+                text-decoration: none;
+            }
+        }
     }
 }
