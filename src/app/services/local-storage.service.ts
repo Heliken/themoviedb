@@ -17,7 +17,6 @@ export class LocalStorageService<T> {
         const { data, expires } = JSON.parse(stringValue);
         if (expires) {
           const isExpired = this.checkExpiration(expires);
-          console.log(isExpired);
           if (isExpired) {
             this.removeItem(key);
             return undefined;

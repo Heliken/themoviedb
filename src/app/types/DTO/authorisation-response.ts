@@ -4,13 +4,12 @@ export interface AccessTokenResponse {
   request_token: string;
 }
 
-export interface LoginResponse {
+export type NewSessionResponse = {
   success: boolean;
   session_id: string;
-}
+};
 
-export interface LoginPost {
+export interface LoginCredits {
   username: string;
   password: string;
-  request_token: string;
 }
