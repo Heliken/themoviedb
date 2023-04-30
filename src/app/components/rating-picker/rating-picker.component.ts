@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, Subscription, switchMap } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { RatingPostConfig } from 'src/app/types/rating-post-config';
 import { GuestSessionService } from 'src/app/services/guest-session.service';
 import { RatingService } from 'src/app/services/rating.service';

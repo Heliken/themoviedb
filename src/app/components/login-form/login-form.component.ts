@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
-import { BehaviorSubject, concatMap, mergeMap, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { LoginCredits } from '../../types/DTO/authorisation-response';
 import { NotificationsService } from '../../services/notifications.service';
 import { CustomNotificationType } from '../../types/notification';
@@ -60,7 +60,6 @@ export class LoginFormComponent {
 
   public successAction(): void {
     this.authService.isLoggedIn$.next(true);
-    // this.ratingService.requestRatedMoviesAndTvShows(sessionId);
     this.notificationService.showNotification({
       type: CustomNotificationType.Success,
       message: 'You logged in successfully!',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { UserInfoDTO } from '../types/DTO/user-info';
 import { HttpClient } from '@angular/common/http';
 import { DtoTransformService } from './dto-transform.service';
