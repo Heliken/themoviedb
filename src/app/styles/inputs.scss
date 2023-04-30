@@ -124,6 +124,10 @@ input[type=range] {
         }
     }
 
+    &._large {
+        font-size: 16px;
+    }
+
     &[disabled] {
         pointer-events: none;
         filter: grayscale(1);

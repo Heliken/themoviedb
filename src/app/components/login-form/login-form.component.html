@@ -1,0 +1,19 @@
+<form class="login-form" [formGroup]="loginForm">
+  <h4 class="login-form--title h4">Login with your TMDB account</h4>
+  <input
+    class="input"
+    type="text"
+    formControlName="username"
+    placeholder="Login" />
+  <input
+    class="input"
+    type="password"
+    formControlName="password"
+    placeholder="Password" />
+  <button
+    class="login-form--submit button _primary _large"
+    [disabled]="loginForm.invalid || (isSubmitting$ | async)"
+    (click)="login()">
+    Login
+  </button>
+</form>
