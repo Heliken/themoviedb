@@ -5,7 +5,7 @@ import {
   LoginCredits,
   NewSessionResponse,
 } from '../types/DTO/authorisation-response';
-import { Observable, map, of, switchMap, tap } from 'rxjs';
+import { Observable, map, switchMap, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import {
   REQUEST_ACCESS_TOKEN_CACHE_KEY,

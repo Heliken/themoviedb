@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { LoginCredits } from '../../types/DTO/authorisation-response';
 import { NotificationsService } from '../../services/notifications.service';
 import { CustomNotificationType } from '../../types/notification';
+import { UserInfo } from '../../types/user-info';
+import { UserInfoService } from '../../services/user-info.service';
 
 @Component({
   selector: 'mdb-login-form',
@@ -15,7 +17,8 @@ export class LoginFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthorizationService,
-    private notificationService: NotificationsService
+    private notificationService: NotificationsService,
+    private userInfo: UserInfoService
   ) {}
 
   public loginForm = this.formBuilder.group({
@@ -39,18 +42,22 @@ export class LoginFormComponent {
       .pipe(
         tap(() => {
           this.isSubmitting$.next(false);
+        }),
+        switchMap(({ session_id }) => {
+          this.authService.saveSessionId(session_id);
+          return this.userInfo.getUserInfo();
         })
       )
       .subscribe({
-        next: ({ session_id }) => {
-          this.authService.saveSessionId(session_id);
-
+        next: () => {
           this.notificationService.showNotification({
             type: CustomNotificationType.Success,
             message: 'You logged in successfully!',
           });
         },
         error: error => {
+          this.isSubmitting$.next(false);
+
           this.notificationService.showNotification({
             type: CustomNotificationType.Error,
             message: error.error.status_message,
