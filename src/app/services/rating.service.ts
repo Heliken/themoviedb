@@ -91,7 +91,7 @@ export class RatingService {
   requestRatedMoviesAndTvShows(sessionId: string) {
     return forkJoin([
       this.requestRatedMovies(sessionId),
-      this.requestRatedMovies(sessionId),
+      this.requestRatedTvShows(sessionId),
     ]);
   }
 
