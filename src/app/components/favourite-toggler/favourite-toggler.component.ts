@@ -8,7 +8,6 @@ import {
   map,
   switchMap,
   take,
-  tap,
 } from 'rxjs';
 import { NotificationsService } from '../../services/notifications.service';
 import { CustomNotificationType } from '../../types/notification';
