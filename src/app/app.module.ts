@@ -20,6 +20,7 @@ import { UserInfoService } from './services/user-info.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
 import { LoginPageModule } from './pages/login-page/login-page.module';
+import { AuthorizationService } from './services/authorization.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,7 +34,11 @@ import { LoginPageModule } from './pages/login-page/login-page.module';
     {
       provide: APP_INITIALIZER,
       useFactory: userInfoInitializerFactory,
-      deps: [UserInfoService, LocalStorageService<string>],
+      deps: [
+        UserInfoService,
+        AuthorizationService,
+        LocalStorageService<string>,
+      ],
       multi: true,
     },
     {
