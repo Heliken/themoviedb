@@ -46,23 +46,34 @@ export class FavouriteTogglerComponent implements OnInit, OnDestroy {
             return this.favService
               .postToggleFav(id, type, !isFav)
               .pipe(map(result => ({ isFav: !isFav, result })));
-          }),
-          tap(() => this.isSubmitting$.next(false))
+          })
         )
         .subscribe({
           next: ({ isFav }) => this.successAction(isFav, mediaItem),
-          error: () => console.log('eror'),
+          error: error => this.errorAction(error.error.status_message),
         });
     }
   }
 
   public successAction(isFav: boolean, media: CanBeRatedMediaItem) {
+    this.isSubmitting$.next(false);
+
     this.favService.toggleNewFav(isFav, media);
+
     this.notificationService.showNotification({
       type: CustomNotificationType.Success,
       message: isFav
         ? 'Item was added to favourites'
         : 'Item was removed from favourites',
+    });
+  }
+
+  public errorAction(message: string): void {
+    this.isSubmitting$.next(false);
+
+    this.notificationService.showNotification({
+      type: CustomNotificationType.Error,
+      message,
     });
   }
 
