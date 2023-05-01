@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthorizationService } from '../../services/authorization.service';
-import { BehaviorSubject, switchMap, tap } from 'rxjs';
+import { BehaviorSubject, forkJoin, switchMap, tap } from 'rxjs';
 import { LoginCredits } from '../../types/DTO/authorisation-response';
 import { NotificationsService } from '../../services/notifications.service';
 import { CustomNotificationType } from '../../types/notification';
 import { UserInfoService } from '../../services/user-info.service';
 import { Router } from '@angular/router';
 import { RatingService } from '../../services/rating.service';
+import { FavouritesService } from '../../services/favourites.service';
 
 @Component({
   selector: 'mdb-login-form',
@@ -21,7 +22,8 @@ export class LoginFormComponent {
     private notificationService: NotificationsService,
     private userInfo: UserInfoService,
     private router: Router,
-    private ratingService: RatingService
+    private ratingService: RatingService,
+    private favouritesService: FavouritesService
   ) {}
 
   public loginForm = this.formBuilder.group({
@@ -48,7 +50,10 @@ export class LoginFormComponent {
         }),
         switchMap(({ session_id }) => {
           this.userInfo.saveSessionId(session_id);
-          return this.ratingService.requestRatedMoviesAndTvShows(session_id);
+          return forkJoin([
+            this.ratingService.requestRatedMoviesAndTvShows(session_id),
+            this.favouritesService.requestFavMoviesAndTvShows(session_id),
+          ]);
         }),
         switchMap(() => this.userInfo.getUserInfo())
       )

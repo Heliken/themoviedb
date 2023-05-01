@@ -15,6 +15,7 @@ import { UserInfoService } from './user-info.service';
 import { NotificationsService } from './notifications.service';
 import { CustomNotificationType } from '../types/notification';
 import { RatingService } from './rating.service';
+import { FavouritesService } from './favourites.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class AuthorizationService {
     private localStorage: LocalStorageService<string>,
     private userInfo: UserInfoService,
     private notificationService: NotificationsService,
-    private ratingService: RatingService
+    private ratingService: RatingService,
+    private favouritesService: FavouritesService
   ) {}
 
   public isLoggedIn$ = new BehaviorSubject<boolean>(false);
@@ -60,6 +62,7 @@ export class AuthorizationService {
   logout(): void {
     this.localStorage.removeItem(SESSION_ID_CACHE_KEY);
     this.ratingService.clearRatingLists();
+    this.favouritesService.clearFavLists();
     this.userInfo.clearSessionId();
     this.isLoggedIn$.next(false);
     this.notificationService.showNotification({
