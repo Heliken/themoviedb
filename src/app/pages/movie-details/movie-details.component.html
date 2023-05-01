@@ -16,14 +16,18 @@
             <p>{{ details.description }}</p>
           </mdb-detailed-page-hero-section>
           <div class="detailed-hero--other">
-            <mdb-detailed-page-hero-rating
-              class="detailed-hero--rating"
-              *ngIf="details.rating"
-              [ratingPostConfig]="{
-                type: details.mediaType,
-                id: details.id
-              }"
-              [value]="details.rating"></mdb-detailed-page-hero-rating>
+            <div class="detailed-hero--controls">
+              <mdb-detailed-page-hero-rating
+                class="detailed-hero--rating"
+                *ngIf="details.rating"
+                [ratingPostConfig]="{
+                  type: details.mediaType,
+                  id: details.id
+                }"
+                [value]="details.rating"></mdb-detailed-page-hero-rating>
+              <mdb-favourite-toggler
+                class="detailed-hero--fav-toggler"></mdb-favourite-toggler>
+            </div>
             <mdb-detailed-page-hero-section
               *ngIf="details.releaseDate"
               [title]="'Release date:'">

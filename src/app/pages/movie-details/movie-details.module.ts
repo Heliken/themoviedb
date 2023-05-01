@@ -4,9 +4,16 @@ import { MovieDetailsComponent } from './movie-details.component';
 import { PreloaderModule } from '../../components/preloader/preloader.module';
 import { DetailedPageModule } from '../../components/detailed-page/detailed-page.module';
 import { FilterModule } from '../../pipes/filter/filter.module';
+import { FavouriteTogglerModule } from '../../components/favourite-toggler/favourite-toggler.module';
 
 @NgModule({
   declarations: [MovieDetailsComponent],
-  imports: [CommonModule, PreloaderModule, DetailedPageModule, FilterModule],
+  imports: [
+    CommonModule,
+    PreloaderModule,
+    DetailedPageModule,
+    FilterModule,
+    FavouriteTogglerModule,
+  ],
 })
 export class MovieDetailsModule {}
