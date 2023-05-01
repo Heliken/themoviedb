@@ -100,6 +100,7 @@ input[type=range] {
     border: none;
     outline: none;
     background-color: transparent;
+    color: inherit;
 }
 
 .button {
@@ -122,6 +123,10 @@ input[type=range] {
         &:hover {
             filter: brightness(1.1);
         }
+    }
+
+    &._large {
+        font-size: 16px;
     }
 
     &[disabled] {
