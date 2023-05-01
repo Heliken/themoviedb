@@ -3,6 +3,7 @@ import { DetailedDataAPIService } from '../../services/detailed-data-api.service
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { crewFilterFunc } from 'src/app/components/detailed-page/helpers/crew-filter-func';
+import { AuthorizationService } from '../../services/authorization.service';
 
 enum MovieCrewMainJob {
   Director = 'director',
@@ -19,10 +20,13 @@ enum MovieCrewMainJob {
 export class MovieDetailsComponent {
   constructor(
     private route: ActivatedRoute,
-    private detailedDataService: DetailedDataAPIService
+    private detailedDataService: DetailedDataAPIService,
+    private authService: AuthorizationService
   ) {}
 
   public castToShow = 10;
+
+  public isLoggedIn$ = this.authService.isLoggedIn$;
 
   public isLoading$ = new BehaviorSubject<boolean>(true);
 

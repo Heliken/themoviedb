@@ -6,7 +6,7 @@
       'favourite-toggler_disabled': (isSubmitting$ | async)
     }"
     [title]="isActive.state ? 'Remove from favourites' : 'Add to favourites'"
-    (click)="toggleFav()">
+    (click)="togglerClick()">
     <span *ngIf="isActive.state; else emptyStar">&starf;</span>
     <ng-template #emptyStar>&star;</ng-template>
   </div>

@@ -27,6 +27,7 @@
                 [value]="details.rating"></mdb-detailed-page-hero-rating>
               <mdb-favourite-toggler
                 class="detailed-hero--fav-toggler"
+                [isLoggedIn]="isLoggedIn$ | async"
                 [media]="details"></mdb-favourite-toggler>
             </div>
             <mdb-detailed-page-hero-section
