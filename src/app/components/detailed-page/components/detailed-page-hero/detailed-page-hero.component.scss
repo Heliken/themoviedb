@@ -110,6 +110,27 @@
             &--rating {
                 justify-self: flex-start;
             }
+
+            &--controls {
+                gap: 4px;
+                display: flex;
+                align-items: flex-start;
+
+                @include bp('768') {
+                    align-items: center;
+                    gap: 8px;
+                }
+
+            }
+
+            &--fav-toggler {
+                margin-top: -4px;
+
+                @include bp('768') {
+                    margin-top: 0px;
+                }
+            }
         }
+        
     }   
 }

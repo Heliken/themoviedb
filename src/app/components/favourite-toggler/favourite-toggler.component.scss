@@ -1,0 +1,28 @@
+@import "src/app/styles/mixins.scss";
+
+.favourite-toggler {
+    font-size: 24px;
+    
+    width: 32px;
+    height: 32px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+    &_active {
+        color: rgb(var(--accent));
+    }
+
+    @include bp('1280') {
+        &:hover {
+            color: rgb(var(--accent));
+            filter: brightness(1.1);
+        }
+    }
+
+    &_disabled {
+        pointer-events: none;
+        filter: grayscale(1);
+    }
+}

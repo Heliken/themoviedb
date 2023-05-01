@@ -7,6 +7,8 @@ import { PersonDetailsComponent } from './pages/person-details/person-details.co
 import { CastPageComponent } from './pages/cast-page/cast-page.component';
 import { MediaType } from './types/media-type';
 import { CastPageRouteData } from './types/cast-page-route-data';
+import { UnAuthGuard } from './guards/unauth.guard';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,11 @@ const routes: Routes = [
         } as CastPageRouteData,
       },
     ],
+  },
+  {
+    path: 'login',
+    component: LoginPageComponent,
+    canActivate: [UnAuthGuard],
   },
   {
     path: 'movie',

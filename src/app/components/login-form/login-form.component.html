@@ -1,0 +1,18 @@
+<form class="login-form" [formGroup]="loginForm">
+  <input
+    class="input"
+    type="text"
+    formControlName="username"
+    placeholder="Login" />
+  <input
+    class="input"
+    type="password"
+    formControlName="password"
+    placeholder="Password" />
+  <button
+    class="login-form--submit button _primary _large"
+    [disabled]="loginForm.invalid || (isSubmitting$ | async)"
+    (click)="login()">
+    Login
+  </button>
+</form>

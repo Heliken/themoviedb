@@ -1,5 +1,14 @@
 <div class="mainpage">
   <div class="mainpage--body">
+    <ng-container *ngIf="favourites$ | async as favourites">
+      <mdb-mainpage-section
+        *ngIf="favourites.length"
+        [section]="{
+          title: 'Your favourites',
+          list$: favourites$,
+          gridType: favouritesGridType
+        }"></mdb-mainpage-section>
+    </ng-container>
     <mdb-mainpage-section
       *ngFor="let section of sections"
       [section]="section"></mdb-mainpage-section>
