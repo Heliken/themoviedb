@@ -20,6 +20,8 @@ import { UserInfoService } from './services/user-info.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { UserInfoInterceptor } from './interceptors/user-info.interceptor';
 import { LoginPageModule } from './pages/login-page/login-page.module';
+import { favouritesInitializerFactory } from './factories/favourites-initializer.factory';
+import { FavouritesService } from './services/favourites.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +42,12 @@ import { LoginPageModule } from './pages/login-page/login-page.module';
       provide: APP_INITIALIZER,
       useFactory: ratingInitializerFactory,
       deps: [RatingService, UserInfoService],
+      multi: true,
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: favouritesInitializerFactory,
+      deps: [FavouritesService, UserInfoService],
       multi: true,
     },
     {
