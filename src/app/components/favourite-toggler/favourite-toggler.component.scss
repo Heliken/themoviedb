@@ -20,4 +20,9 @@
             filter: brightness(1.1);
         }
     }
+
+    &_disabled {
+        pointer-events: none;
+        filter: grayscale(1);
+    }
 }

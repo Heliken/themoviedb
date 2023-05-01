@@ -1,7 +1,13 @@
-<div
-  class="favourite-toggler"
-  [class.favourite-toggler_active]="isActive"
-  [title]="isActive ? 'Remove from favourites' : 'Add to favourites'">
-  <span *ngIf="isActive; else unactive">&starf;</span>
-  <ng-template #unactive>&star;</ng-template>
-</div>
+<ng-container *ngIf="{ state: (isActive$ | async) } as isActive">
+  <div
+    class="favourite-toggler"
+    [ngClass]="{
+      'favourite-toggler_active': isActive.state,
+      'favourite-toggler_disabled': (isSubmitting$ | async)
+    }"
+    [title]="isActive.state ? 'Remove from favourites' : 'Add to favourites'"
+    (click)="toggleFav()">
+    <span *ngIf="isActive.state; else emptyStar">&starf;</span>
+    <ng-template #emptyStar>&star;</ng-template>
+  </div>
+</ng-container>

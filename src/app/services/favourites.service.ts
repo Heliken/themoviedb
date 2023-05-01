@@ -54,11 +54,13 @@ export class FavouritesService {
     );
   }
 
-  addNewFav(mediaItem: CanBeRatedMediaItem) {
+  toggleNewFav(isFav: boolean, mediaItem: CanBeRatedMediaItem) {
     const { mediaType: type, id } = mediaItem;
 
     const currentFavMap = this.favMaps[type].getValue();
-    const newRatedMap = new Map(currentFavMap).set(id, mediaItem);
+    const newRatedMap = new Map(currentFavMap);
+
+    isFav ? newRatedMap.set(id, mediaItem) : newRatedMap.delete(id);
 
     this.favMaps[type].next(newRatedMap);
   }
@@ -90,7 +92,7 @@ export class FavouritesService {
           results.map(tv => this.dtoTransfom.transformTVShow(tv))
         ),
         map(list => this.convertToMap(list)),
-        tap(list => this.favMovies$.next(list))
+        tap(list => this.favTvShows$.next(list))
       );
   }
 

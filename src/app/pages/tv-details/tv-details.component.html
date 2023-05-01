@@ -26,7 +26,8 @@
                 }"
                 [value]="details.rating"></mdb-detailed-page-hero-rating>
               <mdb-favourite-toggler
-                class="detailed-hero--fav-toggler"></mdb-favourite-toggler>
+                class="detailed-hero--fav-toggler"
+                [media]="details"></mdb-favourite-toggler>
             </div>
             <mdb-detailed-page-hero-section
               *ngIf="details.releaseDate"
