@@ -3,6 +3,7 @@ import { MainpageRequestsService } from './mainpage-api.service';
 import { MainpageSection } from './types/mainpage-section';
 import { FavouritesService } from '../../services/favourites.service';
 import { combineLatest, map } from 'rxjs';
+import { UICardsGridType } from '../../types/ui-types/ui-cards-grid-type';
 @Component({
   selector: 'mdb-mainpage',
   templateUrl: './mainpage.component.html',
@@ -14,18 +15,23 @@ export class MainpageComponent {
     private favouritesService: FavouritesService
   ) {}
 
+  public favouritesGridType = UICardsGridType.default;
+
   public sections: MainpageSection[] = [
     {
       title: 'Trending',
       list$: this.api.requestTrending(),
+      gridType: UICardsGridType.mobileScroll,
     },
     {
       title: 'Popular',
       list$: this.api.requestPopular(),
+      gridType: UICardsGridType.mobileScroll,
     },
     {
       title: 'Upcoming',
       list$: this.api.requestUpcoming(),
+      gridType: UICardsGridType.mobileScroll,
     },
   ];
 

@@ -5,7 +5,8 @@
         *ngIf="favourites.length"
         [section]="{
           title: 'Your favourites',
-          list$: favourites$
+          list$: favourites$,
+          gridType: favouritesGridType
         }"></mdb-mainpage-section>
     </ng-container>
     <mdb-mainpage-section
